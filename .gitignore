@@ -1,0 +1,11 @@
+# Archivos temporales y de pruebas
+.playwright-mcp/
+*.log
+
+# Entorno de agentes locales
+.agmsg
+iniciar-hermes*
+Lanzar-Worker*
+
+# VS Code historial local
+.vscode/tasks.json

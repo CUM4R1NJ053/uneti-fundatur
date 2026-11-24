@@ -1,0 +1,67 @@
+Nombre: FUNDATUR SOCIAL (Fundación Nacional para el Turismo Social y Recreativo de Venezuela)
+Slogan: "Tu descanso es nuestro destino: turismo accesible para quienes mueven el país."
+Quiénes somos: Promovemos planes vacacionales y recreacionales económicos para estudiantes de educación básica y universitaria, y trabajadores del sector público, impulsando a la vez los servicios y atractivos de cada región venezolana.
+Misión: Ofrecer turismo social accesible a estudiantes y trabajadores públicos, fortaleciendo el desarrollo regional del país.
+Visión: Ser el referente nacional en recreación social con una plataforma tecnológica moderna y conectada en todas nuestras sedes.
+Valores: Accesibilidad, compromiso regional, transparencia y calidad de servicio.
+
+Organigrama Institucional
+FUNDATUR SOCIAL cuenta con una estructura organizativa funcional diseñada para gestionar la Sede Principal y las tres sucursales regionales de manera eficiente.
+Nivel Directivo:
+Presidencia Ejecutiva: Máxima autoridad de la Fundación. Encargada de la dirección estratégica, la gestión de convenios (como el de dotación de equipos) y la representación legal ante entes gubernamentales y privados.
+Nivel Operativo y de Apoyo:
+(Bajo la supervisión directa de la Presidencia)
+1. Departamento de Tecnología (TI): (Área de nueva creación)
+Responsable de la administración de la plataforma tecnológica, soporte técnico (presencial y remoto), gestión del inventario de hardware/software y seguridad de la red en las 4 sedes.
+Personal: Ingeniero en Sistemas (Jefe de Área) y Técnico en Informática (Soporte Operativo).
+2. Departamento de Operaciones y Planes Turísticos:
+Encargado del diseño, logística, coordinación y ejecución de los planes vacacionales y recreacionales para estudiantes y trabajadores del sector público.
+3. Departamento de Atención al Usuario y Relaciones Institucionales:
+Ventanilla de entrada para las solicitudes de los institutos educativos y organismos públicos. Gestiona los canales de comunicación, satisfacción del cliente y recepción de reportes de fallas (junto con TI).
+4. Departamento de Finanzas y Administración:
+Maneja la contabilidad, el presupuesto, los recursos económicos y la gestión administrativa de la Fundación y sus sedes regionales.
+5. Departamento de Talento Humano (RRHH):
+Responsable de la gestión del personal, nómina, bienestar social y capacitación de los trabajadores de FUNDATUR SOCIAL.
+
+Parte II: Orgamigrama institucional
+
+3. Ubicación y Distribución Física
+Operamos en 4 sedes a nivel nacional, con soporte técnico centralizado desde Caracas:
+Sede Principal — Caracas (Los Caobos, Av. Libertador): Edificio de 2 pisos. En Planta Baja están Atención al Usuario, Operaciones y Tecnología; en el Piso 1 funcionan Presidencia, Administración y Talento Humano.
+Sucursal — Maracay (Las Delicias, Av. Bolívar Este): Atiende el eje central; depende del soporte remoto de Caracas.
+Sucursal — Maracaibo (Av. 5 de Julio, Edif. Costa Azul): Gestiona rutas del occidente y costas zulianas con enlace remoto a TI.
+Sucursal — Puerto La Cruz (Paseo Colón, C.C. El Morro): Coordina planes del oriente e islas, conectada por soporte remoto.
+
+4. Diagnóstico Tecnológico e Inventario
+Cuando asumimos la revisión tecnológica de la Fundación, nos encontramos con un escenario exigente: la institución creció hasta operar en 4 sedes (Caracas, Maracay, Maracaibo y Puerto La Cruz), pero el soporte técnico sigue en manos de solo 2 personas (1 Ingeniero en Sistemas como jefe de área y 1 Técnico en Informática como soporte operativo), sin presupuesto disponible para contratar más personal.
+¿Qué encontramos en el diagnóstico?
+Sin control del inventario tras la cuarentena: Durante el período de cuarentena varios trabajadores cambiaron de puesto y se llevaron sus computadoras consigo, sin dejar registro de dónde quedó cada equipo.
+Cambios hechos por usuarios sin autorización: Algunos trabajadores con nociones de informática instalaron programas o actualizaron el sistema por su cuenta, provocando incompatibilidades y fallas constantes.
+Equipos obsoletos afectando el trabajo: Muchos trabajadores tienen computadoras viejas que no les permiten hacer sus tareas con normalidad. De los 40 equipos que tiene la Fundación en sus cuatro sedes, 18 están obsoletos o presentan fallas recurrentes.
+Sedes del interior frenadas por falta de soporte presencial: Maracay, Maracaibo y Puerto La Cruz dependen del soporte remoto de nuestras dos personas; cuando una falla no se puede resolver a distancia, la oficina se queda sin operar.
+Convenio firmado sin plan de ejecución: El presidente firmó un convenio con una empresa privada para recibir equipos nuevos, pero todavía nadie definió cómo se van a recibir, configurar, repartir ni dar soporte, ni cómo se ordenará el inventario actual.
+Inventario Detallado de Equipos (Muestra representativa de la flota)
+En la siguiente tabla presentamos el detalle técnico revisado (marca, modelo, procesador, memoria RAM, almacenamiento, ubicación, estado y observaciones) para ilustrar cómo queda auditado el parque informático:
+
+Equipos sin fallas o en buen funcionamiento: 22 equipos (combinación de equipos modernos con SSD/8–16 GB de RAM y equipos básicos aún operativos).
+Equipos obsoletos o con fallas recurrentes: 18 equipos (equipos con 2 GB o 4 GB de RAM, discos mecánicos desgastados, hardware descontinuado, equipos movidos sin registro en cuarentena o afectados por instalaciones no autorizadas).
+Prioridad inmediata: Utilizar el convenio con la empresa privada para reemplazar primero los 18 equipos críticos, empezando por los puestos que paralizan atención al usuario o sucursales del interior.
+Nota para la web: Aquí puedes agregar un botón o enlace a tu Google Drive con la hoja de cálculo completa donde figuren los 40 equipos numerados (FND-01 al FND-40) con seriales, usuarios asignados y fechas de revisión.
+Cuando estés listo, pasamos al Punto 5 (Software de Atención de Fallas y Normas de Atención al Usuario).
+
+Software de Atención de Fallas
+Para centralizar el soporte en las 4 sedes (Caracas, Maracay, Maracaibo y Puerto La Cruz) con un equipo reducido de 2 personas y sin gasto en licencias, utilizaremos:
+GLPI (Software de Mesa de Ayuda e Inventario): Permite registrar cada reporte de falla mediante tickets, asignar prioridades y mantener actualizado el inventario de hardware y software de cada equipo.
+RustDesk (Soporte Remoto): Facilita la conexión directa desde Caracas hacia las sucursales de Maracay, Maracaibo y Puerto La Cruz para diagnosticar y resolver incidencias a distancia sin detener la operación de la sede.
+
+Esquema de Trabajo para la Atención al Usuario
+Así funciona el flujo de soporte desde que ocurre una falla hasta que se resuelve:
+1. Registro del reporte: El usuario ingresa a GLPI e indica su sede, código del equipo (FND-XX) y una descripción breve del problema.
+2. Asignación de prioridad (Tecnología):
+Alta (< 1 hora): Sucursal paralizada o falla crítica en áreas clave.
+Media (< 4 horas): Equipo lento o problema de software que permite seguir trabajando parcialmente.
+Baja (24 a 48 horas): Instalación de programas aprobados o consultas generales.
+3. Atención Nivel 1 — Técnico en Informática: Se conecta por RustDesk (en Maracay, Maracaibo o Puerto La Cruz) o atiende en sitio en Caracas para resolver fallas habituales.
+4. Escalamiento Nivel 2 — Ingeniero en Sistemas: Interviene cuando se requiere cambio de piezas, revisión profunda, autorización de software o reemplazo de alguno de los 18 equipos críticos mediante el convenio.
+5. Validación y cierre: El usuario confirma que su equipo quedó operativo y el Técnico cierra el ticket dejando constancia de la solución.
+

@@ -1,0 +1,1853 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FUNDATUR SOCIAL • UNETI | Plataforma de Gestión Tecnológica y Diagnóstico</title>
+  <meta name="description"
+    content="Plataforma de Diagnóstico Tecnológico, Auditoría de Parque Informático (40 Equipos), Mesa de Ayuda GLPI/RustDesk y Proyecto Socioeconómico de FUNDATUR SOCIAL en alianza con UNETI." />
+  <meta name="theme-color" content="#0B1120" />
+
+  <!-- Favicon Oficial UNETI -->
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Tailwind CSS vía CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            uneti: {
+              dark: '#0B1120',
+              navy: '#0F172A',
+              card: '#131D33',
+              primary: '#0284C7',
+              accent: '#38BDF8',
+              secondary: '#2563EB',
+              border: '#1E293B'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Estilos Personalizados y Animaciones -->
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body class="bg-uneti-dark text-slate-100 min-h-screen flex flex-col antialiased">
+
+  <!-- =========================================================================
+       BARRA FLOTANTE DE ADMINISTRADOR (Visible solo cuando se inicia sesión)
+       ========================================================================= -->
+  <aside id="admin-floating-banner"
+    class="hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-40 bg-slate-900/95 border border-sky-500/40 shadow-2xl shadow-sky-500/20 backdrop-blur-xl px-5 py-3 rounded-2xl items-center gap-4 text-xs font-medium animate-bounce-subtle">
+    <div class="flex items-center gap-2 text-sky-400">
+      <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 pulse-dot"></span>
+      <span class="font-bold tracking-wide">MODO ADMINISTRADOR</span>
+    </div>
+    <div class="h-4 w-[1px] bg-slate-700"></div>
+    <div class="flex items-center gap-2">
+      <button onclick="window.ui.openNewSessionModal()"
+        class="px-3 py-1.5 rounded-lg bg-sky-600 hover:bg-sky-500 text-white font-semibold flex items-center gap-1.5 transition shadow-sm">
+        <i class="fa-solid fa-plus"></i>
+        <span>Nueva Sesión</span>
+      </button>
+      <button onclick="window.ui.resetToDefaultData()"
+        class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-red-950/40 text-slate-400 hover:text-red-400 transition"
+        title="Restablecer datos originales">
+        <i class="fa-solid fa-rotate-left"></i>
+      </button>
+      <button onclick="window.ui.openLoginModal()"
+        class="px-2.5 py-1.5 rounded-lg bg-red-900/30 hover:bg-red-900/50 text-red-400 border border-red-800/40 transition">
+        <i class="fa-solid fa-power-off"></i>
+      </button>
+    </div>
+  </aside>
+
+  <!-- =========================================================================
+       ENCABEZADO INSTITUCIONAL / NAVBAR
+       ========================================================================= -->
+  <header class="glass-header sticky top-0 z-30 transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+
+      <!-- Identidad Institucional & Logo Oficial UNETI + FUNDATUR -->
+      <a href="#hero" class="flex items-center gap-3.5 group">
+        <img src="assets/logo-uneti.png" alt="Logo Oficial UNETI"
+          class="h-12 sm:h-14 w-auto object-contain transition-transform group-hover:scale-105 rounded-xl bg-white p-1 shadow-md shadow-sky-900/20">
+        <div class="hidden sm:flex flex-col">
+          <div class="flex items-center gap-2">
+            <span class="text-xl font-black tracking-wider text-white">UNE<span class="text-sky-400">TI</span></span>
+            <span
+              class="px-2 py-0.5 rounded-md bg-sky-500/20 text-sky-300 text-[10px] font-bold tracking-wider border border-sky-500/30">FUNDATUR
+              SOCIAL</span>
+          </div>
+          <span class="text-[9px] text-slate-400 font-medium tracking-tight uppercase max-w-[290px] leading-tight">
+            Fundación Nacional para el Turismo Social y Recreativo de Venezuela
+          </span>
+        </div>
+      </a>
+
+      <!-- Navegación y Acciones -->
+            <!-- Navegación por Pestañas / Secciones (SPA) -->
+      <nav id="main-nav" class="hidden lg:flex items-center gap-1.5 text-xs font-semibold text-slate-300">
+        <button type="button" onclick="window.navManager.switchSection('institucional')" data-section="institucional"
+          class="nav-tab-btn px-3 py-1.5 rounded-xl transition flex items-center gap-1.5 bg-sky-500/20 text-sky-300 border border-sky-500/50 shadow-sm shadow-sky-500/20 font-bold"
+          title="Ver Información Institucional, Misión, Visión, Organigrama y Sedes">
+          <i class="fa-solid fa-building-columns text-xs text-sky-400"></i>
+          <span>Institución</span>
+        </button>
+
+        <button type="button" onclick="window.navManager.switchSection('inventario')" data-section="inventario"
+          class="nav-tab-btn px-3 py-1.5 rounded-xl transition flex items-center gap-1.5 text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 border border-transparent font-medium"
+          title="Ver Auditoría del Parque Informático y Gestión de 40 Equipos">
+          <i class="fa-solid fa-table-list text-xs text-emerald-400"></i>
+          <span>Inventario (40 Equipos)</span>
+        </button>
+
+        <button type="button" onclick="window.navManager.switchSection('soporte-glpi')" data-section="soporte-glpi"
+          class="nav-tab-btn px-3 py-1.5 rounded-xl transition flex items-center gap-1.5 text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 border border-transparent font-medium"
+          title="Ver Flujo de Mesa de Ayuda GLPI y Soporte Remoto RustDesk">
+          <i class="fa-solid fa-headset text-xs text-teal-400"></i>
+          <span>Mesa de Ayuda (GLPI)</span>
+        </button>
+
+        <button type="button" onclick="window.navManager.switchSection('sesiones')" data-section="sesiones"
+          class="nav-tab-btn px-3 py-1.5 rounded-xl transition flex items-center gap-1.5 text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 border border-transparent font-medium"
+          title="Ver Módulos Didácticos y Fases Académicas UNETI">
+          <i class="fa-solid fa-graduation-cap text-xs text-sky-400"></i>
+          <span>Fases Académicas</span>
+        </button>
+
+        <button type="button" onclick="window.navManager.switchSection('equipo')" data-section="equipo"
+          class="nav-tab-btn px-3 py-1.5 rounded-xl transition flex items-center gap-1.5 text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 border border-transparent font-medium"
+          title="Ver Equipo de Investigadores y Jurado Académico">
+          <i class="fa-solid fa-users text-xs text-rose-400"></i>
+          <span>Equipo UNETI</span>
+        </button>
+      </nav>
+
+      <!-- Botón de Autenticación / RBAC -->
+      <div class="flex items-center gap-3">
+        <!-- Herramienta rápida de validación de Drive (Solo usuarios autenticados) -->
+        <button id="btn-test-drive-nav" onclick="window.ui.testDriveUrl()"
+          class="hidden items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700/80 text-slate-300 border border-slate-700/80 text-xs font-medium transition"
+          title="Verificar validez de un enlace de Google Drive (Docente / Administrador)">
+          <i class="fa-brands fa-google-drive text-emerald-400"></i>
+          <span>Probar Enlace</span>
+        </button>
+
+        <!-- Botón de Login / Logout -->
+        <button id="btn-nav-login" onclick="window.ui.openLoginModal()"
+          class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold border transition shadow-sm">
+          <i class="fa-solid fa-shield-halved text-sky-400"></i>
+          <span>Acceso Docente / Admin</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+  <!-- Sub-barra de navegación móvil con scroll horizontal para navegación táctil instantánea -->
+  <div class="lg:hidden sticky top-16 z-30 bg-slate-900/95 backdrop-blur-md border-b border-slate-800 px-3 py-2 flex items-center gap-2 overflow-x-auto scrollbar-none text-xs">
+    <button type="button" onclick="window.navManager.switchSection('institucional')" data-section="institucional"
+      class="nav-tab-btn shrink-0 px-3 py-1.5 rounded-lg transition flex items-center gap-1.5 bg-sky-500/20 text-sky-300 border border-sky-500/50 shadow-sm shadow-sky-500/20 font-bold">
+      <i class="fa-solid fa-building-columns text-[11px] text-sky-400"></i>
+      <span>Institución</span>
+    </button>
+    <button type="button" onclick="window.navManager.switchSection('inventario')" data-section="inventario"
+      class="nav-tab-btn shrink-0 px-3 py-1.5 rounded-lg transition flex items-center gap-1.5 text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 border border-transparent font-medium">
+      <i class="fa-solid fa-table-list text-[11px] text-emerald-400"></i>
+      <span>Inventario (40)</span>
+    </button>
+    <button type="button" onclick="window.navManager.switchSection('soporte-glpi')" data-section="soporte-glpi"
+      class="nav-tab-btn shrink-0 px-3 py-1.5 rounded-lg transition flex items-center gap-1.5 text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 border border-transparent font-medium">
+      <i class="fa-solid fa-headset text-[11px] text-teal-400"></i>
+      <span>Mesa de Ayuda</span>
+    </button>
+    <button type="button" onclick="window.navManager.switchSection('sesiones')" data-section="sesiones"
+      class="nav-tab-btn shrink-0 px-3 py-1.5 rounded-lg transition flex items-center gap-1.5 text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 border border-transparent font-medium">
+      <i class="fa-solid fa-graduation-cap text-[11px] text-sky-400"></i>
+      <span>Fases UNETI</span>
+    </button>
+    <button type="button" onclick="window.navManager.switchSection('equipo')" data-section="equipo"
+      class="nav-tab-btn shrink-0 px-3 py-1.5 rounded-lg transition flex items-center gap-1.5 text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 border border-transparent font-medium">
+      <i class="fa-solid fa-users text-[11px] text-rose-400"></i>
+      <span>Equipo</span>
+    </button>
+  </div>
+
+  <!-- =========================================================================
+       HERO PRINCIPAL DE LA PLATAFORMA + BANNER INSTITUCIONAL
+       ========================================================================= -->
+  <main class="flex-1">
+
+    <!-- SECCIÓN DEL BANNER INSTITUCIONAL (IMAGEN SUPERIOR) -->
+    <section id="banner-section" class="pt-6 sm:pt-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div
+        class="relative rounded-3xl overflow-hidden border border-sky-500/30 shadow-2xl shadow-sky-950/80 group glass-panel p-2">
+        <div class="relative rounded-2xl overflow-hidden">
+          <img src="assets/banner-fundatur.jpeg" alt="Banner Oficial FUNDATUR SOCIAL: Turismo Accesible para quienes mueven el país"
+            class="w-full h-auto object-cover max-h-[360px] sm:max-h-[440px] transition duration-700 group-hover:scale-[1.015]">
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/30 to-transparent flex flex-col justify-end p-4 sm:p-8">
+            <div class="flex flex-wrap items-center gap-2 mb-2">
+              <span
+                class="px-3 py-1 rounded-full bg-sky-500 text-slate-950 font-black text-xs uppercase tracking-wider shadow-md">FUNDATUR
+                SOCIAL</span>
+              <span
+                class="px-3 py-1 rounded-full bg-slate-900/85 backdrop-blur-md text-sky-300 border border-sky-500/40 font-semibold text-xs flex items-center gap-1.5">
+                <i class="fa-solid fa-network-wired text-sky-400"></i> 4 Sedes Nacionales Conectadas
+              </span>
+              <span
+                class="px-3 py-1 rounded-full bg-emerald-950/85 backdrop-blur-md text-emerald-300 border border-emerald-500/40 font-semibold text-xs flex items-center gap-1.5">
+                <i class="fa-solid fa-server text-emerald-400"></i> 40 Equipos Auditados
+              </span>
+              <span
+                class="px-3 py-1 rounded-full bg-blue-950/85 backdrop-blur-md text-blue-300 border border-blue-500/40 font-semibold text-xs flex items-center gap-1.5">
+                <i class="fa-solid fa-headset text-blue-400"></i> Mesa de Ayuda GLPI & RustDesk
+              </span>
+            </div>
+            <p
+              class="text-white text-base sm:text-2xl font-black italic drop-shadow-xl tracking-tight leading-snug max-w-4xl">
+              "Tu descanso es nuestro destino: turismo accesible para quienes mueven el país."
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HERO DE IDENTIDAD Y PROYECTO -->
+    <section id="hero" class="relative pt-8 pb-12 sm:pt-12 sm:pb-16 overflow-hidden border-b border-slate-800/60">
+
+      <!-- Luz ambiental decorativa de fondo -->
+      <div
+        class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-sky-500/10 blur-[120px] rounded-full pointer-events-none">
+      </div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="text-center max-w-4xl mx-auto space-y-5">
+
+          <!-- Badge institucional -->
+          <div
+            class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-slate-900/90 border border-sky-500/30 text-sky-400 text-xs font-semibold uppercase tracking-wider shadow-inner">
+            <span class="w-2 h-2 rounded-full bg-sky-400 pulse-dot"></span>
+            <span id="project-trayecto">PNF en Ingeniería en Informática • Periodo Académico 2026-2027</span>
+          </div>
+
+          <!-- Materia Principal -->
+          <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight">
+            <span id="project-subject"
+              class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-sky-200 to-blue-500">
+              Diagnóstico Tecnológico e Infraestructura de TI
+            </span>
+          </h1>
+
+          <!-- Título del Proyecto de Investigación -->
+          <p id="project-title"
+            class="text-base sm:text-xl text-slate-300 font-medium max-w-3xl mx-auto leading-relaxed">
+            Auditoría del Parque Informático, Implementación de Mesa de Ayuda GLPI / RustDesk y Plan de Reemplazo
+            Tecnológico en 4 Sedes
+          </p>
+
+          <!-- Tarjeta de Metadatos y Estadísticas Rápidas -->
+          <div class="pt-6 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 max-w-3xl mx-auto">
+
+            <div class="glass-panel p-4 rounded-xl text-center border border-slate-800">
+              <span class="block text-2xl sm:text-3xl font-extrabold text-sky-400" id="stat-total-sessions">5</span>
+              <span class="text-[11px] text-slate-400 uppercase tracking-wider font-semibold">Fases Didácticas</span>
+            </div>
+
+            <div class="glass-panel p-4 rounded-xl text-center border border-slate-800">
+              <span class="block text-2xl sm:text-3xl font-extrabold text-emerald-400">40</span>
+              <span class="text-[11px] text-slate-400 uppercase tracking-wider font-semibold">Equipos Auditados</span>
+            </div>
+
+            <div class="glass-panel p-4 rounded-xl text-center border border-slate-800">
+              <span class="block text-2xl sm:text-3xl font-extrabold text-amber-400">4 Sedes</span>
+              <span class="text-[11px] text-slate-400 uppercase tracking-wider font-semibold">Cobertura Nacional</span>
+            </div>
+
+            <div class="glass-panel p-4 rounded-xl text-center border border-slate-800">
+              <span class="block text-2xl sm:text-3xl font-extrabold text-purple-400">GLPI/Rust</span>
+              <span class="text-[11px] text-slate-400 uppercase tracking-wider font-semibold">Soporte TI Central</span>
+            </div>
+
+          </div>
+
+          <!-- Acciones directas -->
+          <div class="pt-2 flex flex-wrap items-center justify-center gap-3">
+            <button type="button" onclick="window.navManager.switchSection('inventario')"
+    class="px-6 py-3 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-semibold text-sm transition shadow-lg shadow-sky-600/30 flex items-center gap-2">
+    <i class="fa-solid fa-table-list"></i>
+    <span>Ver Inventario (40 Equipos)</span>
+  </button>
+            <button type="button" onclick="window.navManager.switchSection('soporte-glpi')"
+    class="px-5 py-3 rounded-xl bg-slate-800/90 hover:bg-slate-700/90 text-slate-200 border border-slate-700 font-semibold text-sm transition flex items-center gap-2">
+    <i class="fa-solid fa-headset text-emerald-400"></i>
+    <span>Flujo de Soporte y Fallas</span>
+  </button>
+            <button type="button" onclick="window.navManager.switchSection('sesiones')"
+    class="px-5 py-3 rounded-xl bg-slate-800/90 hover:bg-slate-700/90 text-slate-200 border border-slate-700 font-semibold text-sm transition flex items-center gap-2">
+    <i class="fa-solid fa-graduation-cap text-sky-400"></i>
+    <span>Fases Académicas UNETI</span>
+  </button>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         SECCIÓN INSTITUCIONAL: FUNDATUR SOCIAL & UNETI
+         ========================================================================= -->
+    <section id="institucional" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-b border-slate-800/60">
+
+      <!-- Encabezado institucional -->
+      <div class="text-center mb-10">
+        <div
+          class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sky-950/60 border border-sky-800/50 text-sky-300 text-xs font-semibold uppercase tracking-widest mb-4">
+          <i class="fa-solid fa-building-columns"></i>
+          Información Institucional
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-black text-white mb-2 tracking-tight">
+          FUNDATUR <span class="text-sky-400">SOCIAL</span>
+        </h2>
+        <p class="text-slate-400 text-sm max-w-2xl mx-auto">Fundación Nacional para el Turismo Social y Recreativo de
+          Venezuela</p>
+        <blockquote
+          class="mt-4 text-sky-300/90 font-semibold italic text-base sm:text-lg max-w-xl mx-auto border-l-4 border-sky-500 pl-4 text-left">
+          "Tu descanso es nuestro destino: turismo accesible para quienes mueven el país."
+        </blockquote>
+      </div>
+
+      <!-- Misión, Visión, Valores -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-10">
+        <!-- Misión -->
+        <div class="glass-panel p-6 rounded-2xl border border-slate-700 hover:border-sky-500/40 transition group">
+          <div class="flex items-center gap-3 mb-3">
+            <div
+              class="w-10 h-10 rounded-xl bg-sky-900/60 flex items-center justify-center text-sky-400 text-lg group-hover:scale-110 transition">
+              <i class="fa-solid fa-bullseye"></i>
+            </div>
+            <h3 class="text-white font-bold text-base">Misión</h3>
+          </div>
+          <p class="text-slate-300 text-sm leading-relaxed">
+            Ofrecer turismo social accesible a estudiantes y trabajadores públicos, fortaleciendo el desarrollo
+            regional del país.
+          </p>
+        </div>
+        <!-- Visión -->
+        <div class="glass-panel p-6 rounded-2xl border border-slate-700 hover:border-purple-500/40 transition group">
+          <div class="flex items-center gap-3 mb-3">
+            <div
+              class="w-10 h-10 rounded-xl bg-purple-900/60 flex items-center justify-center text-purple-400 text-lg group-hover:scale-110 transition">
+              <i class="fa-solid fa-eye"></i>
+            </div>
+            <h3 class="text-white font-bold text-base">Visión</h3>
+          </div>
+          <p class="text-slate-300 text-sm leading-relaxed">
+            Ser el referente nacional en recreación social con una plataforma tecnológica moderna y conectada en todas
+            nuestras sedes.
+          </p>
+        </div>
+        <!-- Valores -->
+        <div class="glass-panel p-6 rounded-2xl border border-slate-700 hover:border-emerald-500/40 transition group">
+          <div class="flex items-center gap-3 mb-3">
+            <div
+              class="w-10 h-10 rounded-xl bg-emerald-900/60 flex items-center justify-center text-emerald-400 text-lg group-hover:scale-110 transition">
+              <i class="fa-solid fa-star"></i>
+            </div>
+            <h3 class="text-white font-bold text-base">Valores</h3>
+          </div>
+          <ul class="space-y-1.5 mt-1">
+            <li class="flex items-center gap-2 text-slate-300 text-sm"><i
+                class="fa-solid fa-check text-emerald-400 text-xs"></i> Accesibilidad</li>
+            <li class="flex items-center gap-2 text-slate-300 text-sm"><i
+                class="fa-solid fa-check text-emerald-400 text-xs"></i> Compromiso regional</li>
+            <li class="flex items-center gap-2 text-slate-300 text-sm"><i
+                class="fa-solid fa-check text-emerald-400 text-xs"></i> Transparencia</li>
+            <li class="flex items-center gap-2 text-slate-300 text-sm"><i
+                class="fa-solid fa-check text-emerald-400 text-xs"></i> Calidad de servicio</li>
+          </ul>
+        </div>
+      </div>
+
+
+      <div class="glass-panel p-4 rounded-xl border border-slate-700 hover:border-rose-500/30 transition group"
+        id="dept-direccion">
+        <div class="flex items-start gap-2">
+          <div class="w-8 h-8 rounded-lg bg-rose-900/60 flex items-center justify-center text-rose-400 shrink-0 mt-0.5">
+            <i class="fa-solid fa-id-card"></i>
+          </div>
+          <div>
+            <div class="text-white font-semibold text-xs">Dirección Ejecutiva</div>
+            <div class="text-slate-400 text-[11px] mt-0.5">Presidencia Ejecutiva y Representación Legal</div>
+          </div>
+        </div>
+      </div><!-- Quiénes Somos -->
+      <div class="glass-panel p-6 rounded-2xl border border-slate-700 mb-10">
+        <div class="flex items-center gap-3 mb-3">
+          <i class="fa-solid fa-info-circle text-sky-400 text-xl"></i>
+          <h3 class="text-white font-bold text-base">¿Quiénes Somos?</h3>
+        </div>
+        <p class="text-slate-300 text-sm leading-relaxed">
+          Promovemos planes vacacionales y recreacionales económicos para estudiantes de educación básica y
+          universitaria, y trabajadores del sector público, impulsando a la vez los servicios y atractivos de cada
+          región venezolana.
+        </p>
+      </div>
+
+      <!-- Organigrama -->
+      <div class="mb-10">
+        <div class="flex items-center gap-3 mb-5">
+          <i class="fa-solid fa-sitemap text-sky-400 text-xl"></i>
+          <h3 class="text-white font-bold text-lg">Organigrama Institucional</h3>
+        </div>
+        <!-- Presidencia -->
+        <div class="flex flex-col items-center">
+          <div
+            class="glass-panel px-6 py-3 rounded-xl border-2 border-sky-500/60 bg-sky-950/40 text-center mb-3 w-full max-w-xs">
+            <div class="text-sky-300 font-bold text-sm"><i
+                class="fa-solid fa-crown mr-1.5 text-amber-400"></i>Presidencia Ejecutiva</div>
+            <div class="text-slate-400 text-xs mt-0.5">Dirección estratégica y convenios</div>
+          </div>
+          <!-- Línea vertical -->
+          <div class="w-0.5 h-6 bg-slate-600"></div>
+          <!-- Departamentos -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 w-full mt-0">
+            <div class="glass-panel p-4 rounded-xl border border-slate-700 hover:border-sky-500/30 transition">
+              <div class="flex items-start gap-2">
+                <div
+                  class="w-8 h-8 rounded-lg bg-sky-900/60 flex items-center justify-center text-sky-400 shrink-0 mt-0.5">
+                  <i class="fa-solid fa-microchip text-sm"></i>
+                </div>
+                <div>
+                  <div class="text-white font-semibold text-xs">Tecnología TI</div>
+                  <div class="text-slate-400 text-[11px] mt-0.5">Jefe Ing. Sistemas Â· Soporte Técnico</div>
+                </div>
+              </div>
+            </div>
+            <div class="glass-panel p-4 rounded-xl border border-slate-700 hover:border-purple-500/30 transition">
+              <div class="flex items-start gap-2">
+                <div
+                  class="w-8 h-8 rounded-lg bg-purple-900/60 flex items-center justify-center text-purple-400 shrink-0 mt-0.5">
+                  <i class="fa-solid fa-map-location-dot text-sm"></i>
+                </div>
+                <div>
+                  <div class="text-white font-semibold text-xs">Operaciones y Planes Turísticos</div>
+                  <div class="text-slate-400 text-[11px] mt-0.5">Diseño, logística y planes vacacionales</div>
+                </div>
+              </div>
+            </div>
+            <div class="glass-panel p-4 rounded-xl border border-slate-700 hover:border-teal-500/30 transition">
+              <div class="flex items-start gap-2">
+                <div
+                  class="w-8 h-8 rounded-lg bg-teal-900/60 flex items-center justify-center text-teal-400 shrink-0 mt-0.5">
+                  <i class="fa-solid fa-headset text-sm"></i>
+                </div>
+                <div>
+                  <div class="text-white font-semibold text-xs">Atención al Usuario</div>
+                  <div class="text-slate-400 text-[11px] mt-0.5">Gestión de solicitudes y relaciones</div>
+                </div>
+              </div>
+            </div>
+            <div class="glass-panel p-4 rounded-xl border border-slate-700 hover:border-amber-500/30 transition">
+              <div class="flex items-start gap-2">
+                <div
+                  class="w-8 h-8 rounded-lg bg-amber-900/60 flex items-center justify-center text-amber-400 shrink-0 mt-0.5">
+                  <i class="fa-solid fa-coins text-sm"></i>
+                </div>
+                <div>
+                  <div class="text-white font-semibold text-xs">Finanzas y Administración</div>
+                  <div class="text-slate-400 text-[11px] mt-0.5">Contabilidad y recursos económicos</div>
+                </div>
+              </div>
+            </div>
+            <div class="glass-panel p-4 rounded-xl border border-slate-700 hover:border-rose-500/30 transition">
+              <div class="flex items-start gap-2">
+                <div
+                  class="w-8 h-8 rounded-lg bg-rose-900/60 flex items-center justify-center text-rose-400 shrink-0 mt-0.5">
+                  <i class="fa-solid fa-users text-sm"></i>
+                </div>
+                <div>
+                  <div class="text-white font-semibold text-xs">Talento Humano (RRHH)</div>
+                  <div class="text-slate-400 text-[11px] mt-0.5">Nómina, personal y bienestar social</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sedes y alianza UNETI -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <!-- Sedes -->
+        <div class="glass-panel p-6 rounded-2xl border border-slate-700">
+          <div class="flex items-center gap-2 mb-4">
+            <i class="fa-solid fa-location-dot text-sky-400 text-lg"></i>
+            <h3 class="text-white font-bold text-base">Sedes Nacionales</h3>
+          </div>
+          <div class="space-y-3">
+            <div class="flex items-start gap-3 p-3 rounded-xl bg-slate-800/50 border border-slate-700/50">
+              <span
+                class="px-2 py-0.5 rounded-full bg-sky-900/60 text-sky-300 text-[10px] font-bold shrink-0 mt-0.5">PRINCIPAL</span>
+              <div>
+                <div class="text-white text-sm font-semibold">Caracas</div>
+                <div class="text-slate-400 text-xs">Los Caobos, Av. Libertador Â· Soporte centralizado</div>
+              </div>
+            </div>
+            <div class="flex items-start gap-3 p-3 rounded-xl bg-slate-800/50 border border-slate-700/50">
+              <span
+                class="px-2 py-0.5 rounded-full bg-slate-700/80 text-slate-300 text-[10px] font-bold shrink-0 mt-0.5">SUCURSAL</span>
+              <div>
+                <div class="text-white text-sm font-semibold">Maracay</div>
+                <div class="text-slate-400 text-xs">Las Delicias, Av. Bolívar Este Â· Eje central</div>
+              </div>
+            </div>
+            <div class="flex items-start gap-3 p-3 rounded-xl bg-slate-800/50 border border-slate-700/50">
+              <span
+                class="px-2 py-0.5 rounded-full bg-slate-700/80 text-slate-300 text-[10px] font-bold shrink-0 mt-0.5">SUCURSAL</span>
+              <div>
+                <div class="text-white text-sm font-semibold">Maracaibo</div>
+                <div class="text-slate-400 text-xs">Av. 5 de Julio Â· Occidente y costas zulianas</div>
+              </div>
+            </div>
+            <div class="flex items-start gap-3 p-3 rounded-xl bg-slate-800/50 border border-slate-700/50">
+              <span
+                class="px-2 py-0.5 rounded-full bg-slate-700/80 text-slate-300 text-[10px] font-bold shrink-0 mt-0.5">SUCURSAL</span>
+              <div>
+                <div class="text-white text-sm font-semibold">Puerto La Cruz</div>
+                <div class="text-slate-400 text-xs">Paseo Colón Â· Oriente e islas</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Alianza UNETI + Proyecto Académico -->
+        <div class="glass-panel p-6 rounded-2xl border border-slate-700">
+          <div class="flex items-center gap-2 mb-4">
+            <i class="fa-solid fa-graduation-cap text-purple-400 text-lg"></i>
+            <h3 class="text-white font-bold text-base">Alianza UNETI</h3>
+          </div>
+          <p class="text-slate-300 text-sm mb-4 leading-relaxed">
+            Universidad Nacional Experimental de las Telecomunicaciones e Informática (UNETI) — alianza académica
+            para el diagnóstico tecnológico y modernización de la plataforma digital de FUNDATUR SOCIAL.
+          </p>
+          <div class="space-y-2">
+            <div
+              class="flex items-center justify-between p-2.5 rounded-lg bg-slate-800/50 border border-slate-700/50 text-sm">
+              <span class="text-slate-400">Proyecto</span>
+              <span class="text-sky-300 font-semibold text-xs text-right">Diagnóstico Tecnológico e Inventario</span>
+            </div>
+            <div
+              class="flex items-center justify-between p-2.5 rounded-lg bg-slate-800/50 border border-slate-700/50 text-sm">
+              <span class="text-slate-400">Trayecto</span>
+              <span id="config-trayecto" class="text-white font-semibold text-xs">—</span>
+            </div>
+            <div
+              class="flex items-center justify-between p-2.5 rounded-lg bg-slate-800/50 border border-slate-700/50 text-sm">
+              <span class="text-slate-400">Período Académico</span>
+              <span id="config-period" class="text-white font-semibold text-xs">—</span>
+            </div>
+            <div
+              class="flex items-center justify-between p-2.5 rounded-lg bg-slate-800/50 border border-slate-700/50 text-sm">
+              <span class="text-slate-400">Tutor</span>
+              <span id="config-tutor" class="text-white font-semibold text-xs">—</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- =========================================================================
+         NUEVA SECCIÓN: AUDITORÍA E INVENTARIO DEL PARQUE INFORMÁTICO (40 EQUIPOS)
+         ========================================================================= -->
+    <section id="inventario" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-b border-slate-800/60 hidden">
+
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+        <div>
+          <span class="text-xs font-semibold text-sky-400 uppercase tracking-wider flex items-center gap-1.5">
+            <i class="fa-solid fa-microchip text-sky-400"></i> Diagnóstico Tecnológico de Campo
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-black text-white tracking-tight mt-1">
+            Inventario Tecnológico Auditado — 40 Equipos (FUNDATUR SOCIAL)
+          </h2>
+          <p class="text-xs text-slate-400 mt-1.5 max-w-3xl leading-relaxed">
+            Muestra representativa auditada en las 4 sedes de la Fundación (Caracas, Maracay, Maracaibo y Puerto La
+            Cruz).
+            Diagnóstico técnico detallado para la asignación y reemplazo de equipos críticos mediante convenio con
+            empresa privada.
+          </p>
+        </div>
+
+        <!-- Botones de Acción de Inventario -->
+        <div class="flex items-center gap-2 shrink-0">
+          <button onclick="window.inventoryUI.openEquipmentFormModal()"
+            class="px-3.5 py-2 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-xs font-semibold transition flex items-center gap-1.5 shadow-md shadow-sky-600/30">
+            <i class="fa-solid fa-plus"></i>
+            <span>Registrar Equipo</span>
+          </button>
+          <button onclick="window.inventoryUI.exportCSV()"
+            class="px-3.5 py-2 rounded-xl bg-emerald-700 hover:bg-emerald-600 text-white text-xs font-semibold transition flex items-center gap-1.5 shadow-md shadow-emerald-700/30">
+            <i class="fa-solid fa-file-csv"></i>
+            <span>Exportar CSV</span>
+          </button>
+          <a href="https://docs.google.com/spreadsheets/d/1vC_EX_HOJA_COSTOS_UNETI/edit?usp=sharing" target="_blank"
+            rel="noopener noreferrer"
+            class="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-semibold transition flex items-center gap-1.5">
+            <i class="fa-brands fa-google-drive text-emerald-400"></i>
+            <span>Hoja Drive (FND-01 a FND-40)</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Tarjetas KPIs del Inventario -->
+      <div id="inventory-stats-container" class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-8">
+        <!-- Renderizado dinámicamente por InventoryUI.renderStats() -->
+      </div>
+      <!-- ── Dashboard visual de estados ── -->
+      <div class="glass-panel p-5 sm:p-6 rounded-2xl border border-slate-800 mb-6">
+        <div class="flex items-center justify-between mb-5">
+          <h3 class="text-sm font-bold text-white flex items-center gap-2">
+            <i class="fa-solid fa-chart-pie text-sky-400"></i>
+            Dashboard de Estado del Parque Informático
+          </h3>
+          <span class="text-[10px] text-slate-500 uppercase tracking-widest">Actualización en tiempo real</span>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <!-- Estado de equipos: barras horizontales -->
+          <div>
+            <p class="text-xs text-slate-400 font-semibold uppercase tracking-wider mb-3">Estado de equipos</p>
+            <div class="space-y-3">
+              <div>
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="flex items-center gap-1.5 text-emerald-300 font-semibold"><i
+                      class="fa-solid fa-circle-check text-[10px]"></i> Operativos</span>
+                  <span id="dash-pct-op" class="text-emerald-400 font-bold">55%</span>
+                </div>
+                <div class="w-full bg-slate-800 rounded-full h-2.5">
+                  <div id="dash-bar-op" class="bg-emerald-500 h-2.5 rounded-full transition-all duration-700"
+                    style="width:55%"></div>
+                </div>
+                <div class="text-[10px] text-slate-500 mt-0.5"><span id="dash-n-op">22</span> de 40 equipos</div>
+              </div>
+              <div>
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="flex items-center gap-1.5 text-red-300 font-semibold"><i
+                      class="fa-solid fa-triangle-exclamation text-[10px]"></i> Con falla</span>
+                  <span id="dash-pct-fail" class="text-red-400 font-bold">45%</span>
+                </div>
+                <div class="w-full bg-slate-800 rounded-full h-2.5">
+                  <div id="dash-bar-fail" class="bg-red-500 h-2.5 rounded-full transition-all duration-700"
+                    style="width:45%"></div>
+                </div>
+                <div class="text-[10px] text-slate-500 mt-0.5"><span id="dash-n-fail">18</span> de 40 equipos</div>
+              </div>
+              <div>
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="flex items-center gap-1.5 text-amber-300 font-semibold"><i
+                      class="fa-solid fa-fire text-[10px]"></i> Prioridad Alta</span>
+                  <span id="dash-pct-crit" class="text-amber-400 font-bold">—</span>
+                </div>
+                <div class="w-full bg-slate-800 rounded-full h-2.5">
+                  <div id="dash-bar-crit" class="bg-amber-500 h-2.5 rounded-full transition-all duration-700"
+                    style="width:0%"></div>
+                </div>
+                <div class="text-[10px] text-slate-500 mt-0.5"><span id="dash-n-crit">—</span> equipos críticos</div>
+              </div>
+            </div>
+          </div>
+          <!-- Distribución por sede -->
+          <div>
+            <p class="text-xs text-slate-400 font-semibold uppercase tracking-wider mb-3">Distribución por sede</p>
+            <div class="space-y-2.5">
+              <div>
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="text-sky-300 font-semibold flex items-center gap-1.5"><i
+                      class="fa-solid fa-building text-[10px]"></i> Caracas (Sede Principal)</span>
+                  <span class="text-slate-400 font-bold">40% · 16 eq.</span>
+                </div>
+                <div class="w-full bg-slate-800 rounded-full h-2">
+                  <div class="bg-sky-500 h-2 rounded-full" style="width:40%"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="text-emerald-300 font-semibold flex items-center gap-1.5"><i
+                      class="fa-solid fa-mountain-sun text-[10px]"></i> Maracay</span>
+                  <span class="text-slate-400 font-bold">20% · 8 eq.</span>
+                </div>
+                <div class="w-full bg-slate-800 rounded-full h-2">
+                  <div class="bg-emerald-500 h-2 rounded-full" style="width:20%"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="text-amber-300 font-semibold flex items-center gap-1.5"><i
+                      class="fa-solid fa-bridge-water text-[10px]"></i> Maracaibo</span>
+                  <span class="text-slate-400 font-bold">20% · 8 eq.</span>
+                </div>
+                <div class="w-full bg-slate-800 rounded-full h-2">
+                  <div class="bg-amber-500 h-2 rounded-full" style="width:20%"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="text-cyan-300 font-semibold flex items-center gap-1.5"><i
+                      class="fa-solid fa-umbrella-beach text-[10px]"></i> Puerto La Cruz</span>
+                  <span class="text-slate-400 font-bold">20% · 8 eq.</span>
+                </div>
+                <div class="w-full bg-slate-800 rounded-full h-2">
+                  <div class="bg-cyan-500 h-2 rounded-full" style="width:20%"></div>
+                </div>
+              </div>
+            </div>
+            <div class="mt-4 pt-4 border-t border-slate-800">
+              <p class="text-[10px] text-slate-500 uppercase tracking-wider mb-2">Tipos de falla detectados</p>
+              <div class="flex flex-wrap gap-1.5">
+                <span
+                  class="px-2 py-0.5 rounded-full bg-red-950/60 border border-red-800/50 text-red-300 text-[10px]">Hardware</span>
+                <span
+                  class="px-2 py-0.5 rounded-full bg-orange-950/60 border border-orange-800/50 text-orange-300 text-[10px]">Software
+                  no autorizado</span>
+                <span
+                  class="px-2 py-0.5 rounded-full bg-amber-950/60 border border-amber-800/50 text-amber-300 text-[10px]">Obsoleto</span>
+                <span
+                  class="px-2 py-0.5 rounded-full bg-slate-800 border border-slate-700 text-slate-300 text-[10px]">Sin
+                  control post-cuarentena</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ── Fin dashboard ── -->
+
+      <!-- Barra de Filtros y Búsqueda -->
+      <div class="glass-panel p-4 sm:p-5 rounded-2xl border border-slate-800 mb-6 space-y-4">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+          <!-- Buscador en tiempo real -->
+          <div class="relative w-full md:w-80">
+            <i
+              class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+            <input type="text" id="inventory-search-input"
+              placeholder="Buscar por código, procesador, custodio, sede..."
+              class="w-full pl-9 pr-4 py-2 rounded-xl bg-slate-900 border border-slate-800 text-xs text-slate-100 placeholder-slate-500 focus:outline-none focus:border-sky-500 transition">
+          </div>
+
+          <!-- Filtro de Estados -->
+          <div id="inventory-status-filters" class="flex flex-wrap items-center gap-2 w-full md:w-auto">
+            <!-- Renderizado dinámicamente -->
+          </div>
+        </div>
+
+        <!-- Filtros por Sede -->
+        <div
+          class="pt-3 border-t border-slate-800/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+          <div class="flex items-center gap-2 text-slate-400 shrink-0">
+            <i class="fa-solid fa-location-dot text-sky-400"></i>
+            <span class="font-medium">Filtrar por Sede:</span>
+          </div>
+          <div id="inventory-branch-filters" class="flex flex-wrap items-center gap-2">
+            <!-- Renderizado dinámicamente -->
+          </div>
+          <div class="text-right">
+            <span id="inventory-count-badge"
+              class="px-2.5 py-1 rounded-full bg-slate-800 text-sky-300 font-bold text-[11px] border border-slate-700">
+              40 de 40 equipos
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabla Responsiva de Inventario -->
+      <div class="glass-panel rounded-2xl border border-slate-800 overflow-hidden shadow-2xl">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr
+                class="bg-slate-900/90 border-b border-slate-800 text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+                <th class="py-3.5 px-4">Código / Tag</th>
+                <th class="py-3.5 px-4">Sede y Área</th>
+                <th class="py-3.5 px-4">Hardware y Specs</th>
+                <th class="py-3.5 px-4">Estado Operativo</th>
+                <th class="py-3.5 px-4">Diagnóstico Técnico y Custodio</th>
+                <th class="py-3.5 px-4 text-center">Prioridad Reemplazo</th>
+                <th class="py-3.5 px-4 text-right">Acción</th>
+              </tr>
+            </thead>
+            <tbody id="inventory-table-body" class="divide-y divide-slate-800/40">
+              <!-- Renderizado dinámicamente vía InventoryUI.renderTable() -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- =========================================================================
+         NUEVA SECCIÓN: MESA DE AYUDA (GLPI) & SOPORTE REMOTO (RUSTDESK)
+         ========================================================================= -->
+    <section id="soporte-glpi" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-b border-slate-800/60 hidden">
+
+      <div class="text-center max-w-3xl mx-auto mb-10">
+        <span
+          class="text-xs font-semibold text-emerald-400 uppercase tracking-wider flex items-center justify-center gap-1.5">
+          <i class="fa-solid fa-headset text-emerald-400"></i> Plataforma de Atención de Fallas
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-black text-white mt-1">
+          Mesa de Ayuda GLPI & Soporte Remoto RustDesk
+        </h2>
+        <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+          Estrategia diseñada para centralizar el soporte técnico de las 4 sedes nacionales en Caracas con un equipo
+          reducido de 2 profesionales (1 Ingeniero en Sistemas y 1 Técnico en Informática) a costo cero de licencias.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-10">
+        <!-- Tarjeta GLPI -->
+        <div class="glass-panel p-6 rounded-2xl border border-slate-800 space-y-4">
+          <div class="flex items-center gap-3.5">
+            <div
+              class="w-12 h-12 rounded-xl bg-sky-950/80 border border-sky-800/60 flex items-center justify-center text-sky-400 text-xl font-black">
+              GLPI
+            </div>
+            <div>
+              <h3 class="text-base font-bold text-white">GLPI (Software de Mesa de Ayuda e Inventario)</h3>
+              <p class="text-xs text-sky-400">Gestión de Tickets y Trazabilidad de Hardware</p>
+            </div>
+          </div>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Permite a los usuarios de Caracas, Maracay, Maracaibo y Puerto La Cruz registrar reportes indicando su sede
+            y código de equipo (FND-01 al FND-40).
+            Gestiona el ciclo de vida del ticket, categoriza fallas de hardware/software y mantiene actualizada la base
+            de datos de los 40 equipos.
+          </p>
+          <div class="pt-2 flex flex-wrap gap-2 text-[11px]">
+            <span class="px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-800 text-slate-300">Tickets
+              centralizados</span>
+            <span class="px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-800 text-slate-300">Historial por
+              máquina</span>
+            <span class="px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-800 text-slate-300">SLA de
+              atención</span>
+          </div>
+        </div>
+
+        <!-- Tarjeta RustDesk -->
+        <div class="glass-panel p-6 rounded-2xl border border-slate-800 space-y-4">
+          <div class="flex items-center gap-3.5">
+            <div
+              class="w-12 h-12 rounded-xl bg-emerald-950/80 border border-emerald-800/60 flex items-center justify-center text-emerald-400 text-xl font-black">
+              <i class="fa-solid fa-desktop"></i>
+            </div>
+            <div>
+              <h3 class="text-base font-bold text-white">RustDesk (Software de Soporte Remoto)</h3>
+              <p class="text-xs text-emerald-400">Conectividad Segura y Soporte en Tiempo Real</p>
+            </div>
+          </div>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Facilita la conexión directa y cifrada desde la Sede Central Caracas hacia las 3 sucursales foráneas
+            (Maracay, Maracaibo y Puerto La Cruz).
+            Permite resolver incidencias de software, configuración de periféricos y diagnóstico a distancia sin
+            detener las operaciones turísticas.
+          </p>
+          <div class="pt-2 flex flex-wrap gap-2 text-[11px]">
+            <span class="px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-800 text-slate-300">Cero licencias
+              comerciales</span>
+            <span class="px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-800 text-slate-300">Cifrado punto a
+              punto</span>
+            <span class="px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-800 text-slate-300">Control remoto
+              ágil</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tiempos de Respuesta y Niveles de Prioridad (SLA) -->
+      <div class="glass-panel p-6 sm:p-8 rounded-2xl border border-slate-800 mb-10">
+        <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+          <i class="fa-solid fa-stopwatch text-sky-400"></i> Niveles de Prioridad y Tiempos Máximos de Respuesta
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+          <div class="p-4 rounded-xl bg-red-950/30 border border-red-800/50 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-red-300 uppercase tracking-wide">Prioridad Alta</span>
+              <span class="px-2 py-0.5 rounded bg-red-900/60 text-red-200 font-mono font-bold">&lt; 1 hora</span>
+            </div>
+            <p class="text-slate-300 leading-relaxed">
+              Sucursal paralizada, caída de enlace de red en sucursales foráneas o falla crítica en Atención al
+              Usuario y Presidencia.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-amber-950/30 border border-amber-800/50 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-amber-300 uppercase tracking-wide">Prioridad Media</span>
+              <span class="px-2 py-0.5 rounded bg-amber-900/60 text-amber-200 font-mono font-bold">&lt; 4 horas</span>
+            </div>
+            <p class="text-slate-300 leading-relaxed">
+              Equipo con lentitud severa, problemas de software o fallas de periféricos que permiten continuar
+              trabajando de forma parcial.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-slate-300 uppercase tracking-wide">Prioridad Baja</span>
+              <span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 font-mono font-bold">24 a 48 horas</span>
+            </div>
+            <p class="text-slate-300 leading-relaxed">
+              Instalación de programas aprobados, configuración de impresoras compartidas, mantenimiento preventivo y
+              consultas generales.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Diagrama de Flujo en 5 Pasos -->
+      <div class="glass-panel p-6 sm:p-8 rounded-2xl border border-slate-800">
+        <h3 class="text-lg font-bold text-white mb-6 flex items-center gap-2">
+          <i class="fa-solid fa-arrows-split-up-and-left text-sky-400"></i> Flujo Operativo de Atención al Usuario (5
+          Pasos)
+        </h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5 text-xs">
+
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2 relative">
+            <span
+              class="w-6 h-6 rounded-full bg-sky-600 text-white font-bold flex items-center justify-center text-[11px]">1</span>
+            <h4 class="font-bold text-white">Registro del Reporte</h4>
+            <p class="text-slate-400 text-[11px] leading-relaxed">
+              El usuario ingresa a GLPI indicando su sede, código del equipo (FND-XX) y descripción breve.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2 relative">
+            <span
+              class="w-6 h-6 rounded-full bg-sky-600 text-white font-bold flex items-center justify-center text-[11px]">2</span>
+            <h4 class="font-bold text-white">Asignación de Prioridad</h4>
+            <p class="text-slate-400 text-[11px] leading-relaxed">
+              El Dpto. de TI clasifica la urgencia (Alta &lt;1h, Media &lt;4h, Baja 24-48h) según el impacto en la
+              operación.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2 relative">
+            <span
+              class="w-6 h-6 rounded-full bg-emerald-600 text-white font-bold flex items-center justify-center text-[11px]">3</span>
+            <h4 class="font-bold text-white">Atención Nivel 1</h4>
+            <p class="text-slate-400 text-[11px] leading-relaxed">
+              El <strong>Técnico en Informática</strong> atiende presencialmente en Caracas o vía RustDesk en
+              sucursales foráneas.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2 relative">
+            <span
+              class="w-6 h-6 rounded-full bg-amber-600 text-white font-bold flex items-center justify-center text-[11px]">4</span>
+            <h4 class="font-bold text-white">Escalamiento Nivel 2</h4>
+            <p class="text-slate-400 text-[11px] leading-relaxed">
+              El <strong>Ingeniero en Sistemas</strong> interviene para cambio de piezas, fallas graves o sustitución
+              por convenio.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2 relative">
+            <span
+              class="w-6 h-6 rounded-full bg-purple-600 text-white font-bold flex items-center justify-center text-[11px]">5</span>
+            <h4 class="font-bold text-white">Validación y Cierre</h4>
+            <p class="text-slate-400 text-[11px] leading-relaxed">
+              El usuario confirma que su equipo quedó operativo y el ticket se cierra dejando constancia en GLPI.
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+    <!-- =========================================================================
+             SECCIÓN DE SESIONES DIDÁCTICAS & FILTROS (FASES ACADÉMICAS UNETI)
+             ========================================================================= -->
+    <section id="sesiones" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 hidden">
+
+        <!-- Barra de Filtros, Búsqueda y Herramientas -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+          <div>
+            <h2 class="text-2xl font-black text-white tracking-tight flex items-center gap-2.5">
+              <i class="fa-solid fa-graduation-cap text-sky-400"></i>
+              <span>Módulos y Sesiones Didácticas del Proyecto</span>
+            </h2>
+            <p class="text-xs text-slate-400 mt-1">
+              Recorre el desarrollo metodológico del proyecto socioeconómico de FUNDATUR SOCIAL en UNETI.
+            </p>
+          </div>
+
+          <!-- Buscador en tiempo real y selector de vistas -->
+          <div class="flex flex-wrap items-center gap-3 w-full md:w-auto">
+            <div class="relative flex-1 md:w-64">
+              <i
+                class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+              <input type="text" id="search-input" placeholder="Buscar por fase, informe..."
+                class="w-full pl-9 pr-4 py-2 rounded-xl bg-slate-900 border border-slate-800 text-xs text-slate-100 placeholder-slate-500 focus:outline-none focus:border-sky-500 transition">
+            </div>
+
+            <!-- Selector de Modo de Vista (Tarjetas vs Cronograma) -->
+            <div class="inline-flex rounded-xl bg-slate-900 border border-slate-800 p-1">
+              <button id="btn-view-cards" onclick="window.ui.switchView('cards')"
+                class="px-3 py-1 rounded-lg text-xs font-semibold bg-sky-600 text-white transition flex items-center gap-1.5"
+                title="Vista en tarjetas desplegables">
+                <i class="fa-solid fa-table-cells-large"></i>
+                <span class="hidden sm:inline">Tarjetas</span>
+              </button>
+              <button id="btn-view-timeline" onclick="window.ui.switchView('timeline')"
+                class="px-3 py-1 rounded-lg text-xs font-semibold text-slate-400 hover:text-white transition flex items-center gap-1.5"
+                title="Vista en línea de tiempo (Cronograma de 16 semanas)">
+                <i class="fa-solid fa-timeline"></i>
+                <span class="hidden sm:inline">Cronograma</span>
+              </button>
+            </div>
+
+            <!-- Botón Imprimir Dossier Académico -->
+            <button onclick="window.print()"
+              class="px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-medium transition flex items-center gap-1.5"
+              title="Imprimir o exportar ficha de evaluación en PDF">
+              <i class="fa-solid fa-print text-sky-400"></i>
+              <span class="hidden sm:inline">Imprimir Ficha</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Filtros Dinámicos de Sesiones Didácticas -->
+        <div id="filter-pills-container"
+          class="flex items-center gap-2 overflow-x-auto pb-4 mb-6 scrollbar-none text-xs">
+          <!-- Renderizado dinámicamente según las sesiones didácticas existentes -->
+        </div>
+
+        <!-- Contenedor Dinámico de Sesiones -->
+        <div id="sessions-container" class="space-y-6">
+          <!-- Renderizado dinámicamente vía UI.js -->
+        </div>
+
+      </section>
+
+      <!-- =========================================================================
+         GUÍA TÉCNICA DE INTEGRACIÓN CON GOOGLE DRIVE
+         ========================================================================= -->
+      <section id="drive-guide" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-slate-800/60 hidden">
+        <div class="glass-panel p-6 sm:p-8 rounded-2xl border border-slate-800">
+          <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 mb-6">
+            <div class="space-y-1">
+              <span class="text-xs font-semibold text-emerald-400 uppercase tracking-wider flex items-center gap-1.5">
+                <i class="fa-brands fa-google-drive text-emerald-400"></i>
+                Arquitectura de Almacenamiento en la Nube
+              </span>
+              <h3 class="text-xl sm:text-2xl font-bold text-white">
+                ¿Cómo funciona la integración con Google Drive en esta plataforma?
+              </h3>
+            </div>
+            <button id="btn-test-drive-guide" onclick="window.ui.testDriveUrl()"
+              class="hidden px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-semibold transition shrink-0 items-center gap-2">
+              <i class="fa-solid fa-circle-check text-sky-400"></i>
+              <span>Verificador de URLs Drive</span>
+            </button>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs text-slate-300">
+            <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800/80 space-y-2">
+              <div class="w-8 h-8 rounded-lg bg-sky-950 flex items-center justify-center text-sky-400 text-sm">
+                <i class="fa-solid fa-lock-open"></i>
+              </div>
+              <h4 class="font-bold text-slate-100">1. Permisos del Archivo</h4>
+              <p class="text-slate-400 leading-relaxed">
+                En Google Drive, haz clic derecho sobre el archivo o carpeta &gt; <strong>Compartir</strong> &gt;
+                Cambiar
+                acceso general a <strong>"Cualquier persona con el enlace (Lector)"</strong>.
+              </p>
+            </div>
+
+            <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800/80 space-y-2">
+              <div class="w-8 h-8 rounded-lg bg-emerald-950 flex items-center justify-center text-emerald-400 text-sm">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+              </div>
+              <h4 class="font-bold text-slate-100">2. Normalización Automática</h4>
+              <p class="text-slate-400 leading-relaxed">
+                Pega cualquier formato de URL de Drive. El motor interno de JavaScript extrae automáticamente el <code
+                  class="text-sky-300 bg-slate-800 px-1 py-0.5 rounded">FILE_ID</code> y genera la vista embebida y
+                descarga limpia.
+              </p>
+            </div>
+
+            <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800/80 space-y-2">
+              <div class="w-8 h-8 rounded-lg bg-purple-950 flex items-center justify-center text-purple-400 text-sm">
+                <i class="fa-solid fa-play"></i>
+              </div>
+              <h4 class="font-bold text-slate-100">3. Reproductor / Visor Sin Salir</h4>
+              <p class="text-slate-400 leading-relaxed">
+                Tanto el jurado como los estudiantes pueden reproducir videos en alta definición o leer tomos en PDF
+                directamente desde el modal incorporado, o descargarlos con un clic.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================================
+         SECCIÓN DE INVESTIGADORES & FICHA ACADÉMICA UNETI (GESTIÓN DINÁMICA)
+         ========================================================================= -->
+      <section id="equipo" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-slate-800/60 hidden">
+        <div class="text-center max-w-2xl mx-auto mb-10">
+          <span
+            class="text-xs font-semibold text-sky-400 uppercase tracking-wider flex items-center justify-center gap-1.5">
+            <i class="fa-solid fa-users-gear text-sky-400"></i> Ficha Técnica del Proyecto Socioeconómico
+          </span>
+          <h3 class="text-2xl sm:text-3xl font-black text-white mt-1">Equipo de Tecnología y Jurado Evaluador</h3>
+          <p class="text-xs text-slate-400 mt-2">
+            Responsables de la administración de TI en FUNDATUR SOCIAL y cuerpo docente evaluador de la UNETI.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+
+          <!-- COLUMNA 1: ESTUDIANTES / PERSONAL TI -->
+          <div class="glass-panel p-6 rounded-2xl border border-slate-800 flex flex-col justify-between space-y-6">
+            <div>
+              <div class="flex items-center justify-between pb-4 border-b border-slate-800/80 mb-5">
+                <div class="flex items-center gap-3">
+                  <div
+                    class="w-10 h-10 rounded-xl bg-sky-950/90 border border-sky-800/60 flex items-center justify-center text-sky-400">
+                    <i class="fa-solid fa-user-gear text-base"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-white text-base">Departamento de Tecnología (TI)</h4>
+                    <p class="text-[11px] text-slate-400">Autores del Proyecto / Soporte Operativo</p>
+                  </div>
+                </div>
+                <button id="btn-add-student" onclick="window.ui.openStudentModal()"
+                  class="hidden px-3 py-1.5 rounded-lg bg-sky-600 hover:bg-sky-500 text-white text-xs font-semibold transition items-center gap-1.5 shadow-sm shadow-sky-600/30"
+                  title="Agregar nuevo integrante estudiante (Requiere Administrador)">
+                  <i class="fa-solid fa-user-plus text-[11px]"></i>
+                  <span>Agregar Integrante</span>
+                </button>
+              </div>
+
+              <!-- Listado Dinámico de Estudiantes -->
+              <div id="students-container" class="space-y-3.5">
+                <!-- Renderizado dinámicamente vía UI.js -->
+              </div>
+            </div>
+
+            <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-400">
+              <span class="flex items-center gap-1.5"><i class="fa-solid fa-circle text-[7px] text-emerald-400"></i>
+                FUNDATUR SOCIAL • Soporte Nacional</span>
+              <span class="text-sky-400 font-semibold" id="students-count-badge">2 Integrantes</span>
+            </div>
+          </div>
+
+          <!-- COLUMNA 2: ASESORÍA ACADÉMICA Y JURADO -->
+          <div class="glass-panel p-6 rounded-2xl border border-slate-800 flex flex-col justify-between space-y-6">
+            <div>
+              <div class="flex items-center justify-between pb-4 border-b border-slate-800/80 mb-5">
+                <div class="flex items-center gap-3">
+                  <div
+                    class="w-10 h-10 rounded-xl bg-blue-950/90 border border-blue-800/60 flex items-center justify-center text-blue-400">
+                    <i class="fa-solid fa-chalkboard-user text-base"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-white text-base">Asesoría Académica y Jurado</h4>
+                    <p class="text-[11px] text-slate-400">Tutor de Proyecto y Comité Evaluador UNETI</p>
+                  </div>
+                </div>
+                <button id="btn-add-jury" onclick="window.ui.openJuryModal()"
+                  class="hidden px-3 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold transition items-center gap-1.5 shadow-sm shadow-blue-600/30"
+                  title="Agregar nuevo profesor o jurado (Requiere Administrador)">
+                  <i class="fa-solid fa-user-tie text-[11px]"></i>
+                  <span>Agregar Profesor / Jurado</span>
+                </button>
+              </div>
+
+              <!-- Listado Dinámico de Jurado / Docentes -->
+              <div id="jury-container" class="space-y-3.5">
+                <!-- Renderizado dinámicamente vía UI.js -->
+              </div>
+            </div>
+
+            <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-400">
+              <span class="flex items-center gap-1.5"><i
+                  class="fa-solid fa-building-columns text-[10px] text-blue-400"></i> UNETI • Caracas,
+                Venezuela</span>
+              <span class="text-blue-400 font-semibold" id="jury-count-badge">2 Docentes</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+  </main>
+
+  <!-- =========================================================================
+       FOOTER INSTITUCIONAL
+       ========================================================================= -->
+  <footer class="bg-slate-950 border-t border-slate-800/80 py-10 text-xs text-slate-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+
+        <div class="flex items-center gap-3.5">
+          <img src="assets/logo-uneti.png" alt="UNETI Logo"
+            class="h-12 w-auto object-contain rounded-xl bg-white p-1 shadow-md" />
+          <div>
+            <p class="text-slate-200 font-bold" id="inst-name">FUNDATUR SOCIAL (Fundación Nacional para el Turismo
+              Social y Recreativo de Venezuela)</p>
+            <p class="text-slate-400">En convenio académico con la UNETI • Proyecto Socioeconómico</p>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-center gap-4">
+          <a href="#hero" class="hover:text-sky-400 transition">Volver arriba</a>
+          <span class="text-slate-700">•</span>
+          <button onclick="window.ui.openLoginModal()" class="hover:text-sky-400 transition flex items-center gap-1">
+            <i class="fa-solid fa-lock text-[10px]"></i>
+            <span>Acceso Administrativo</span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================================================
+       MODAL: FICHA TÉCNICA DETALLADA DEL EQUIPO (INVENTARIO 40 EQUIPOS)
+       ========================================================================= -->
+  <div id="equipment-detail-modal" onclick="if (event.target === this) window.inventoryUI.closeEquipmentModal()" class="modal-backdrop fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+    <div
+      class="modal-container glass-panel w-full max-w-2xl rounded-2xl border border-slate-700 bg-slate-950 p-6 space-y-5 max-h-[92vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+        <div>
+          <span class="text-[10px] font-bold text-sky-400 uppercase tracking-wider block">Auditoría de Hardware</span>
+          <h3 id="eq-modal-title" class="text-lg font-bold text-white mt-0.5"></h3>
+        </div>
+        <button onclick="window.inventoryUI.closeEquipmentModal()" class="text-slate-400 hover:text-white p-1">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs">
+        <div class="p-3 rounded-xl bg-slate-900 border border-slate-800">
+          <span class="text-[10px] text-slate-500 block uppercase">Código Interno</span>
+          <span id="eq-modal-code" class="font-mono font-bold text-sky-300"></span>
+        </div>
+        <div class="p-3 rounded-xl bg-slate-900 border border-slate-800">
+          <span class="text-[10px] text-slate-500 block uppercase">Serial de Chasis</span>
+          <span id="eq-modal-serial" class="font-mono font-bold text-slate-200"></span>
+        </div>
+        <div class="p-3 rounded-xl bg-slate-900 border border-slate-800">
+          <span class="text-[10px] text-slate-500 block uppercase">Sede Asignada</span>
+          <span id="eq-modal-branch" class="font-semibold text-slate-200 truncate block"></span>
+        </div>
+        <div class="p-3 rounded-xl bg-slate-900 border border-slate-800">
+          <span class="text-[10px] text-slate-500 block uppercase">Área / Departamento</span>
+          <span id="eq-modal-area" class="font-semibold text-slate-200"></span>
+        </div>
+        <div class="p-3 rounded-xl bg-slate-900 border border-slate-800">
+          <span class="text-[10px] text-slate-500 block uppercase">Custodio Asignado</span>
+          <span id="eq-modal-user" class="font-semibold text-slate-200"></span>
+        </div>
+        <div class="p-3 rounded-xl bg-slate-900 border border-slate-800">
+          <span class="text-[10px] text-slate-500 block uppercase">Última Revisión TI</span>
+          <span id="eq-modal-review" class="font-mono text-slate-400"></span>
+        </div>
+      </div>
+
+      <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 space-y-2 text-xs">
+        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Especificaciones
+          Técnicas</span>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
+          <div>
+            <span class="text-slate-500 block text-[11px]">Procesador</span>
+            <span id="eq-modal-cpu" class="font-bold text-white"></span>
+          </div>
+          <div>
+            <span class="text-slate-500 block text-[11px]">Memoria RAM</span>
+            <span id="eq-modal-ram" class="font-bold text-sky-400"></span>
+          </div>
+          <div>
+            <span class="text-slate-500 block text-[11px]">Almacenamiento</span>
+            <span id="eq-modal-storage" class="font-bold text-slate-200"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="space-y-1.5 text-xs">
+        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Estado y Diagnóstico
+          Detectado</span>
+        <div id="eq-modal-status" class="mb-2"></div>
+        <div class="p-3.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 leading-relaxed text-xs">
+          <p id="eq-modal-diag"></p>
+        </div>
+      </div>
+
+      <div id="eq-modal-action-recommendation"></div>
+
+      <div class="pt-2 flex items-center justify-end">
+        <button onclick="window.inventoryUI.closeEquipmentModal()"
+          class="px-5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-xs font-semibold transition">
+          Cerrar Ficha
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       MODAL: REGISTRAR / EDITAR EQUIPO DEL INVENTARIO (CRUD DINÁMICO)
+       ========================================================================= -->
+  <div id="equipment-form-modal" onclick="if (event.target === this) window.inventoryUI.closeEquipmentFormModal()"
+    class="modal-backdrop fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overflow-y-auto"
+>
+    <div
+      class="modal-container glass-panel w-full max-w-2xl rounded-2xl border border-slate-700 bg-slate-950 p-6 space-y-4 max-h-[92vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <h3 id="modal-eq-form-title" class="font-bold text-white text-base flex items-center">
+          <i class="fa-solid fa-plus-circle text-sky-400 mr-2"></i> Registrar Equipo en Inventario
+        </h3>
+        <button type="button" onclick="window.inventoryUI.closeEquipmentFormModal()"
+          class="text-slate-400 hover:text-white p-1">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <form id="equipment-form" class="space-y-4 text-xs"
+        onsubmit="window.inventoryUI.handleEquipmentFormSubmit(event)">
+        <input type="hidden" id="form-eq-id">
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div>
+            <label class="block text-slate-400 mb-1 font-medium">Código Interno</label>
+            <input type="text" id="form-eq-code" placeholder="Ej. FND-01" required
+              class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-white focus:outline-none focus:border-sky-500">
+          </div>
+          <div>
+            <label class="block text-slate-400 mb-1 font-medium">Serial Chasis</label>
+            <input type="text" id="form-eq-serial" placeholder="Ej. SN-CCS-8821" required
+              class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-white focus:outline-none focus:border-sky-500">
+          </div>
+          <div>
+            <label class="block text-slate-400 mb-1 font-medium">Sede</label>
+            <select id="form-eq-branch" required
+              class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-white focus:outline-none focus:border-sky-500">
+              <option value="Caracas">Caracas</option>
+              <option value="Maracay">Maracay</option>
+              <option value="Maracaibo">Maracaibo</option>
+              <option value="Puerto La Cruz">Puerto La Cruz</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-slate-400 mb-1 font-medium">Área / Departamento</label>
+            <input type="text" id="form-eq-area" placeholder="Ej. Presidencia / Administración" required
+              class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-white focus:outline-none focus:border-sky-500">
+          </div>
+          <div>
+            <label class="block text-slate-400 mb-1 font-medium">Marca y Modelo</label>
+            <input type="text" id="form-eq-brand" placeholder="Ej. HP ProDesk 400 G5 MT" required
+              class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-white focus:outline-none focus:border-sky-500">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div>
+            <label class="block text-slate-400 mb-1 font-medium">Procesador</label>
+            <input type="text" id="form-eq-cpu" placeholder="Ej. Intel Core i5-8500 @ 3.00GHz" required
+              class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-white focus:outline-none focus:border-sky-500">
+          </div>
+          <div>
+            <label class="block text-slate-400 mb-1 font-medium">Memoria RAM</label>
+            <input type="text" id="form-eq-ram" placeholder="Ej. 16 GB DDR4" required
+              class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-white focus:outline-none focus:border-sky-500">
+          </div>
+          <div>
+            <label class="block text-slate-400 mb-1 font-medium">Almacenamiento</label>
+            <input type="text" id="form-eq-storage" placeholder="Ej. 512 GB NVMe M.2" required
+              class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-white focus:outline-none focus:border-sky-500">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div>
+            <label class="block text-slate-400 mb-1 font-medium">Estado Operativo</label>
+            <select id="form-eq-status" required
+              class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-white focus:outline-none focus:border-sky-500">
+              <option value="Sin fallas">Sin fallas (Operativo)</option>
+              <option value="Con falla">Con falla (A Reemplazar/Reparar)</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-slate-400 mb-1 font-medium">Tipo de Falla</label>
+            <input type="text" id="form-eq-failure" placeholder="Ej. Ninguna / Disco HDD mecánico dañado"
+              class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-white focus:outline-none focus:border-sky-500">
+          </div>
+          <div>
+            <label class="block text-slate-400 mb-1 font-medium">Prioridad de Reemplazo</label>
+            <select id="form-eq-priority" required
+              class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-white focus:outline-none focus:border-sky-500">
+              <option value="Normal">Normal</option>
+              <option value="Baja">Baja</option>
+              <option value="Media">Media</option>
+              <option value="Alta">Alta</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-slate-400 mb-1 font-medium">Custodio / Usuario Asignado</label>
+            <input type="text" id="form-eq-user" placeholder="Ej. Lic. Carlos Méndez (Administración)" required
+              class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-white focus:outline-none focus:border-sky-500">
+          </div>
+          <div>
+            <label class="block text-slate-400 mb-1 font-medium">Diagnóstico / Observaciones Técnicas</label>
+            <textarea id="form-eq-diag" rows="2" placeholder="Observaciones técnicas de la auditoría..." required
+              class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-white focus:outline-none focus:border-sky-500"></textarea>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-end gap-3 pt-3 border-t border-slate-800">
+          <button type="button" onclick="window.inventoryUI.closeEquipmentFormModal()"
+            class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold transition">
+            Cancelar
+          </button>
+          <button type="submit"
+            class="px-5 py-2 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-semibold transition shadow-md shadow-sky-600/30 flex items-center gap-1.5">
+            <i class="fa-solid fa-floppy-disk"></i>
+            <span>Guardar en Base de Datos</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       MODAL: VISOR MULTIMEDIA DE GOOGLE DRIVE (Videos, PDFs, Docs)
+       ========================================================================= -->
+  <div id="viewer-modal"
+    class="modal-backdrop fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+    <div
+      class="modal-container glass-panel w-full max-w-5xl rounded-2xl border border-slate-700 bg-slate-950/95 overflow-hidden flex flex-col max-h-[92vh]">
+
+      <!-- Encabezado del Visor -->
+      <div class="p-4 px-6 border-b border-slate-800 flex items-center justify-between gap-4 bg-slate-900/80">
+        <div class="min-w-0">
+          <span id="viewer-session"
+            class="text-[11px] font-semibold text-sky-400 uppercase tracking-wider block truncate"></span>
+          <h4 id="viewer-title" class="text-base sm:text-lg font-bold text-white truncate"></h4>
+        </div>
+        <div class="flex items-center gap-2 shrink-0">
+          <!-- Abrir en pestaña nueva -->
+          <a id="viewer-external-link" href="#" target="_blank" rel="noopener noreferrer"
+            class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs transition"
+            title="Abrir enlace directo en Google Drive">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
+          <!-- Descargar -->
+          <a id="viewer-download-link" href="#" target="_blank" download
+            class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs transition"
+            title="Descargar archivo">
+            <i class="fa-solid fa-download"></i>
+          </a>
+          <!-- Cerrar modal -->
+          <button onclick="window.ui.closeViewer()"
+            class="p-2 rounded-lg bg-slate-800 hover:bg-red-900/50 text-slate-300 hover:text-red-300 text-xs transition"
+            title="Cerrar">
+            <i class="fa-solid fa-xmark text-sm"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Cuerpo / Iframe del Visor -->
+      <div class="p-4 sm:p-6 flex-1 overflow-y-auto">
+        <div id="viewer-iframe-container" class="w-full">
+          <!-- Inyectado dinámicamente -->
+        </div>
+      </div>
+
+      <!-- Pie del Visor -->
+      <div
+        class="p-3 px-6 border-t border-slate-800/80 bg-slate-900/50 flex items-center justify-between text-xs text-slate-400">
+        <span class="flex items-center gap-1.5">
+          <i class="fa-brands fa-google-drive text-emerald-400"></i>
+          <span>Alojado en Google Drive • FUNDATUR SOCIAL & UNETI</span>
+        </span>
+        <button onclick="window.ui.closeViewer()"
+          class="px-4 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-medium transition">
+          Cerrar Visor
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       MODAL: INICIO DE SESIÓN DE ADMINISTRADOR (RBAC)
+       ========================================================================= -->
+  <div id="login-modal"
+    class="modal-backdrop fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
+    <div
+      class="modal-container glass-panel w-full max-w-md rounded-2xl border border-slate-700 bg-slate-950 p-6 space-y-5">
+
+      <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-sky-950 flex items-center justify-center text-sky-400">
+            <i class="fa-solid fa-user-shield text-lg"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-white text-base">Control de Acceso (RBAC)</h3>
+            <p class="text-xs text-slate-400">Autenticación de Investigadores / Docente</p>
+          </div>
+        </div>
+        <button onclick="window.ui.closeLoginModal()" class="text-slate-400 hover:text-white">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form id="login-form" class="space-y-4">
+        <div>
+          <label class="block text-xs font-medium text-slate-300 mb-1">Usuario</label>
+          <div class="relative">
+            <i class="fa-solid fa-user absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-xs"></i>
+            <input type="text" id="login-username"
+              class="w-full pl-9 pr-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-sky-500"
+              placeholder="admin" required>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-medium text-slate-300 mb-1">Contraseña</label>
+          <div class="relative">
+            <i class="fa-solid fa-key absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-xs"></i>
+            <input type="password" id="login-password"
+              class="w-full pl-9 pr-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-sky-500"
+              placeholder="••••••••" required>
+          </div>
+        </div>
+
+        <!-- Mensaje de error -->
+        <div id="login-error"
+          class="hidden p-3 rounded-lg bg-red-950/60 border border-red-800/60 text-red-300 text-xs flex items-center gap-2">
+          <i class="fa-solid fa-circle-exclamation shrink-0"></i>
+          <span></span>
+        </div>
+
+        <!-- Sugerencia para revisión / pruebas -->
+        <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800 text-[11px] text-slate-400 space-y-1">
+          <div class="flex items-center gap-1.5 text-sky-400 font-semibold">
+            <i class="fa-solid fa-circle-info"></i>
+            <span>Credenciales por Defecto de Demostración:</span>
+          </div>
+          <p>Usuario: <code class="text-white bg-slate-800 px-1 py-0.5 rounded font-mono">admin</code> | Clave: <code
+              class="text-white bg-slate-800 px-1 py-0.5 rounded font-mono">uneti2025</code></p>
+        </div>
+
+        <div class="pt-2 flex items-center justify-end gap-3">
+          <button type="button" onclick="window.ui.closeLoginModal()"
+            class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium transition">
+            Cancelar
+          </button>
+          <button type="submit"
+            class="px-5 py-2 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-xs font-semibold transition shadow-lg shadow-sky-600/30">
+            Ingresar
+          </button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       MODAL: CREAR / EDITAR SESIÓN DIDÁCTICA Y ENLACES DRIVE
+       ========================================================================= -->
+  <div id="session-form-modal"
+    class="modal-backdrop fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+    <div
+      class="modal-container glass-panel w-full max-w-3xl rounded-2xl border border-slate-700 bg-slate-950 p-6 space-y-5 max-h-[92vh] overflow-y-auto">
+
+      <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+        <h3 id="modal-session-title" class="font-bold text-white text-base flex items-center"></h3>
+        <button onclick="window.ui.closeSessionModal()" class="text-slate-400 hover:text-white">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form id="session-editor-form" class="space-y-4 text-xs">
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div>
+            <label class="block text-slate-300 font-medium mb-1">Sesión Didáctica</label>
+            <input type="text" id="form-session-phase"
+              class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-white"
+              placeholder="Ej: Sesión Didáctica I" required>
+          </div>
+          <div>
+            <label class="block text-slate-300 font-medium mb-1">Semanas</label>
+            <input type="text" id="form-session-week"
+              class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-white"
+              placeholder="Ej: Semanas 1 - 3" required>
+          </div>
+          <div>
+            <label class="block text-slate-300 font-medium mb-1">Estado de Avance</label>
+            <select id="form-session-status"
+              class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-white">
+              <option value="Aprobado">Aprobado</option>
+              <option value="Completado">Completado</option>
+              <option value="En Desarrollo">En Desarrollo</option>
+              <option value="Pendiente">Pendiente</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-slate-300 font-medium mb-1">Título de la Sesión / Módulo</label>
+          <input type="text" id="form-session-title"
+            class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-white"
+            placeholder="Ej: Diagnóstico Participativo y Levantamiento..." required>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-slate-300 font-medium mb-1">Fecha / Lapso de Ejecución</label>
+            <input type="text" id="form-session-date"
+              class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-white"
+              placeholder="Ej: Octubre 2024">
+          </div>
+          <div>
+            <label class="block text-slate-300 font-medium mb-1">Color del Badge de Estado</label>
+            <select id="form-session-color"
+              class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-white">
+              <option value="emerald">Verde Esmeralda (Aprobado)</option>
+              <option value="sky">Azul Celeste (Completado)</option>
+              <option value="amber">Ámbar / Naranja (En Proceso)</option>
+              <option value="purple">Púrpura / Violeta</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-slate-300 font-medium mb-1">Resumen Ejecutivo</label>
+          <textarea id="form-session-summary" rows="2"
+            class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-white"
+            placeholder="Breve descripción del alcance..." required></textarea>
+        </div>
+
+        <div>
+          <label class="block text-slate-300 font-medium mb-1">Objetivos Específicos (Uno por línea)</label>
+          <textarea id="form-session-objectives" rows="3"
+            class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-white font-mono"
+            placeholder="Objetivo 1&#10;Objetivo 2&#10;Objetivo 3"></textarea>
+        </div>
+
+        <!-- Gestor dinámico de recursos multimedia -->
+        <div class="pt-3 border-t border-slate-800">
+          <div class="flex items-center justify-between mb-3">
+            <span class="font-bold text-white flex items-center gap-1.5">
+              <i class="fa-brands fa-google-drive text-emerald-400"></i>
+              <span>Recursos y Enlaces de Google Drive</span>
+            </span>
+            <button type="button" onclick="window.ui.addResourceFormRow()"
+              class="px-3 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-sky-400 border border-sky-500/30 text-xs font-medium transition">
+              <i class="fa-solid fa-plus mr-1"></i> Agregar Recurso
+            </button>
+          </div>
+
+          <!-- Contenedor de filas de recursos -->
+          <div id="form-resources-list" class="space-y-3"></div>
+        </div>
+
+        <div class="pt-4 border-t border-slate-800 flex items-center justify-end gap-3">
+          <button type="button" onclick="window.ui.closeSessionModal()"
+            class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium transition">
+            Cancelar
+          </button>
+          <button type="submit"
+            class="px-5 py-2 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-xs font-semibold transition shadow-lg shadow-sky-600/30">
+            Guardar Cambios
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       MODAL: GESTIONAR INTEGRANTE ESTUDIANTE (Crear / Editar)
+       ========================================================================= -->
+  <div id="student-modal"
+    class="modal-backdrop fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
+    <div
+      class="modal-container glass-panel w-full max-w-lg rounded-2xl border border-slate-700 bg-slate-950 p-6 space-y-5">
+
+      <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+        <h3 id="modal-student-title" class="font-bold text-white text-base flex items-center">
+          <i class="fa-solid fa-user-gear text-sky-400 mr-2"></i> Integrante del Proyecto
+        </h3>
+        <button onclick="window.ui.closeStudentModal()" class="text-slate-400 hover:text-white">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form id="student-form" class="space-y-4 text-xs">
+        <input type="hidden" id="form-student-id">
+
+        <div>
+          <label class="block text-slate-300 font-medium mb-1">Nombre y Apellido Completo</label>
+          <input type="text" id="form-student-name"
+            class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-white"
+            placeholder="Ej: Ing. Sistemas / Pedro Pérez" required>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-slate-300 font-medium mb-1">Cédula de Identidad</label>
+            <input type="text" id="form-student-cedula"
+              class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-white font-mono"
+              placeholder="Ej: V-28.456.789" required>
+          </div>
+          <div>
+            <label class="block text-slate-300 font-medium mb-1">Teléfono / WhatsApp</label>
+            <input type="text" id="form-student-phone"
+              class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-white"
+              placeholder="Ej: +58 412-1234567">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-slate-300 font-medium mb-1">Rol / Cargo en FUNDATUR y Proyecto</label>
+          <input type="text" id="form-student-role"
+            class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-white"
+            placeholder="Ej: Jefe de Área TI (Ing. en Sistemas) / Plataforma Web" required>
+        </div>
+
+        <div>
+          <label class="block text-slate-300 font-medium mb-1">Correo Electrónico Institucional</label>
+          <input type="email" id="form-student-email"
+            class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-white"
+            placeholder="Ej: ti.jefe@fundatur.gob.ve">
+        </div>
+
+        <div class="pt-4 border-t border-slate-800 flex items-center justify-end gap-3">
+          <button type="button" onclick="window.ui.closeStudentModal()"
+            class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium transition">
+            Cancelar
+          </button>
+          <button type="submit"
+            class="px-5 py-2 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-xs font-semibold transition shadow-lg shadow-sky-600/30">
+            Guardar Integrante
+          </button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       MODAL: GESTIONAR PROFESOR / JURADO EVALUADOR (Crear / Editar)
+       ========================================================================= -->
+  <div id="jury-modal"
+    class="modal-backdrop fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
+    <div
+      class="modal-container glass-panel w-full max-w-lg rounded-2xl border border-slate-700 bg-slate-950 p-6 space-y-5">
+
+      <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+        <h3 id="modal-jury-title" class="font-bold text-white text-base flex items-center">
+          <i class="fa-solid fa-chalkboard-user text-blue-400 mr-2"></i> Asesor / Jurado Evaluador
+        </h3>
+        <button onclick="window.ui.closeJuryModal()" class="text-slate-400 hover:text-white">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form id="jury-form" class="space-y-4 text-xs">
+        <input type="hidden" id="form-jury-id">
+
+        <div>
+          <label class="block text-slate-300 font-medium mb-1">Nombre Completo del Profesor / Jurado</label>
+          <input type="text" id="form-jury-name"
+            class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-white"
+            placeholder="Ej: Prof. Carlos Eduardo Méndez" required>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-slate-300 font-medium mb-1">Título / Grado Académico</label>
+            <input type="text" id="form-jury-title"
+              class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-white"
+              placeholder="Ej: Ing. de Telecomunicaciones / MSc." required>
+          </div>
+          <div>
+            <label class="block text-slate-300 font-medium mb-1">Rol en la Evaluación</label>
+            <select id="form-jury-role"
+              class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-white">
+              <option value="Tutor Académico de Proyecto">Tutor Académico de Proyecto</option>
+              <option value="Tutor Metodológico">Tutor Metodológico</option>
+              <option value="Jurado Calificador Principal">Jurado Calificador Principal</option>
+              <option value="Jurado Suplente">Jurado Suplente</option>
+              <option value="Coordinador de Proyecto Socioeconómico">Coordinador de Proyecto Socioeconómico</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-slate-300 font-medium mb-1">Departamento / Área Institucional</label>
+          <input type="text" id="form-jury-dept"
+            class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-white"
+            placeholder="Ej: Coordinación de Proyecto Socioeconómico - UNETI">
+        </div>
+
+        <div>
+          <label class="block text-slate-300 font-medium mb-1">Correo Electrónico Institucional</label>
+          <input type="email" id="form-jury-email"
+            class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-white"
+            placeholder="Ej: profesor.asesor@uneti.edu.ve">
+        </div>
+
+        <div class="pt-4 border-t border-slate-800 flex items-center justify-end gap-3">
+          <button type="button" onclick="window.ui.closeJuryModal()"
+            class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium transition">
+            Cancelar
+          </button>
+          <button type="submit"
+            class="px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold transition shadow-lg shadow-blue-600/30">
+            Guardar Docente / Jurado
+          </button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       CONTENEDOR DE NOTIFICACIONES TOAST
+       ========================================================================= -->
+  <div id="toast-container" class="fixed top-6 right-6 z-50 flex flex-col gap-3 pointer-events-none"></div>
+
+  <!-- Inyección del Script Principal (Compatible con file:// y servidores web) -->
+  <script src="js/main.js"></script>
+</body>
+
+</html>

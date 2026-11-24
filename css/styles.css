@@ -1,0 +1,207 @@
+/* ==========================================================================
+   UNETI - PROYECTO SOCIOECONÓMICO
+   Estilos Personalizados y Arquitectura Visual
+   Diseñado para Alto Rendimiento, Elegancia y Temática de Telecomunicaciones
+   ========================================================================== */
+
+:root {
+  --uneti-navy: #0A192F;
+  --uneti-deep-blue: #0F172A;
+  --uneti-primary: #0284C7;
+  --uneti-secondary: #2563EB;
+  --uneti-accent: #38BDF8;
+  --uneti-cyan: #06B6D4;
+  --uneti-slate: #1E293B;
+  --uneti-border: rgba(148, 163, 184, 0.15);
+}
+
+/* Base Body Styles & Subtle Tech Grid */
+body {
+  background-color: #0B1120;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(2, 132, 199, 0.12) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(37, 99, 235, 0.1) 0px, transparent 50%),
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+  color: #F8FAFC;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Glassmorphism & High-Tech Cards */
+.glass-panel {
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(56, 189, 248, 0.12);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-panel:hover {
+  border-color: rgba(56, 189, 248, 0.28);
+  box-shadow: 0 15px 35px -5px rgba(2, 132, 199, 0.18);
+}
+
+.glass-header {
+  background: rgba(11, 17, 32, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(56, 189, 248, 0.15);
+}
+
+/* Custom Glow Accents */
+.tech-glow {
+  position: relative;
+}
+.tech-glow::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #0284c7, #38bdf8, #2563eb);
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  filter: blur(6px);
+}
+.tech-glow:hover::after {
+  opacity: 0.75;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0B1120;
+}
+::-webkit-scrollbar-thumb {
+  background: #1E293B;
+  border-radius: 4px;
+  border: 1px solid rgba(56, 189, 248, 0.2);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #0284C7;
+}
+
+/* Animated subtle pulse for active status */
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.15); }
+}
+.pulse-dot {
+  animation: pulse-subtle 2.5s infinite ease-in-out;
+}
+
+/* Media Viewer Aspect Ratio and Clean Drive Iframe Container */
+.drive-embed-container {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%; /* 16:9 ratio */
+  background: #000000;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+}
+
+.drive-embed-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.drive-doc-container {
+  position: relative;
+  width: 100%;
+  height: 72vh;
+  background: #1E293B;
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+.drive-doc-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Transitions for Accordion Details */
+details summary::-webkit-details-marker {
+  display: none;
+}
+details[open] summary .accordion-chevron {
+  transform: rotate(180deg);
+}
+
+/* Modal animation */
+.modal-backdrop {
+  opacity: 0;
+  transition: opacity 0.25s ease-out;
+}
+.modal-backdrop.active {
+  opacity: 1;
+}
+.modal-container {
+  transform: scale(0.95);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.modal-backdrop.active .modal-container {
+  transform: scale(1);
+}
+
+/* Toast notifications */
+.toast-item {
+  transform: translateX(120%);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
+}
+.toast-item.show {
+  transform: translateX(0);
+}
+
+/* Print Styles for academic review / submission to Google Classroom */
+@media print {
+  body {
+    background: #FFFFFF !important;
+    color: #000000 !important;
+  }
+  .no-print, header, footer, #admin-bar, .action-btn {
+    display: none !important;
+  }
+  .glass-panel {
+    border: 1px solid #CBD5E1 !important;
+    box-shadow: none !important;
+    background: #FFFFFF !important;
+    color: #000000 !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}
+
+/* Helper styles for tables and cards */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
