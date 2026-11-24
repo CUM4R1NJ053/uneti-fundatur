@@ -479,10 +479,35 @@ class StorageManager {
     return true;
   }
 
+  static addSession(data) {
+    return this.upsertSession(data);
+  }
+
+  static updateSession(id, data) {
+    return this.upsertSession({ id, ...data });
+  }
+
+  static moveSession(id, direction) {
+    const sessions = this.getSessions();
+    const idx = sessions.findIndex(s => s.id === id);
+    if (idx < 0) return false;
+    const targetIdx = direction === 'up' ? idx - 1 : idx + 1;
+    if (targetIdx < 0 || targetIdx >= sessions.length) return false;
+    const temp = sessions[idx];
+    sessions[idx] = sessions[targetIdx];
+    sessions[targetIdx] = temp;
+    this.saveSessions(sessions);
+    return true;
+  }
+
   static resetSessions() {
     this.saveSessions(INITIAL_SESSIONS);
     this.saveTeam(INITIAL_TEAM);
     return true;
+  }
+
+  static resetToDefaults() {
+    return this.resetSessions();
   }
 
   static getTeam() {
