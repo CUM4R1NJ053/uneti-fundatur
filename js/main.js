@@ -2548,16 +2548,14 @@ class UIManager {
         }
       }
 
-      if (btnTestDriveGuide) {
-              if (isAdmin) {
-                btnTestDriveGuide.classList.remove('hidden');
-                btnTestDriveGuide.classList.add('inline-flex');
-              } else {
-                btnTestDriveGuide.classList.add('hidden');
-                btnTestDriveGuide.classList.remove('inline-flex');
-              }
-            }
-          }
+    if (btnTestDriveGuide) {
+      if (isAdmin) {
+        btnTestDriveGuide.classList.remove('hidden');
+        btnTestDriveGuide.classList.add('inline-flex');
+      } else {
+        btnTestDriveGuide.classList.add('hidden');
+        btnTestDriveGuide.classList.remove('inline-flex');
+      }
     }
 
     this.renderSessions();
