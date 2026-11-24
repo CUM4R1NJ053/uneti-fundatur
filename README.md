@@ -3,7 +3,7 @@
 
 **Universidad Nacional Experimental de las Telecomunicaciones e Informática (UNETI)**  
 *Carrera: Ingeniería en Informática*  
-*Materia: Proyecto Socioeconómico · Periodo Académico 2024-2025*
+*Materia: Proyecto Socioeconómico · Periodo Académico 2026-2026*
 
 ---
 
@@ -240,6 +240,6 @@ Para sincronizar los datos entre los dos integrantes del equipo:
 ## 🔧 Créditos y Autoría
 
 Desarrollado para la comunidad universitaria de la **UNETI** — *Ingeniería en Informática*.  
-Periodo Académico 2024-2025 · Proyecto Socioeconómico.
+Periodo Académico 2025-2026 · Proyecto Socioeconómico.
 
 *Plataforma construida con HTML5, Tailwind CSS y JavaScript Vanilla.*
