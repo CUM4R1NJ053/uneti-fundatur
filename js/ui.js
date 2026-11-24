@@ -1,7 +1,4 @@
-/**
- * UNETI - PROYECTO SOCIOECONÓMICO
- * Capa de Presentación, Renderizado de Interfaz y Control de Modales
- */
+// Renderizado de la interfaz principal y control de modales
 
 import { CONFIG } from './config.js';
 import { DriveHelper } from './drive-helper.js';
@@ -13,9 +10,6 @@ export class UIManager {
   static searchQuery = '';
   static activeEditingSessionId = null;
 
-  /**
-   * Inicializa la interfaz de usuario
-   */
   static init() {
     this.renderHeaderAndHero();
     this.renderFilterPills();
@@ -26,9 +20,6 @@ export class UIManager {
     this.setupEventListeners();
   }
 
-  /**
-   * Renderiza el encabezado institucional y estadísticas
-   */
   static renderHeaderAndHero() {
     const institutionTitle = document.getElementById('inst-name');
     if (institutionTitle) institutionTitle.textContent = CONFIG.institution.name;
@@ -43,9 +34,6 @@ export class UIManager {
     if (mainTitle) mainTitle.textContent = CONFIG.institution.projectTitle;
   }
 
-  /**
-   * Renderiza los filtros por sesión dinámicos
-   */
   static renderFilterPills() {
     const container = document.getElementById('filter-pills-container');
     if (!container) return;
@@ -94,9 +82,6 @@ export class UIManager {
     this.renderSessions();
   }
 
-  /**
-   * Actualiza el contador de estadísticas del Hero
-   */
   static updateStats() {
     const sessions = StorageManager.getSessions();
     const totalSessions = sessions.length;
@@ -121,21 +106,16 @@ export class UIManager {
     }
   }
 
-  /**
-   * Renderiza el listado interactivo de sesiones didácticas
-   */
   static renderSessions() {
     const container = document.getElementById('sessions-container');
     if (!container) return;
 
     let sessions = StorageManager.getSessions();
 
-    // Filtro por sesión específica
     if (this.currentFilter !== 'all') {
       sessions = sessions.filter(s => s.phase.toLowerCase() === this.currentFilter.toLowerCase());
     }
 
-    // Filtro por búsqueda
     if (this.searchQuery) {
       const q = this.searchQuery.toLowerCase();
       sessions = sessions.filter(s => 
@@ -327,9 +307,7 @@ export class UIManager {
     }).join('');
   }
 
-  /**
-   * Actualiza los elementos de la interfaz basados en el estado de autenticación (RBAC)
-   */
+  // Visibilidad de controles según rol de usuario
   static updateAdminUI(isAdmin) {
     const adminBanner = document.getElementById('admin-floating-banner');
     const loginBtn = document.getElementById('btn-nav-login');
@@ -364,7 +342,6 @@ export class UIManager {
       }
     }
 
-    // Botones de agregar integrantes restringidos a administradores
     if (btnAddStudent) {
       if (isAdmin) {
         btnAddStudent.classList.remove('hidden');
@@ -390,9 +367,7 @@ export class UIManager {
     this.renderFilterPills();
   }
 
-  /**
-   * Abre el Visor Multimedia de Google Drive incrustado
-   */
+  // Visor modal para archivos de Google Drive
   static openViewer(sessionId, resourceId) {
     const sessions = StorageManager.getSessions();
     const session = sessions.find(s => s.id === sessionId);
@@ -784,9 +759,7 @@ export class UIManager {
     }, 4000);
   }
 
-  /* =========================================================================
-     MÉTODOS DE GESTIÓN DE EQUIPO: ESTUDIANTES Y JURADO / PROFESORES (RBAC)
-     ========================================================================= */
+  
   static renderTeam() {
     const isAdmin = AuthManager.isAdmin();
     const team = StorageManager.getTeam();
@@ -801,7 +774,6 @@ export class UIManager {
     if (stdBadge) stdBadge.textContent = `${studentCount} Integrante${studentCount === 1 ? '' : 's'}`;
     if (juryBadge) juryBadge.textContent = `${juryCount} Docente${juryCount === 1 ? '' : 's'}`;
 
-    // 1. Renderizar Estudiantes
     if (studentsContainer) {
       if (!team.students || team.students.length === 0) {
         studentsContainer.innerHTML = `
@@ -866,7 +838,6 @@ export class UIManager {
       }
     }
 
-    // 2. Renderizar Jurado / Profesores
     if (juryContainer) {
       if (!team.jury || team.jury.length === 0) {
         juryContainer.innerHTML = `
@@ -928,7 +899,6 @@ export class UIManager {
     }
   }
 
-  /* Modales de Estudiante */
   static openStudentModal(studentId = null) {
     if (!AuthManager.isAdmin()) {
       this.openLoginModal();
@@ -1020,7 +990,6 @@ export class UIManager {
     }
   }
 
-  /* Modales de Jurado / Docente */
   static openJuryModal(juryId = null) {
     if (!AuthManager.isAdmin()) {
       this.openLoginModal();
@@ -1112,7 +1081,6 @@ export class UIManager {
     }
   }
 
-  /* Alternador de Vista (Tarjetas vs Cronograma) */
   static switchView(view) {
     const btnCards = document.getElementById('btn-view-cards');
     const btnTimeline = document.getElementById('btn-view-timeline');
@@ -1186,7 +1154,6 @@ export class UIManager {
     `;
   }
 
-  /* Importar Respaldo JSON */
   static handleImportFile(event) {
     const file = event.target.files[0];
     if (!file) return;
@@ -1209,11 +1176,8 @@ export class UIManager {
     event.target.value = '';
   }
 
-  /**
-   * Configuración de oyentes de eventos globales
-   */
   static setupEventListeners() {
-    // Barra de búsqueda
+
     const searchInput = document.getElementById('search-input');
     if (searchInput) {
       searchInput.addEventListener('input', (e) => {
@@ -1222,23 +1186,19 @@ export class UIManager {
       });
     }
 
-    // Modal de Login
     const loginForm = document.getElementById('login-form');
     if (loginForm) loginForm.addEventListener('submit', (e) => this.handleLoginSubmit(e));
 
-    // Modal de Sesión
     const sessionForm = document.getElementById('session-editor-form');
     if (sessionForm) sessionForm.addEventListener('submit', (e) => this.handleSessionFormSubmit(e));
 
-    // Formulario de Estudiante
     const studentForm = document.getElementById('student-form');
     if (studentForm) studentForm.addEventListener('submit', (e) => this.handleStudentSubmit(e));
 
-    // Formulario de Jurado / Profesor
     const juryForm = document.getElementById('jury-form');
     if (juryForm) juryForm.addEventListener('submit', (e) => this.handleJurySubmit(e));
 
-    // Tecla Escape para cerrar modales
+    // Cierre de modales mediante la tecla Escape
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         this.closeViewer();
@@ -1249,7 +1209,6 @@ export class UIManager {
       }
     });
 
-    // Suscripción a cambios de autenticación
     AuthManager.subscribe((isAdmin) => {
       this.updateAdminUI(isAdmin);
     });

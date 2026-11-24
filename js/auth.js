@@ -1,27 +1,16 @@
-/**
- * UNETI - PROYECTO SOCIOECONÓMICO
- * Módulo de Autenticación y Control de Acceso Basado en Roles (RBAC)
- */
+// Control de autenticación
 
 import { CONFIG } from './config.js';
 
 export class AuthManager {
   static listeners = [];
 
-  /**
-   * Verifica si el usuario actual tiene privilegios de Administrador
-   * @returns {boolean}
-   */
+  // Estado sesión admin
   static isAdmin() {
     return localStorage.getItem(CONFIG.auth.sessionStorageKey) === 'true';
   }
 
-  /**
-   * Intenta autenticarse con usuario y contraseña
-   * @param {string} username 
-   * @param {string} password 
-   * @returns {boolean}
-   */
+  // Verificación de credenciales
   static login(username, password) {
     const cleanUser = (username || '').trim();
     const cleanPass = (password || '').trim();
@@ -34,26 +23,18 @@ export class AuthManager {
     return false;
   }
 
-  /**
-   * Cierra la sesión de administrador regresando al modo público/visitante
-   */
+  // Cierre de sesión
   static logout() {
     localStorage.removeItem(CONFIG.auth.sessionStorageKey);
     this.notifyListeners(false);
   }
 
-  /**
-   * Registra un observador que se ejecuta al cambiar el estado de autenticación
-   * @param {Function} callback 
-   */
+  // Suscriptores de cambio de sesión
   static subscribe(callback) {
     this.listeners.push(callback);
   }
 
-  /**
-   * Notifica a todos los componentes de la interfaz sobre el cambio de sesión
-   * @param {boolean} isAuthenticated 
-   */
+  // Notificar suscriptores UI
   static notifyListeners(isAuthenticated) {
     this.listeners.forEach(cb => {
       try {

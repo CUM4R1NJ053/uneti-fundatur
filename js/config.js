@@ -1,7 +1,4 @@
-/**
- * FUNDATUR SOCIAL & UNETI - PROYECTO SOCIOECONÓMICO
- * Configuración Global y Metadatos Institucionales
- */
+// Configuración global
 
 export const CONFIG = {
   institution: {
@@ -22,14 +19,14 @@ export const CONFIG = {
     location: "Caracas (Sede Principal), Maracay, Maracaibo, Puerto La Cruz"
   },
 
-  // Credenciales predeterminadas para el modo Administrador
+  // Credenciales por defecto
   auth: {
     defaultUser: "admin",
     defaultPass: "uneti2025",
     sessionStorageKey: "uneti_admin_session"
   },
 
-  // Tipos de recursos multimedia admitidos
+  // Mapeo de recursos
   resourceTypes: {
     video: { label: "Video Demostrativo", icon: "fa-solid fa-play", color: "text-red-400 bg-red-950/40 border-red-800/50" },
     pdf: { label: "Informe / Documento PDF", icon: "fa-solid fa-file-pdf", color: "text-amber-400 bg-amber-950/40 border-amber-800/50" },

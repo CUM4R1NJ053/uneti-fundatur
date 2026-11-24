@@ -1,8 +1,4 @@
-/**
- * Servidor Web Local Autónomo para UNETI - FUNDATUR
- * Compatible con Node.js v14+ (Cero dependencias externas)
- * Resuelve problemas de MIME types en Windows y soporte dual localhost (IPv4/IPv6)
- */
+// Servidor HTTP
 
 const http = require('http');
 const fs = require('fs');
@@ -34,7 +30,7 @@ const MIME_TYPES = {
 };
 
 const server = http.createServer((req, res) => {
-  // Manejo de CORS y headers de seguridad
+  // Cabeceras CORS
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, HEAD, OPTIONS');
   res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
@@ -45,7 +41,6 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  // Parsear URL y limpiar query params
   const parsedUrl = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
   let pathname = decodeURIComponent(parsedUrl.pathname);
 
@@ -53,7 +48,7 @@ const server = http.createServer((req, res) => {
     pathname = '/index.html';
   }
 
-  // Evitar Directory Traversal
+  // Prevención path traversal
   const safePath = path.normalize(path.join(ROOT_DIR, pathname));
   if (!safePath.startsWith(ROOT_DIR)) {
     res.writeHead(403, { 'Content-Type': 'text/plain; charset=utf-8' });
@@ -63,7 +58,7 @@ const server = http.createServer((req, res) => {
 
   fs.stat(safePath, (err, stats) => {
     if (err || !stats.isFile()) {
-      // Intentar servir index.html si es una ruta limpia
+      // Fallback a index.html
       const altIndex = path.join(safePath, 'index.html');
       if (fs.existsSync(altIndex)) {
         serveFile(altIndex, res);

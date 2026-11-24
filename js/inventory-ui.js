@@ -1,7 +1,4 @@
-/**
- * FUNDATUR SOCIAL - UNETI
- * Módulo de Interfaz y Lógica del Inventario Tecnológico Auditado (40 Equipos)
- */
+// Gestión visual y eventos de la tabla de inventario
 
 import { INVENTORY_DATA, INVENTORY_STATS } from './inventory-data.js';
 
@@ -196,7 +193,6 @@ export class InventoryUI {
 
       return `
         <tr class="border-b border-slate-800/60 hover:bg-slate-900/60 transition group text-xs">
-          <!-- Código e ID -->
           <td class="py-3.5 px-4 font-mono font-bold text-sky-300 whitespace-nowrap">
             <div class="flex items-center gap-2">
               <span class="w-6 h-6 rounded bg-slate-800/90 text-slate-300 flex items-center justify-center text-[10px] font-bold">${item.id.replace('FND-', '')}</span>
@@ -205,7 +201,6 @@ export class InventoryUI {
             <span class="text-[10px] text-slate-500 font-normal block pl-8">Cód. ${item.code}</span>
           </td>
 
-          <!-- Sede y Área -->
           <td class="py-3.5 px-4">
             <div class="font-semibold text-slate-200 flex items-center gap-1.5">
               <i class="${branchIcons[item.branch] || 'fa-solid fa-location-dot text-slate-400'} text-[11px]"></i>
@@ -214,7 +209,6 @@ export class InventoryUI {
             <span class="text-[11px] text-slate-400 block">${item.area}</span>
           </td>
 
-          <!-- Hardware -->
           <td class="py-3.5 px-4">
             <span class="font-bold text-slate-100 block truncate max-w-[180px]">${item.brandModel}</span>
             <span class="text-[11px] text-slate-400 block truncate max-w-[200px]">${item.processor}</span>
@@ -224,23 +218,19 @@ export class InventoryUI {
             </div>
           </td>
 
-          <!-- Estado -->
           <td class="py-3.5 px-4 whitespace-nowrap">
             ${statusBadge}
           </td>
 
-          <!-- Diagnóstico / Problemas -->
           <td class="py-3.5 px-4 text-slate-300 max-w-xs">
             <p class="line-clamp-2 leading-relaxed text-[11.5px]">${item.diagnostics}</p>
             <span class="text-[10px] text-slate-500 mt-1 block">Custodio: <strong class="text-slate-400 font-medium">${item.userAssigned}</strong></span>
           </td>
 
-          <!-- Prioridad -->
           <td class="py-3.5 px-4 whitespace-nowrap text-center">
             ${priorityBadge}
           </td>
 
-          <!-- Acciones -->
           <td class="py-3.5 px-4 text-right whitespace-nowrap">
             <button 
               onclick="window.inventoryUI.openEquipmentModal('${item.id}')"

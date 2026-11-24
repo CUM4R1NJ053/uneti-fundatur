@@ -1,7 +1,4 @@
-/**
- * Información institucional y diagnóstico tecnológico de FUNDATUR SOCIAL
- * Módulo ES6
- */
+// Información institucional y diagnóstico FUNDATUR
 
 export const FUNDATUR_INFO = {
   identidad: {

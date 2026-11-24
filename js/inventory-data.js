@@ -1,7 +1,4 @@
-/**
- * Data de Inventario Auditado de FUNDATUR SOCIAL
- * Módulo ES6 exportando INVENTORY_DATA (40 equipos) e INVENTORY_STATS.
- */
+// Registros del inventario auditado
 
 export const INVENTORY_DATA = [
   {

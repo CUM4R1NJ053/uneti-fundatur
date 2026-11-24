@@ -1,7 +1,4 @@
-/**
- * FUNDATUR SOCIAL & UNETI - PROYECTO SOCIOECONÓMICO
- * Módulo de Almacenamiento, Persistencia y Gestión de Sesiones Didácticas
- */
+// Persistencia en localStorage para sesiones, equipo e inventario
 
 const STORAGE_KEY = 'fundatur_uneti_socioeconomico_sessions_v3';
 const TEAM_STORAGE_KEY = 'fundatur_uneti_socioeconomico_team_v3';
@@ -387,9 +384,7 @@ export class StorageManager {
     return true;
   }
 
-  // ==========================================
-  // INVENTARIO DINÁMICO DE EQUIPOS (CRUD)
-  // ==========================================
+  
   static getInventory() {
     const raw = localStorage.getItem(INVENTORY_STORAGE_KEY);
     if (!raw) return [];

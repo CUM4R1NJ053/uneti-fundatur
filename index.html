@@ -9,21 +9,21 @@
     content="Plataforma de Diagnóstico Tecnológico, Auditoría de Parque Informático (40 Equipos), Mesa de Ayuda GLPI/RustDesk y Proyecto Socioeconómico de FUNDATUR SOCIAL en alianza con UNETI." />
   <meta name="theme-color" content="#0B1120" />
 
-  <!-- Favicon Oficial UNETI -->
+  
   <link rel="icon" type="image/png" href="assets/favicon.png" />
 
-  <!-- Google Fonts: Inter -->
+  
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
     rel="stylesheet" />
 
-  <!-- FontAwesome Icons -->
+  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-  <!-- Tailwind CSS vía CDN -->
+  
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -49,15 +49,13 @@
     }
   </script>
 
-  <!-- Estilos Personalizados y Animaciones -->
+  
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 
 <body class="bg-uneti-dark text-slate-100 min-h-screen flex flex-col antialiased">
 
-  <!-- =========================================================================
-       BARRA FLOTANTE DE ADMINISTRADOR (Visible solo cuando se inicia sesión)
-       ========================================================================= -->
+  <!-- Banner admin -->
   <aside id="admin-floating-banner"
     class="hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-40 bg-slate-900/95 border border-sky-500/40 shadow-2xl shadow-sky-500/20 backdrop-blur-xl px-5 py-3 rounded-2xl items-center gap-4 text-xs font-medium animate-bounce-subtle">
     <div class="flex items-center gap-2 text-sky-400">
@@ -83,13 +81,11 @@
     </div>
   </aside>
 
-  <!-- =========================================================================
-       ENCABEZADO INSTITUCIONAL / NAVBAR
-       ========================================================================= -->
+  <!-- Header y navegación -->
   <header class="glass-header sticky top-0 z-30 transition-all">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
 
-      <!-- Identidad Institucional & Logo Oficial UNETI + FUNDATUR -->
+      
       <a href="#hero" class="flex items-center gap-3.5 group">
         <img src="assets/logo-uneti.png" alt="Logo Oficial UNETI"
           class="h-12 sm:h-14 w-auto object-contain transition-transform group-hover:scale-105 rounded-xl bg-white p-1 shadow-md shadow-sky-900/20">
@@ -106,8 +102,8 @@
         </div>
       </a>
 
-      <!-- Navegación y Acciones -->
-            <!-- Navegación por Pestañas / Secciones (SPA) -->
+      
+            
       <nav id="main-nav" class="hidden lg:flex items-center gap-1.5 text-xs font-semibold text-slate-300">
         <button type="button" onclick="window.navManager.switchSection('institucional')" data-section="institucional"
           class="nav-tab-btn px-3 py-1.5 rounded-xl transition flex items-center gap-1.5 bg-sky-500/20 text-sky-300 border border-sky-500/50 shadow-sm shadow-sky-500/20 font-bold"
@@ -145,9 +141,9 @@
         </button>
       </nav>
 
-      <!-- Botón de Autenticación / RBAC -->
+      
       <div class="flex items-center gap-3">
-        <!-- Herramienta rápida de validación de Drive (Solo usuarios autenticados) -->
+        
         <button id="btn-test-drive-nav" onclick="window.ui.testDriveUrl()"
           class="hidden items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700/80 text-slate-300 border border-slate-700/80 text-xs font-medium transition"
           title="Verificar validez de un enlace de Google Drive (Docente / Administrador)">
@@ -155,7 +151,7 @@
           <span>Probar Enlace</span>
         </button>
 
-        <!-- Botón de Login / Logout -->
+        
         <button id="btn-nav-login" onclick="window.ui.openLoginModal()"
           class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold border transition shadow-sm">
           <i class="fa-solid fa-shield-halved text-sky-400"></i>
@@ -165,7 +161,7 @@
 
     </div>
   </header>
-  <!-- Sub-barra de navegación móvil con scroll horizontal para navegación táctil instantánea -->
+  <!-- Nav móvil -->
   <div class="lg:hidden sticky top-16 z-30 bg-slate-900/95 backdrop-blur-md border-b border-slate-800 px-3 py-2 flex items-center gap-2 overflow-x-auto scrollbar-none text-xs">
     <button type="button" onclick="window.navManager.switchSection('institucional')" data-section="institucional"
       class="nav-tab-btn shrink-0 px-3 py-1.5 rounded-lg transition flex items-center gap-1.5 bg-sky-500/20 text-sky-300 border border-sky-500/50 shadow-sm shadow-sky-500/20 font-bold">
@@ -194,12 +190,10 @@
     </button>
   </div>
 
-  <!-- =========================================================================
-       HERO PRINCIPAL DE LA PLATAFORMA + BANNER INSTITUCIONAL
-       ========================================================================= -->
+  <!-- Hero -->
   <main class="flex-1">
 
-    <!-- SECCIÓN DEL BANNER INSTITUCIONAL (IMAGEN SUPERIOR) -->
+    
     <section id="banner-section" class="pt-6 sm:pt-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       <div
         class="relative rounded-3xl overflow-hidden border border-sky-500/30 shadow-2xl shadow-sky-950/80 group glass-panel p-2">
@@ -234,10 +228,10 @@
       </div>
     </section>
 
-    <!-- HERO DE IDENTIDAD Y PROYECTO -->
+    
     <section id="hero" class="relative pt-8 pb-12 sm:pt-12 sm:pb-16 overflow-hidden border-b border-slate-800/60">
 
-      <!-- Luz ambiental decorativa de fondo -->
+      
       <div
         class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-sky-500/10 blur-[120px] rounded-full pointer-events-none">
       </div>
@@ -245,14 +239,14 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div class="text-center max-w-4xl mx-auto space-y-5">
 
-          <!-- Badge institucional -->
+          
           <div
             class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-slate-900/90 border border-sky-500/30 text-sky-400 text-xs font-semibold uppercase tracking-wider shadow-inner">
             <span class="w-2 h-2 rounded-full bg-sky-400 pulse-dot"></span>
             <span id="project-trayecto">PNF en Ingeniería en Informática • Periodo Académico 2026-2027</span>
           </div>
 
-          <!-- Materia Principal -->
+          
           <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight">
             <span id="project-subject"
               class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-sky-200 to-blue-500">
@@ -260,14 +254,14 @@
             </span>
           </h1>
 
-          <!-- Título del Proyecto de Investigación -->
+          
           <p id="project-title"
             class="text-base sm:text-xl text-slate-300 font-medium max-w-3xl mx-auto leading-relaxed">
             Auditoría del Parque Informático, Implementación de Mesa de Ayuda GLPI / RustDesk y Plan de Reemplazo
             Tecnológico en 4 Sedes
           </p>
 
-          <!-- Tarjeta de Metadatos y Estadísticas Rápidas -->
+          
           <div class="pt-6 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 max-w-3xl mx-auto">
 
             <div class="glass-panel p-4 rounded-xl text-center border border-slate-800">
@@ -292,7 +286,7 @@
 
           </div>
 
-          <!-- Acciones directas -->
+          
           <div class="pt-2 flex flex-wrap items-center justify-center gap-3">
             <button type="button" onclick="window.navManager.switchSection('inventario')"
     class="px-6 py-3 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-semibold text-sm transition shadow-lg shadow-sky-600/30 flex items-center gap-2">
@@ -315,12 +309,10 @@
       </div>
     </section>
 
-    <!-- =========================================================================
-         SECCIÓN INSTITUCIONAL: FUNDATUR SOCIAL & UNETI
-         ========================================================================= -->
+    <!-- Sección institucional -->
     <section id="institucional" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-b border-slate-800/60">
 
-      <!-- Encabezado institucional -->
+      
       <div class="text-center mb-10">
         <div
           class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sky-950/60 border border-sky-800/50 text-sky-300 text-xs font-semibold uppercase tracking-widest mb-4">
@@ -338,9 +330,9 @@
         </blockquote>
       </div>
 
-      <!-- Misión, Visión, Valores -->
+      
       <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-10">
-        <!-- Misión -->
+        
         <div class="glass-panel p-6 rounded-2xl border border-slate-700 hover:border-sky-500/40 transition group">
           <div class="flex items-center gap-3 mb-3">
             <div
@@ -354,7 +346,7 @@
             regional del país.
           </p>
         </div>
-        <!-- Visión -->
+        
         <div class="glass-panel p-6 rounded-2xl border border-slate-700 hover:border-purple-500/40 transition group">
           <div class="flex items-center gap-3 mb-3">
             <div
@@ -368,7 +360,7 @@
             nuestras sedes.
           </p>
         </div>
-        <!-- Valores -->
+        
         <div class="glass-panel p-6 rounded-2xl border border-slate-700 hover:border-emerald-500/40 transition group">
           <div class="flex items-center gap-3 mb-3">
             <div
@@ -390,7 +382,6 @@
         </div>
       </div>
 
-
       <div class="glass-panel p-4 rounded-xl border border-slate-700 hover:border-rose-500/30 transition group"
         id="dept-direccion">
         <div class="flex items-start gap-2">
@@ -402,7 +393,7 @@
             <div class="text-slate-400 text-[11px] mt-0.5">Presidencia Ejecutiva y Representación Legal</div>
           </div>
         </div>
-      </div><!-- Quiénes Somos -->
+      </div>
       <div class="glass-panel p-6 rounded-2xl border border-slate-700 mb-10">
         <div class="flex items-center gap-3 mb-3">
           <i class="fa-solid fa-info-circle text-sky-400 text-xl"></i>
@@ -415,13 +406,13 @@
         </p>
       </div>
 
-      <!-- Organigrama -->
+      
       <div class="mb-10">
         <div class="flex items-center gap-3 mb-5">
           <i class="fa-solid fa-sitemap text-sky-400 text-xl"></i>
           <h3 class="text-white font-bold text-lg">Organigrama Institucional</h3>
         </div>
-        <!-- Presidencia -->
+        
         <div class="flex flex-col items-center">
           <div
             class="glass-panel px-6 py-3 rounded-xl border-2 border-sky-500/60 bg-sky-950/40 text-center mb-3 w-full max-w-xs">
@@ -429,9 +420,9 @@
                 class="fa-solid fa-crown mr-1.5 text-amber-400"></i>Presidencia Ejecutiva</div>
             <div class="text-slate-400 text-xs mt-0.5">Dirección estratégica y convenios</div>
           </div>
-          <!-- Línea vertical -->
+          
           <div class="w-0.5 h-6 bg-slate-600"></div>
-          <!-- Departamentos -->
+          
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 w-full mt-0">
             <div class="glass-panel p-4 rounded-xl border border-slate-700 hover:border-sky-500/30 transition">
               <div class="flex items-start gap-2">
@@ -497,9 +488,9 @@
         </div>
       </div>
 
-      <!-- Sedes y alianza UNETI -->
+      
       <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-        <!-- Sedes -->
+        
         <div class="glass-panel p-6 rounded-2xl border border-slate-700">
           <div class="flex items-center gap-2 mb-4">
             <i class="fa-solid fa-location-dot text-sky-400 text-lg"></i>
@@ -541,7 +532,7 @@
           </div>
         </div>
 
-        <!-- Alianza UNETI + Proyecto Académico -->
+        
         <div class="glass-panel p-6 rounded-2xl border border-slate-700">
           <div class="flex items-center gap-2 mb-4">
             <i class="fa-solid fa-graduation-cap text-purple-400 text-lg"></i>
@@ -578,9 +569,7 @@
 
     </section>
 
-    <!-- =========================================================================
-         NUEVA SECCIÓN: AUDITORÍA E INVENTARIO DEL PARQUE INFORMÁTICO (40 EQUIPOS)
-         ========================================================================= -->
+    <!-- Sección inventario -->
     <section id="inventario" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-b border-slate-800/60 hidden">
 
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
@@ -599,7 +588,7 @@
           </p>
         </div>
 
-        <!-- Botones de Acción de Inventario -->
+        
         <div class="flex items-center gap-2 shrink-0">
           <button onclick="window.inventoryUI.openEquipmentFormModal()"
             class="px-3.5 py-2 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-xs font-semibold transition flex items-center gap-1.5 shadow-md shadow-sky-600/30">
@@ -620,11 +609,11 @@
         </div>
       </div>
 
-      <!-- Tarjetas KPIs del Inventario -->
+      
       <div id="inventory-stats-container" class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-8">
-        <!-- Renderizado dinámicamente por InventoryUI.renderStats() -->
+        
       </div>
-      <!-- ── Dashboard visual de estados ── -->
+      
       <div class="glass-panel p-5 sm:p-6 rounded-2xl border border-slate-800 mb-6">
         <div class="flex items-center justify-between mb-5">
           <h3 class="text-sm font-bold text-white flex items-center gap-2">
@@ -634,7 +623,7 @@
           <span class="text-[10px] text-slate-500 uppercase tracking-widest">Actualización en tiempo real</span>
         </div>
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <!-- Estado de equipos: barras horizontales -->
+          
           <div>
             <p class="text-xs text-slate-400 font-semibold uppercase tracking-wider mb-3">Estado de equipos</p>
             <div class="space-y-3">
@@ -676,7 +665,7 @@
               </div>
             </div>
           </div>
-          <!-- Distribución por sede -->
+          
           <div>
             <p class="text-xs text-slate-400 font-semibold uppercase tracking-wider mb-3">Distribución por sede</p>
             <div class="space-y-2.5">
@@ -739,12 +728,12 @@
           </div>
         </div>
       </div>
-      <!-- ── Fin dashboard ── -->
+      
 
-      <!-- Barra de Filtros y Búsqueda -->
+      
       <div class="glass-panel p-4 sm:p-5 rounded-2xl border border-slate-800 mb-6 space-y-4">
         <div class="flex flex-col md:flex-row items-center justify-between gap-4">
-          <!-- Buscador en tiempo real -->
+          
           <div class="relative w-full md:w-80">
             <i
               class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
@@ -753,13 +742,13 @@
               class="w-full pl-9 pr-4 py-2 rounded-xl bg-slate-900 border border-slate-800 text-xs text-slate-100 placeholder-slate-500 focus:outline-none focus:border-sky-500 transition">
           </div>
 
-          <!-- Filtro de Estados -->
+          
           <div id="inventory-status-filters" class="flex flex-wrap items-center gap-2 w-full md:w-auto">
-            <!-- Renderizado dinámicamente -->
+            
           </div>
         </div>
 
-        <!-- Filtros por Sede -->
+        
         <div
           class="pt-3 border-t border-slate-800/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
           <div class="flex items-center gap-2 text-slate-400 shrink-0">
@@ -767,7 +756,7 @@
             <span class="font-medium">Filtrar por Sede:</span>
           </div>
           <div id="inventory-branch-filters" class="flex flex-wrap items-center gap-2">
-            <!-- Renderizado dinámicamente -->
+            
           </div>
           <div class="text-right">
             <span id="inventory-count-badge"
@@ -778,7 +767,7 @@
         </div>
       </div>
 
-      <!-- Tabla Responsiva de Inventario -->
+      
       <div class="glass-panel rounded-2xl border border-slate-800 overflow-hidden shadow-2xl">
         <div class="overflow-x-auto">
           <table class="w-full text-left border-collapse">
@@ -795,7 +784,7 @@
               </tr>
             </thead>
             <tbody id="inventory-table-body" class="divide-y divide-slate-800/40">
-              <!-- Renderizado dinámicamente vía InventoryUI.renderTable() -->
+              
             </tbody>
           </table>
         </div>
@@ -803,9 +792,7 @@
 
     </section>
 
-    <!-- =========================================================================
-         NUEVA SECCIÓN: MESA DE AYUDA (GLPI) & SOPORTE REMOTO (RUSTDESK)
-         ========================================================================= -->
+    <!-- Mesa de ayuda -->
     <section id="soporte-glpi" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-b border-slate-800/60 hidden">
 
       <div class="text-center max-w-3xl mx-auto mb-10">
@@ -823,7 +810,7 @@
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-10">
-        <!-- Tarjeta GLPI -->
+        
         <div class="glass-panel p-6 rounded-2xl border border-slate-800 space-y-4">
           <div class="flex items-center gap-3.5">
             <div
@@ -851,7 +838,7 @@
           </div>
         </div>
 
-        <!-- Tarjeta RustDesk -->
+        
         <div class="glass-panel p-6 rounded-2xl border border-slate-800 space-y-4">
           <div class="flex items-center gap-3.5">
             <div
@@ -880,7 +867,7 @@
         </div>
       </div>
 
-      <!-- Tiempos de Respuesta y Niveles de Prioridad (SLA) -->
+      
       <div class="glass-panel p-6 sm:p-8 rounded-2xl border border-slate-800 mb-10">
         <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
           <i class="fa-solid fa-stopwatch text-sky-400"></i> Niveles de Prioridad y Tiempos Máximos de Respuesta
@@ -921,7 +908,7 @@
         </div>
       </div>
 
-      <!-- Diagrama de Flujo en 5 Pasos -->
+      
       <div class="glass-panel p-6 sm:p-8 rounded-2xl border border-slate-800">
         <h3 class="text-lg font-bold text-white mb-6 flex items-center gap-2">
           <i class="fa-solid fa-arrows-split-up-and-left text-sky-400"></i> Flujo Operativo de Atención al Usuario (5
@@ -982,12 +969,10 @@
 
     </section>
 
-    <!-- =========================================================================
-             SECCIÓN DE SESIONES DIDÁCTICAS & FILTROS (FASES ACADÉMICAS UNETI)
-             ========================================================================= -->
+    <!-- Fases académicas -->
     <section id="sesiones" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 hidden">
 
-        <!-- Barra de Filtros, Búsqueda y Herramientas -->
+        
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
           <div>
             <h2 class="text-2xl font-black text-white tracking-tight flex items-center gap-2.5">
@@ -999,7 +984,7 @@
             </p>
           </div>
 
-          <!-- Buscador en tiempo real y selector de vistas -->
+          
           <div class="flex flex-wrap items-center gap-3 w-full md:w-auto">
             <div class="relative flex-1 md:w-64">
               <i
@@ -1008,7 +993,7 @@
                 class="w-full pl-9 pr-4 py-2 rounded-xl bg-slate-900 border border-slate-800 text-xs text-slate-100 placeholder-slate-500 focus:outline-none focus:border-sky-500 transition">
             </div>
 
-            <!-- Selector de Modo de Vista (Tarjetas vs Cronograma) -->
+            
             <div class="inline-flex rounded-xl bg-slate-900 border border-slate-800 p-1">
               <button id="btn-view-cards" onclick="window.ui.switchView('cards')"
                 class="px-3 py-1 rounded-lg text-xs font-semibold bg-sky-600 text-white transition flex items-center gap-1.5"
@@ -1024,7 +1009,7 @@
               </button>
             </div>
 
-            <!-- Botón Imprimir Dossier Académico -->
+            
             <button onclick="window.print()"
               class="px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-medium transition flex items-center gap-1.5"
               title="Imprimir o exportar ficha de evaluación en PDF">
@@ -1034,22 +1019,20 @@
           </div>
         </div>
 
-        <!-- Filtros Dinámicos de Sesiones Didácticas -->
+        
         <div id="filter-pills-container"
           class="flex items-center gap-2 overflow-x-auto pb-4 mb-6 scrollbar-none text-xs">
-          <!-- Renderizado dinámicamente según las sesiones didácticas existentes -->
+          
         </div>
 
-        <!-- Contenedor Dinámico de Sesiones -->
+        
         <div id="sessions-container" class="space-y-6">
-          <!-- Renderizado dinámicamente vía UI.js -->
+          
         </div>
 
       </section>
 
-      <!-- =========================================================================
-         GUÍA TÉCNICA DE INTEGRACIÓN CON GOOGLE DRIVE
-         ========================================================================= -->
+      <!-- Guía Drive -->
       <section id="drive-guide" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-slate-800/60 hidden">
         <div class="glass-panel p-6 sm:p-8 rounded-2xl border border-slate-800">
           <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 mb-6">
@@ -1108,9 +1091,7 @@
         </div>
       </section>
 
-      <!-- =========================================================================
-         SECCIÓN DE INVESTIGADORES & FICHA ACADÉMICA UNETI (GESTIÓN DINÁMICA)
-         ========================================================================= -->
+      <!-- Equipo y jurado -->
       <section id="equipo" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-slate-800/60 hidden">
         <div class="text-center max-w-2xl mx-auto mb-10">
           <span
@@ -1125,7 +1106,7 @@
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
 
-          <!-- COLUMNA 1: ESTUDIANTES / PERSONAL TI -->
+          
           <div class="glass-panel p-6 rounded-2xl border border-slate-800 flex flex-col justify-between space-y-6">
             <div>
               <div class="flex items-center justify-between pb-4 border-b border-slate-800/80 mb-5">
@@ -1147,9 +1128,9 @@
                 </button>
               </div>
 
-              <!-- Listado Dinámico de Estudiantes -->
+              
               <div id="students-container" class="space-y-3.5">
-                <!-- Renderizado dinámicamente vía UI.js -->
+                
               </div>
             </div>
 
@@ -1160,7 +1141,7 @@
             </div>
           </div>
 
-          <!-- COLUMNA 2: ASESORÍA ACADÉMICA Y JURADO -->
+          
           <div class="glass-panel p-6 rounded-2xl border border-slate-800 flex flex-col justify-between space-y-6">
             <div>
               <div class="flex items-center justify-between pb-4 border-b border-slate-800/80 mb-5">
@@ -1182,9 +1163,9 @@
                 </button>
               </div>
 
-              <!-- Listado Dinámico de Jurado / Docentes -->
+              
               <div id="jury-container" class="space-y-3.5">
-                <!-- Renderizado dinámicamente vía UI.js -->
+                
               </div>
             </div>
 
@@ -1201,9 +1182,7 @@
 
   </main>
 
-  <!-- =========================================================================
-       FOOTER INSTITUCIONAL
-       ========================================================================= -->
+  <!-- Footer -->
   <footer class="bg-slate-950 border-t border-slate-800/80 py-10 text-xs text-slate-400">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
@@ -1231,9 +1210,7 @@
     </div>
   </footer>
 
-  <!-- =========================================================================
-       MODAL: FICHA TÉCNICA DETALLADA DEL EQUIPO (INVENTARIO 40 EQUIPOS)
-       ========================================================================= -->
+  <!-- Modal ficha equipo -->
   <div id="equipment-detail-modal" onclick="if (event.target === this) window.inventoryUI.closeEquipmentModal()" class="modal-backdrop fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
     <div
       class="modal-container glass-panel w-full max-w-2xl rounded-2xl border border-slate-700 bg-slate-950 p-6 space-y-5 max-h-[92vh] overflow-y-auto">
@@ -1313,9 +1290,7 @@
     </div>
   </div>
 
-  <!-- =========================================================================
-       MODAL: REGISTRAR / EDITAR EQUIPO DEL INVENTARIO (CRUD DINÁMICO)
-       ========================================================================= -->
+  <!-- Modal equipo -->
   <div id="equipment-form-modal" onclick="if (event.target === this) window.inventoryUI.closeEquipmentFormModal()"
     class="modal-backdrop fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overflow-y-auto"
 >
@@ -1443,15 +1418,13 @@
     </div>
   </div>
 
-  <!-- =========================================================================
-       MODAL: VISOR MULTIMEDIA DE GOOGLE DRIVE (Videos, PDFs, Docs)
-       ========================================================================= -->
+  <!-- Modal visor Drive -->
   <div id="viewer-modal"
     class="modal-backdrop fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
     <div
       class="modal-container glass-panel w-full max-w-5xl rounded-2xl border border-slate-700 bg-slate-950/95 overflow-hidden flex flex-col max-h-[92vh]">
 
-      <!-- Encabezado del Visor -->
+      
       <div class="p-4 px-6 border-b border-slate-800 flex items-center justify-between gap-4 bg-slate-900/80">
         <div class="min-w-0">
           <span id="viewer-session"
@@ -1459,19 +1432,19 @@
           <h4 id="viewer-title" class="text-base sm:text-lg font-bold text-white truncate"></h4>
         </div>
         <div class="flex items-center gap-2 shrink-0">
-          <!-- Abrir en pestaña nueva -->
+          
           <a id="viewer-external-link" href="#" target="_blank" rel="noopener noreferrer"
             class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs transition"
             title="Abrir enlace directo en Google Drive">
             <i class="fa-solid fa-arrow-up-right-from-square"></i>
           </a>
-          <!-- Descargar -->
+          
           <a id="viewer-download-link" href="#" target="_blank" download
             class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs transition"
             title="Descargar archivo">
             <i class="fa-solid fa-download"></i>
           </a>
-          <!-- Cerrar modal -->
+          
           <button onclick="window.ui.closeViewer()"
             class="p-2 rounded-lg bg-slate-800 hover:bg-red-900/50 text-slate-300 hover:text-red-300 text-xs transition"
             title="Cerrar">
@@ -1480,14 +1453,14 @@
         </div>
       </div>
 
-      <!-- Cuerpo / Iframe del Visor -->
+      
       <div class="p-4 sm:p-6 flex-1 overflow-y-auto">
         <div id="viewer-iframe-container" class="w-full">
-          <!-- Inyectado dinámicamente -->
+          
         </div>
       </div>
 
-      <!-- Pie del Visor -->
+      
       <div
         class="p-3 px-6 border-t border-slate-800/80 bg-slate-900/50 flex items-center justify-between text-xs text-slate-400">
         <span class="flex items-center gap-1.5">
@@ -1503,9 +1476,7 @@
     </div>
   </div>
 
-  <!-- =========================================================================
-       MODAL: INICIO DE SESIÓN DE ADMINISTRADOR (RBAC)
-       ========================================================================= -->
+  <!-- Modal login -->
   <div id="login-modal"
     class="modal-backdrop fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
     <div
@@ -1547,14 +1518,14 @@
           </div>
         </div>
 
-        <!-- Mensaje de error -->
+        
         <div id="login-error"
           class="hidden p-3 rounded-lg bg-red-950/60 border border-red-800/60 text-red-300 text-xs flex items-center gap-2">
           <i class="fa-solid fa-circle-exclamation shrink-0"></i>
           <span></span>
         </div>
 
-        <!-- Sugerencia para revisión / pruebas -->
+        
         <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800 text-[11px] text-slate-400 space-y-1">
           <div class="flex items-center gap-1.5 text-sky-400 font-semibold">
             <i class="fa-solid fa-circle-info"></i>
@@ -1579,9 +1550,7 @@
     </div>
   </div>
 
-  <!-- =========================================================================
-       MODAL: CREAR / EDITAR SESIÓN DIDÁCTICA Y ENLACES DRIVE
-       ========================================================================= -->
+  <!-- Modal sesión -->
   <div id="session-form-modal"
     class="modal-backdrop fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
     <div
@@ -1661,7 +1630,7 @@
             placeholder="Objetivo 1&#10;Objetivo 2&#10;Objetivo 3"></textarea>
         </div>
 
-        <!-- Gestor dinámico de recursos multimedia -->
+        
         <div class="pt-3 border-t border-slate-800">
           <div class="flex items-center justify-between mb-3">
             <span class="font-bold text-white flex items-center gap-1.5">
@@ -1674,7 +1643,7 @@
             </button>
           </div>
 
-          <!-- Contenedor de filas de recursos -->
+          
           <div id="form-resources-list" class="space-y-3"></div>
         </div>
 
@@ -1694,9 +1663,7 @@
     </div>
   </div>
 
-  <!-- =========================================================================
-       MODAL: GESTIONAR INTEGRANTE ESTUDIANTE (Crear / Editar)
-       ========================================================================= -->
+  <!-- Modal estudiante -->
   <div id="student-modal"
     class="modal-backdrop fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
     <div
@@ -1765,9 +1732,7 @@
     </div>
   </div>
 
-  <!-- =========================================================================
-       MODAL: GESTIONAR PROFESOR / JURADO EVALUADOR (Crear / Editar)
-       ========================================================================= -->
+  <!-- Modal jurado -->
   <div id="jury-modal"
     class="modal-backdrop fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
     <div
@@ -1841,12 +1806,10 @@
     </div>
   </div>
 
-  <!-- =========================================================================
-       CONTENEDOR DE NOTIFICACIONES TOAST
-       ========================================================================= -->
+  <!-- Toast container -->
   <div id="toast-container" class="fixed top-6 right-6 z-50 flex flex-col gap-3 pointer-events-none"></div>
 
-  <!-- Inyección del Script Principal (Compatible con file:// y servidores web) -->
+  
   <script src="js/main.js"></script>
 </body>
 

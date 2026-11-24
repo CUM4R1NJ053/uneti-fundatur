@@ -1,19 +1,9 @@
-/**
- * FUNDATUR SOCIAL & UNETI - PROYECTO SOCIOECONÓMICO
- * Archivo Principal Unificado (Compatible con protocolo file:// y servidores HTTP)
- * Garantiza ejecución directa al hacer doble clic en index.html sin problemas de CORS.
- */
+// Punto de entrada principal
 
 (function () {
   'use strict';
 
-  /* =========================================================================
-     1. CONFIGURACIÓN GLOBAL
-     ========================================================================= */
-  /**
- * FUNDATUR SOCIAL & UNETI - PROYECTO SOCIOECONÓMICO
- * Configuración Global y Metadatos Institucionales
- */
+  
 
 const CONFIG = {
   institution: {
@@ -34,14 +24,12 @@ const CONFIG = {
     location: "Caracas (Sede Principal), Maracay, Maracaibo, Puerto La Cruz"
   },
 
-  // Credenciales predeterminadas para el modo Administrador
   auth: {
     defaultUser: "admin",
     defaultPass: "uneti2025",
     sessionStorageKey: "uneti_admin_session"
   },
 
-  // Tipos de recursos multimedia admitidos
   resourceTypes: {
     video: { label: "Video Demostrativo", icon: "fa-solid fa-play", color: "text-red-400 bg-red-950/40 border-red-800/50" },
     pdf: { label: "Informe / Documento PDF", icon: "fa-solid fa-file-pdf", color: "text-amber-400 bg-amber-950/40 border-amber-800/50" },
@@ -52,60 +40,37 @@ const CONFIG = {
   }
 };
 
-  /* =========================================================================
-     2. GESTOR DE ENLACES GOOGLE DRIVE
-     ========================================================================= */
-  /**
- * UNETI - PROYECTO SOCIOECONÓMICO
- * Motor de Integración y Normalización de Enlaces de Google Drive
- */
+  
 
 class DriveHelper {
-  /**
-   * Extrae el ID único del archivo o carpeta de Google Drive desde cualquier formato común
-   * @param {string} url - Enlace provisto por el usuario
-   * @returns {string|null} - ID de Google Drive o null si no se reconoce
-   */
   static extractId(url) {
     if (!url || typeof url !== 'string') return null;
     const cleanUrl = url.trim();
 
-    // 1. Si el usuario ingresó directamente el ID alfanumérico limpio
-    if (/^[a-zA-Z0-9_-]{25,}$/.test(cleanUrl)) {
+        if (/^[a-zA-Z0-9_-]{25,}$/.test(cleanUrl)) {
       return cleanUrl;
     }
 
-    // 2. Patrones estándar /file/d/{ID}
     const fileDMatch = cleanUrl.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
     if (fileDMatch && fileDMatch[1]) return fileDMatch[1];
 
-    // 3. Documentos, Presentaciones, Hojas de cálculo de Google Docs
-    const docsMatch = cleanUrl.match(/\/(?:document|presentation|spreadsheets)\/d\/([a-zA-Z0-9_-]+)/);
+        const docsMatch = cleanUrl.match(/\/(?:document|presentation|spreadsheets)\/d\/([a-zA-Z0-9_-]+)/);
     if (docsMatch && docsMatch[1]) return docsMatch[1];
 
-    // 4. Parámetro query id=... (?id=... o &id=...)
-    const queryIdMatch = cleanUrl.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+        const queryIdMatch = cleanUrl.match(/[?&]id=([a-zA-Z0-9_-]+)/);
     if (queryIdMatch && queryIdMatch[1]) return queryIdMatch[1];
 
-    // 5. Carpetas de Google Drive /folders/{ID}
-    const folderMatch = cleanUrl.match(/\/folders\/([a-zA-Z0-9_-]+)/);
+        const folderMatch = cleanUrl.match(/\/folders\/([a-zA-Z0-9_-]+)/);
     if (folderMatch && folderMatch[1]) return folderMatch[1];
 
     return null;
   }
 
-  /**
-   * Genera el enlace de previsualización (Preview Embed) óptimo para iframes
-   * @param {string} url - Enlace original
-   * @param {string} type - Tipo de recurso (video, pdf, presentation, etc.)
-   * @returns {string} - URL lista para incrustar en un <iframe>
-   */
   static getEmbedUrl(url, type = 'drive') {
     const fileId = this.extractId(url);
     if (!fileId) return url;
 
-    // Si es Google Docs, Slides o Sheets nativo
-    if (url.includes('docs.google.com/presentation')) {
+        if (url.includes('docs.google.com/presentation')) {
       return `https://docs.google.com/presentation/d/${fileId}/embed?start=false&loop=false&delayms=3000`;
     }
     if (url.includes('docs.google.com/document')) {
@@ -118,36 +83,23 @@ class DriveHelper {
       return `https://drive.google.com/embeddedfolderview?id=${fileId}#grid`;
     }
 
-    // Para archivos estándar de Google Drive (Videos MP4, PDFs, imágenes, grabaciones)
-    return `https://drive.google.com/file/d/${fileId}/preview`;
+        return `https://drive.google.com/file/d/${fileId}/preview`;
   }
 
-  /**
-   * Genera el enlace directo para descarga forzada o exportación limpia
-   * @param {string} url - Enlace original
-   * @returns {string} - URL de descarga directa
-   */
   static getDownloadUrl(url) {
     const fileId = this.extractId(url);
     if (!fileId) return url;
 
-    // Si es Google Slides o Docs, podemos exportar como PDF o enlace nativo
-    if (url.includes('docs.google.com/presentation')) {
+        if (url.includes('docs.google.com/presentation')) {
       return `https://docs.google.com/presentation/d/${fileId}/export/pdf`;
     }
     if (url.includes('docs.google.com/document')) {
       return `https://docs.google.com/document/d/${fileId}/export?format=pdf`;
     }
 
-    // Para archivos alojados en Drive
-    return `https://drive.google.com/uc?export=download&id=${fileId}`;
+        return `https://drive.google.com/uc?export=download&id=${fileId}`;
   }
 
-  /**
-   * Genera el enlace canónico para abrir en Google Drive en una nueva pestaña
-   * @param {string} url - Enlace original
-   * @returns {string} - URL para visualización en Drive
-   */
   static getViewUrl(url) {
     const fileId = this.extractId(url);
     if (!fileId) return url;
@@ -158,35 +110,19 @@ class DriveHelper {
     return `https://drive.google.com/file/d/${fileId}/view?usp=sharing`;
   }
 
-  /**
-   * Obtiene la URL de miniatura directa de Google Drive
-   * @param {string} url - Enlace original
-   * @param {number} width - Ancho deseado
-   * @returns {string} - URL de miniatura
-   */
   static getThumbnailUrl(url, width = 800) {
     const fileId = this.extractId(url);
     if (!fileId) return '';
     return `https://drive.google.com/thumbnail?id=${fileId}&sz=w${width}`;
   }
 
-  /**
-   * Diagnostica si un enlace es válido de Google Drive
-   * @param {string} url 
-   * @returns {boolean}
-   */
   static isValidDriveUrl(url) {
     return Boolean(this.extractId(url));
   }
 }
 
-  /* =========================================================================
-     3. ALMACENAMIENTO Y PERSISTENCIA (LOCALSTORAGE)
-     ========================================================================= */
-  /**
- * FUNDATUR SOCIAL & UNETI - PROYECTO SOCIOECONÓMICO
- * Módulo de Almacenamiento, Persistencia y Gestión de Sesiones Didácticas
- */
+  
+  // Persistencia en localStorage para sesiones, equipo e inventario
 
 const STORAGE_KEY = 'fundatur_uneti_socioeconomico_sessions_v3';
 const TEAM_STORAGE_KEY = 'fundatur_uneti_socioeconomico_team_v3';
@@ -597,14 +533,10 @@ class StorageManager {
     return true;
   }
 
-  // ==========================================
-  // INVENTARIO DINÁMICO DE EQUIPOS (CRUD)
-  // ==========================================
   static getInventory() {
     const raw = localStorage.getItem(INVENTORY_STORAGE_KEY);
     if (!raw) {
-      // Sembrar datos iniciales una sola vez si existen
-      if (typeof INVENTORY_DATA !== 'undefined' && Array.isArray(INVENTORY_DATA)) {
+          if (typeof INVENTORY_DATA !== 'undefined' && Array.isArray(INVENTORY_DATA)) {
         this.saveInventory(INVENTORY_DATA);
         return INVENTORY_DATA;
       }
@@ -662,13 +594,7 @@ class StorageManager {
   }
 }
 
-  /* =========================================================================
-     4. INFORMACIÓN INSTITUCIONAL DE FUNDATUR SOCIAL
-     ========================================================================= */
-  /**
- * Información institucional y diagnóstico tecnológico de FUNDATUR SOCIAL
- * Módulo ES6
- */
+  
 
 const FUNDATUR_INFO = {
   identidad: {
@@ -778,13 +704,7 @@ const FUNDATUR_INFO = {
   }
 };
 
-  /* =========================================================================
-     5. INVENTARIO TECNOLÓGICO AUDITADO (40 EQUIPOS)
-     ========================================================================= */
-  /**
- * Data de Inventario Auditado de FUNDATUR SOCIAL
- * Módulo ES6 exportando INVENTORY_DATA (40 equipos) e INVENTORY_STATS.
- */
+  
 
 const INVENTORY_DATA = [
   {
@@ -1534,15 +1454,7 @@ const INVENTORY_STATS = {
   }
 };
 
-  /* =========================================================================
-     6. INTERFAZ Y TABLA DINÁMICA DEL INVENTARIO
-     ========================================================================= */
-  /**
- * FUNDATUR SOCIAL - UNETI
- * Módulo de Interfaz y Lógica del Inventario Tecnológico Auditado (40 Equipos)
- */
-
-
+  
 
 class InventoryUI {
   static currentBranch = 'all';
@@ -1572,7 +1484,6 @@ class InventoryUI {
     const pctFail = Math.round((faulty / total) * 100);
     const pctCrit = Math.round((critical / total) * 100);
 
-    // Actualizar tarjetas KPI superiores
     statsContainer.innerHTML = `
       <div class="glass-panel p-4 sm:p-5 rounded-2xl border border-slate-800 text-center relative overflow-hidden group hover:border-sky-500/40 transition">
         <div class="absolute -right-4 -bottom-4 text-sky-500/10 text-6xl group-hover:scale-110 transition"><i class="fa-solid fa-desktop"></i></div>
@@ -1603,7 +1514,6 @@ class InventoryUI {
       </div>
     `;
 
-    // Actualizar Dashboard visual de estados
     const elOpN = document.getElementById('dash-n-op');
     const elOpPct = document.getElementById('dash-pct-op');
     const elOpBar = document.getElementById('dash-bar-op');
@@ -1764,7 +1674,6 @@ class InventoryUI {
 
       return `
         <tr class="border-b border-slate-800/60 hover:bg-slate-900/60 transition group text-xs">
-          <!-- Código e ID -->
           <td class="py-3.5 px-4 font-mono font-bold text-sky-300 whitespace-nowrap">
             <div class="flex items-center gap-2">
               <span class="w-6 h-6 rounded bg-slate-800/90 text-slate-300 flex items-center justify-center text-[10px] font-bold">${item.id.replace('FND-', '')}</span>
@@ -1773,7 +1682,6 @@ class InventoryUI {
             <span class="text-[10px] text-slate-500 font-normal block pl-8">Cód. ${item.code}</span>
           </td>
 
-          <!-- Sede y Área -->
           <td class="py-3.5 px-4">
             <div class="font-semibold text-slate-200 flex items-center gap-1.5">
               <i class="${branchIcons[item.branch] || 'fa-solid fa-location-dot text-slate-400'} text-[11px]"></i>
@@ -1782,7 +1690,6 @@ class InventoryUI {
             <span class="text-[11px] text-slate-400 block">${item.area}</span>
           </td>
 
-          <!-- Hardware -->
           <td class="py-3.5 px-4">
             <span class="font-bold text-slate-100 block truncate max-w-[180px]">${item.brandModel}</span>
             <span class="text-[11px] text-slate-400 block truncate max-w-[200px]">${item.processor}</span>
@@ -1792,23 +1699,19 @@ class InventoryUI {
             </div>
           </td>
 
-          <!-- Estado -->
           <td class="py-3.5 px-4 whitespace-nowrap">
             ${statusBadge}
           </td>
 
-          <!-- Diagnóstico / Problemas -->
           <td class="py-3.5 px-4 text-slate-300 max-w-xs">
             <p class="line-clamp-2 leading-relaxed text-[11.5px]">${item.diagnostics}</p>
             <span class="text-[10px] text-slate-500 mt-1 block">Custodio: <strong class="text-slate-400 font-medium">${item.userAssigned}</strong></span>
           </td>
 
-          <!-- Prioridad -->
           <td class="py-3.5 px-4 whitespace-nowrap text-center">
             ${priorityBadge}
           </td>
 
-          <!-- Acciones -->
           <td class="py-3.5 px-4 text-right whitespace-nowrap">
             <div class="flex items-center justify-end gap-1.5">
               <button 
@@ -2102,33 +2005,16 @@ class InventoryUI {
   }
 }
 
-  /* =========================================================================
-     7. CONTROL DE ACCESO (RBAC) Y AUTENTICACIÓN
-     ========================================================================= */
-  /**
- * UNETI - PROYECTO SOCIOECONÓMICO
- * Módulo de Autenticación y Control de Acceso Basado en Roles (RBAC)
- */
-
-
+  
+  // Visibilidad de controles según rol de usuario
 
 class AuthManager {
   static listeners = [];
 
-  /**
-   * Verifica si el usuario actual tiene privilegios de Administrador
-   * @returns {boolean}
-   */
   static isAdmin() {
     return localStorage.getItem(CONFIG.auth.sessionStorageKey) === 'true';
   }
 
-  /**
-   * Intenta autenticarse con usuario y contraseña
-   * @param {string} username 
-   * @param {string} password 
-   * @returns {boolean}
-   */
   static login(username, password) {
     const cleanUser = (username || '').trim();
     const cleanPass = (password || '').trim();
@@ -2141,26 +2027,15 @@ class AuthManager {
     return false;
   }
 
-  /**
-   * Cierra la sesión de administrador regresando al modo público/visitante
-   */
   static logout() {
     localStorage.removeItem(CONFIG.auth.sessionStorageKey);
     this.notifyListeners(false);
   }
 
-  /**
-   * Registra un observador que se ejecuta al cambiar el estado de autenticación
-   * @param {Function} callback 
-   */
   static subscribe(callback) {
     this.listeners.push(callback);
   }
 
-  /**
-   * Notifica a todos los componentes de la interfaz sobre el cambio de sesión
-   * @param {boolean} isAuthenticated 
-   */
   static notifyListeners(isAuthenticated) {
     this.listeners.forEach(cb => {
       try {
@@ -2172,27 +2047,13 @@ class AuthManager {
   }
 }
 
-  /* =========================================================================
-     8. GESTOR DE INTERFAZ Y MODALES (UI)
-     ========================================================================= */
-  /**
- * UNETI - PROYECTO SOCIOECONÓMICO
- * Capa de Presentación, Renderizado de Interfaz y Control de Modales
- */
-
-
-
-
-
+  
 
 class UIManager {
   static currentFilter = 'all';
   static searchQuery = '';
   static activeEditingSessionId = null;
 
-  /**
-   * Inicializa la interfaz de usuario
-   */
   static init() {
     this.renderHeaderAndHero();
     this.renderFilterPills();
@@ -2203,9 +2064,6 @@ class UIManager {
     this.setupEventListeners();
   }
 
-  /**
-   * Renderiza el encabezado institucional y estadísticas
-   */
   static renderHeaderAndHero() {
     const institutionTitle = document.getElementById('inst-name');
     if (institutionTitle) institutionTitle.textContent = CONFIG.institution.name;
@@ -2220,9 +2078,6 @@ class UIManager {
     if (mainTitle) mainTitle.textContent = CONFIG.institution.projectTitle;
   }
 
-  /**
-   * Renderiza los filtros por sesión dinámicos
-   */
   static renderFilterPills() {
     const container = document.getElementById('filter-pills-container');
     if (!container) return;
@@ -2271,9 +2126,6 @@ class UIManager {
     this.renderSessions();
   }
 
-  /**
-   * Actualiza el contador de estadísticas del Hero
-   */
   static updateStats() {
     const sessions = StorageManager.getSessions();
     const totalSessions = sessions.length;
@@ -2298,21 +2150,16 @@ class UIManager {
     }
   }
 
-  /**
-   * Renderiza el listado interactivo de sesiones didácticas
-   */
   static renderSessions() {
     const container = document.getElementById('sessions-container');
     if (!container) return;
 
     let sessions = StorageManager.getSessions();
 
-    // Filtro por sesión específica
     if (this.currentFilter !== 'all') {
       sessions = sessions.filter(s => s.phase.toLowerCase() === this.currentFilter.toLowerCase());
     }
 
-    // Filtro por búsqueda
     if (this.searchQuery) {
       const q = this.searchQuery.toLowerCase();
       sessions = sessions.filter(s => 
@@ -2504,9 +2351,6 @@ class UIManager {
     }).join('');
   }
 
-  /**
-   * Actualiza los elementos de la interfaz basados en el estado de autenticación (RBAC)
-   */
   static updateAdminUI(isAdmin) {
       const adminBanner = document.getElementById('admin-floating-banner');
       const loginBtn = document.getElementById('btn-nav-login');
@@ -2588,9 +2432,7 @@ class UIManager {
     this.renderFilterPills();
   }
 
-  /**
-   * Abre el Visor Multimedia de Google Drive incrustado
-   */
+  // Visor modal para archivos de Google Drive
   static openViewer(sessionId, resourceId) {
     const sessions = StorageManager.getSessions();
     const session = sessions.find(s => s.id === sessionId);
@@ -2990,9 +2832,7 @@ class UIManager {
     }, 4000);
   }
 
-  /* =========================================================================
-     MÉTODOS DE GESTIÓN DE EQUIPO: ESTUDIANTES Y JURADO / PROFESORES (RBAC)
-     ========================================================================= */
+  
   static renderTeam() {
     const isAdmin = AuthManager.isAdmin();
     const team = StorageManager.getTeam();
@@ -3007,7 +2847,6 @@ class UIManager {
     if (stdBadge) stdBadge.textContent = `${studentCount} Integrante${studentCount === 1 ? '' : 's'}`;
     if (juryBadge) juryBadge.textContent = `${juryCount} Docente${juryCount === 1 ? '' : 's'}`;
 
-    // 1. Renderizar Estudiantes
     if (studentsContainer) {
       if (!team.students || team.students.length === 0) {
         studentsContainer.innerHTML = `
@@ -3072,7 +2911,6 @@ class UIManager {
       }
     }
 
-    // 2. Renderizar Jurado / Profesores
     if (juryContainer) {
       if (!team.jury || team.jury.length === 0) {
         juryContainer.innerHTML = `
@@ -3134,7 +2972,6 @@ class UIManager {
     }
   }
 
-  /* Modales de Estudiante */
   static openStudentModal(studentId = null) {
     if (!AuthManager.isAdmin()) {
       this.openLoginModal();
@@ -3226,7 +3063,6 @@ class UIManager {
     }
   }
 
-  /* Modales de Jurado / Docente */
   static openJuryModal(juryId = null) {
     if (!AuthManager.isAdmin()) {
       this.openLoginModal();
@@ -3318,7 +3154,6 @@ class UIManager {
     }
   }
 
-  /* Alternador de Vista (Tarjetas vs Cronograma) */
   static switchView(view) {
     const btnCards = document.getElementById('btn-view-cards');
     const btnTimeline = document.getElementById('btn-view-timeline');
@@ -3392,7 +3227,6 @@ class UIManager {
     `;
   }
 
-  /* Importar Respaldo JSON */
   static handleImportFile(event) {
     const file = event.target.files[0];
     if (!file) return;
@@ -3415,11 +3249,8 @@ class UIManager {
     event.target.value = '';
   }
 
-  /**
-   * Configuración de oyentes de eventos globales
-   */
   static setupEventListeners() {
-    // Barra de búsqueda
+
     const searchInput = document.getElementById('search-input');
     if (searchInput) {
       searchInput.addEventListener('input', (e) => {
@@ -3428,23 +3259,19 @@ class UIManager {
       });
     }
 
-    // Modal de Login
     const loginForm = document.getElementById('login-form');
     if (loginForm) loginForm.addEventListener('submit', (e) => this.handleLoginSubmit(e));
 
-    // Modal de Sesión
     const sessionForm = document.getElementById('session-editor-form');
     if (sessionForm) sessionForm.addEventListener('submit', (e) => this.handleSessionFormSubmit(e));
 
-    // Formulario de Estudiante
     const studentForm = document.getElementById('student-form');
     if (studentForm) studentForm.addEventListener('submit', (e) => this.handleStudentSubmit(e));
 
-    // Formulario de Jurado / Profesor
     const juryForm = document.getElementById('jury-form');
     if (juryForm) juryForm.addEventListener('submit', (e) => this.handleJurySubmit(e));
 
-    // Tecla Escape para cerrar modales
+    // Cierre de modales mediante la tecla Escape
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         this.closeViewer();
@@ -3459,16 +3286,13 @@ class UIManager {
       }
     });
 
-    // Suscripción a cambios de autenticación
     AuthManager.subscribe((isAdmin) => {
       this.updateAdminUI(isAdmin);
     });
   }
 }
 
-  /* =========================================================================
-     9. ENLACE GLOBAL EN WINDOW (API PÚBLICA)
-     ========================================================================= */
+  
   window.ui = {
     openViewer: (sessionId, resId) => UIManager.openViewer(sessionId, resId),
     closeViewer: () => UIManager.closeViewer(),
@@ -3486,18 +3310,15 @@ class UIManager {
     switchView: (view) => UIManager.switchView(view),
     filterByPhase: (phase) => UIManager.filterByPhase(phase),
 
-    // Gestión de Estudiantes / Personal TI
-    openStudentModal: (id) => UIManager.openStudentModal(id),
+      openStudentModal: (id) => UIManager.openStudentModal(id),
     closeStudentModal: () => UIManager.closeStudentModal(),
     confirmDeleteStudent: (id) => UIManager.confirmDeleteStudent(id),
 
-    // Gestión de Jurado y Profesores UNETI
-    openJuryModal: (id) => UIManager.openJuryModal(id),
+      openJuryModal: (id) => UIManager.openJuryModal(id),
     closeJuryModal: () => UIManager.closeJuryModal(),
     confirmDeleteJury: (id) => UIManager.confirmDeleteJury(id),
 
-    // Validación rápida de enlaces Drive
-    testDriveUrl: () => {
+      testDriveUrl: () => {
       if (!AuthManager.isAdmin()) {
         UIManager.showToast("🔒 Acción restringida: Debes iniciar sesión como Docente o Administrador para probar enlaces.", "warning");
         UIManager.openLoginModal();
@@ -3516,17 +3337,11 @@ class UIManager {
     }
   };
 
-  // Exponer controladores adicionales
   window.inventoryUI = InventoryUI;
   window.fundaturInfo = FUNDATUR_INFO;
   window.storageManager = StorageManager;
 
   
-  /**
-   * =========================================================================
-   * CONTROLADOR DE NAVEGACIÓN SPA (PESTAÑAS / SECCIONES)
-   * =========================================================================
-   */
   class NavigationManager {
     static sections = [
       'institucional',
@@ -3539,16 +3354,14 @@ class UIManager {
     static currentSection = 'institucional';
 
     static init() {
-      // Escuchar cambios de hash en la URL
-      window.addEventListener('hashchange', () => {
+          window.addEventListener('hashchange', () => {
         const hash = window.location.hash.replace('#', '');
         if (this.sections.includes(hash)) {
           this.switchSection(hash, false);
         }
       });
 
-      // Leer hash inicial si existe, de lo contrario 'institucional'
-      const initialHash = window.location.hash.replace('#', '');
+          const initialHash = window.location.hash.replace('#', '');
       const defaultSection = this.sections.includes(initialHash) ? initialHash : 'institucional';
       this.switchSection(defaultSection, false);
     }
@@ -3557,8 +3370,7 @@ class UIManager {
       if (!this.sections.includes(targetId)) return;
       this.currentSection = targetId;
 
-      // 1. Mostrar/ocultar secciones en el DOM
-      // 'institucional' incluye el banner superior, el hero y el cuerpo institucional
+    
       const bannerEl = document.getElementById('banner-section');
       const heroEl = document.getElementById('hero');
       const instEl = document.getElementById('institucional');
@@ -3573,7 +3385,6 @@ class UIManager {
         if (instEl) instEl.classList.add('hidden');
       }
 
-      // Resto de secciones funcionales
       this.sections.forEach(secId => {
         if (secId === 'institucional') return;
         const el = document.getElementById(secId);
@@ -3586,7 +3397,6 @@ class UIManager {
         }
       });
 
-      // Unificación: La sección 'drive-guide' se muestra automáticamente dentro de 'sesiones' (Fases Académicas)
       const driveEl = document.getElementById('drive-guide');
       if (driveEl) {
         if (targetId === 'sesiones') {
@@ -3596,8 +3406,7 @@ class UIManager {
         }
       }
 
-      // 2. Resaltar botón activo en el navbar (desktop y móvil)
-      document.querySelectorAll('.nav-tab-btn').forEach(btn => {
+          document.querySelectorAll('.nav-tab-btn').forEach(btn => {
         const btnTarget = btn.getAttribute('data-section');
         const isMobile = btn.classList.contains('shrink-0');
         const padClass = isMobile ? 'px-3 py-1.5 rounded-lg' : 'px-3 py-1.5 rounded-xl';
@@ -3609,32 +3418,27 @@ class UIManager {
         }
       });
 
-      // 3. Sincronizar URL hash
-      if (updateHash) {
+          if (updateHash) {
         window.history.replaceState(null, null, `#${targetId}`);
       }
 
-      // 4. Si se activa inventario, asegurar renderizado fresco de tabla y métricas
-      if (targetId === 'inventario' && window.inventoryUI) {
+          if (targetId === 'inventario' && window.inventoryUI) {
         window.inventoryUI.renderStats();
         window.inventoryUI.renderTable();
       }
 
-      // 5. Scroll suave al inicio del contenido
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+          window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }
 
   window.navManager = NavigationManager;
 
-  // Inicialización al cargar el DOM
   document.addEventListener('DOMContentLoaded', () => {
     UIManager.init();
     InventoryUI.init();
     NavigationManager.init();
 
-    // Rellenar datos institucionales dinámicos en la sección #institucional
-    const trayectoEl = document.getElementById('config-trayecto');
+        const trayectoEl = document.getElementById('config-trayecto');
     const periodEl   = document.getElementById('config-period');
     const tutorEl    = document.getElementById('config-tutor');
     if (trayectoEl) trayectoEl.textContent = CONFIG.institution.trayecto || '—';
