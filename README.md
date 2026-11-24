@@ -3,7 +3,7 @@
 
 **Universidad Nacional Experimental de las Telecomunicaciones e Informática (UNETI)**  
 *Carrera: Ingeniería en Informática*  
-*Materia: Proyecto Socioeconómico · Periodo Académico 2026-2026*
+*Materia: Proyecto Socioeconómico · Periodo Académico 2026-2027*
 
 ---
 
