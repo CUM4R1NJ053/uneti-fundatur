@@ -2594,7 +2594,9 @@ class UIManager {
     document.getElementById('form-session-week').value = session.week;
     document.getElementById('form-session-date').value = session.date;
     document.getElementById('form-session-status').value = session.status;
-    document.getElementById('form-session-name').value = session.title;
+    document.getElementById('form-session-title').value = session.title;
+    const colorEl = document.getElementById('form-session-color');
+    if (colorEl && session.statusColor) colorEl.value = session.statusColor;
     document.getElementById('form-session-summary').value = session.summary;
     document.getElementById('form-session-objectives').value = (session.objectives || []).join('\n');
 
@@ -2713,7 +2715,9 @@ class UIManager {
     const week = document.getElementById('form-session-week').value.trim();
     const date = document.getElementById('form-session-date').value.trim();
     const status = document.getElementById('form-session-status').value;
-    const title = document.getElementById('form-session-name').value.trim();
+    const title = document.getElementById('form-session-title').value.trim();
+    const colorEl = document.getElementById('form-session-color');
+    const statusColor = colorEl ? colorEl.value : 'sky';
     const summary = document.getElementById('form-session-summary').value.trim();
     const rawObjectives = document.getElementById('form-session-objectives').value;
 
@@ -2746,6 +2750,7 @@ class UIManager {
       week,
       date,
       status,
+      statusColor,
       title,
       summary,
       objectives,
@@ -3457,19 +3462,18 @@ class UIManager {
         onRemoteData: (data) => {
           if (Array.isArray(data.sessions)) {
             StorageManager.saveSessions(data.sessions, true);
-            UIManager.renderFilterPills();
-            UIManager.renderSessions();
-            UIManager.updateStats();
-            UIManager.renderTimelineView();
+            if (typeof UIManager.renderFilterPills === 'function') UIManager.renderFilterPills();
+            if (typeof UIManager.renderSessions   === 'function') UIManager.renderSessions();
+            if (typeof UIManager.updateStats      === 'function') UIManager.updateStats();
           }
           if (data.team && typeof data.team === 'object') {
             StorageManager.saveTeam(data.team, true);
-            UIManager.renderTeam();
+            if (typeof UIManager.renderTeam === 'function') UIManager.renderTeam();
           }
           if (Array.isArray(data.inventory)) {
             StorageManager.saveInventory(data.inventory, true);
-            InventoryUI.renderStats();
-            InventoryUI.renderTable();
+            if (typeof InventoryUI.renderStats === 'function') InventoryUI.renderStats();
+            if (typeof InventoryUI.renderTable === 'function') InventoryUI.renderTable();
           }
         }
       });
