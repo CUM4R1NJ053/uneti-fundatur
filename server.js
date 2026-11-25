@@ -42,7 +42,14 @@ const server = http.createServer((req, res) => {
   }
 
   const parsedUrl = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
-  let pathname = decodeURIComponent(parsedUrl.pathname);
+  let pathname;
+  try {
+    pathname = decodeURIComponent(parsedUrl.pathname);
+  } catch (e) {
+    res.writeHead(400, { 'Content-Type': 'text/plain; charset=utf-8' });
+    res.end('400 Solicitud incorrecta: URI malformada');
+    return;
+  }
 
   if (pathname === '/' || pathname === '') {
     pathname = '/index.html';
@@ -50,7 +57,8 @@ const server = http.createServer((req, res) => {
 
   // Prevención path traversal
   const safePath = path.normalize(path.join(ROOT_DIR, pathname));
-  if (!safePath.startsWith(ROOT_DIR)) {
+  const relPath = path.relative(ROOT_DIR, safePath);
+  if (relPath.startsWith('..') || path.isAbsolute(relPath)) {
     res.writeHead(403, { 'Content-Type': 'text/plain; charset=utf-8' });
     res.end('403 Prohibido: Acceso fuera del directorio raíz');
     return;

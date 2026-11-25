@@ -3361,6 +3361,7 @@ class UIManager {
       'institucional',
       'inventario',
       'soporte-glpi',
+      'habilidades-blandas',
       'sesiones',
       'equipo'
     ];

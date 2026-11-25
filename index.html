@@ -126,6 +126,13 @@
           <span>Mesa de Ayuda (GLPI)</span>
         </button>
 
+        <button type="button" onclick="window.navManager.switchSection('habilidades-blandas')" data-section="habilidades-blandas"
+          class="nav-tab-btn px-3 py-1.5 rounded-xl transition flex items-center gap-1.5 text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 border border-transparent font-medium"
+          title="Ver Guía de Habilidades Blandas y Atención al Usuario">
+          <i class="fa-solid fa-handshake-angle text-xs text-amber-400"></i>
+          <span>Habilidades Blandas</span>
+        </button>
+
         <button type="button" onclick="window.navManager.switchSection('sesiones')" data-section="sesiones"
           class="nav-tab-btn px-3 py-1.5 rounded-xl transition flex items-center gap-1.5 text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 border border-transparent font-medium"
           title="Ver Módulos Didácticos y Fases Académicas UNETI">
@@ -177,6 +184,11 @@
       class="nav-tab-btn shrink-0 px-3 py-1.5 rounded-lg transition flex items-center gap-1.5 text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 border border-transparent font-medium">
       <i class="fa-solid fa-headset text-[11px] text-teal-400"></i>
       <span>Mesa de Ayuda</span>
+    </button>
+    <button type="button" onclick="window.navManager.switchSection('habilidades-blandas')" data-section="habilidades-blandas"
+      class="nav-tab-btn shrink-0 px-3 py-1.5 rounded-lg transition flex items-center gap-1.5 text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 border border-transparent font-medium">
+      <i class="fa-solid fa-handshake-angle text-[11px] text-amber-400"></i>
+      <span>Habilidades Blandas</span>
     </button>
     <button type="button" onclick="window.navManager.switchSection('sesiones')" data-section="sesiones"
       class="nav-tab-btn shrink-0 px-3 py-1.5 rounded-lg transition flex items-center gap-1.5 text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 border border-transparent font-medium">
@@ -964,6 +976,209 @@
             </p>
           </div>
 
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Habilidades blandas y atención al usuario -->
+    <section id="habilidades-blandas" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-b border-slate-800/60 hidden">
+
+      <div class="text-center max-w-3xl mx-auto mb-10">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-300 text-xs font-semibold mb-3">
+          <i class="fa-solid fa-handshake-angle"></i>
+          <span>COMPETENCIAS HUMANAS EN SOPORTE TÉCNICO</span>
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-black text-white tracking-tight">
+          Habilidades Blandas y Atención al Usuario
+        </h2>
+        <p class="text-slate-400 text-sm mt-2 leading-relaxed">
+          La excelencia técnica en FUNDATUR SOCIAL se complementa con un trato humano, respetuoso y empático. Un problema técnico se resuelve mejor cuando el usuario se siente escuchado, comprendido y acompañado.
+        </p>
+      </div>
+
+      <!-- 6 Pilares fundamentales -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
+        <div class="glass-panel rounded-2xl p-5 border border-slate-800/80 space-y-2.5">
+          <div class="w-10 h-10 rounded-xl bg-amber-500/15 text-amber-400 flex items-center justify-center text-lg">
+            <i class="fa-solid fa-ear-listen"></i>
+          </div>
+          <h3 class="text-white font-bold text-sm">1. Escucha Activa</h3>
+          <p class="text-slate-400 text-xs leading-relaxed">
+            Prestar atención total sin interrumpir al usuario mientras explica su falla. Parafrasear lo entendido para confirmar el síntoma real antes de diagnosticar.
+          </p>
+        </div>
+
+        <div class="glass-panel rounded-2xl p-5 border border-slate-800/80 space-y-2.5">
+          <div class="w-10 h-10 rounded-xl bg-sky-500/15 text-sky-400 flex items-center justify-center text-lg">
+            <i class="fa-solid fa-heart"></i>
+          </div>
+          <h3 class="text-white font-bold text-sm">2. Empatía y Paciencia</h3>
+          <p class="text-slate-400 text-xs leading-relaxed">
+            Ponerse en el lugar de quien tiene su trabajo detenido. Recordar que no todos los usuarios dominan términos informáticos y nunca hacerlos sentir culpables.
+          </p>
+        </div>
+
+        <div class="glass-panel rounded-2xl p-5 border border-slate-800/80 space-y-2.5">
+          <div class="w-10 h-10 rounded-xl bg-emerald-500/15 text-emerald-400 flex items-center justify-center text-lg">
+            <i class="fa-solid fa-comments"></i>
+          </div>
+          <h3 class="text-white font-bold text-sm">3. Comunicación Asertiva y Clara</h3>
+          <p class="text-slate-400 text-xs leading-relaxed">
+            Traducir tecnicismos a un lenguaje sencillo y comprensible. Hablar con tono amable, firme y respetuoso tanto en persona como por teléfono o chat.
+          </p>
+        </div>
+
+        <div class="glass-panel rounded-2xl p-5 border border-slate-800/80 space-y-2.5">
+          <div class="w-10 h-10 rounded-xl bg-purple-500/15 text-purple-400 flex items-center justify-center text-lg">
+            <i class="fa-solid fa-brain"></i>
+          </div>
+          <h3 class="text-white font-bold text-sm">4. Inteligencia Emocional</h3>
+          <p class="text-slate-400 text-xs leading-relaxed">
+            Mantener la calma ante usuarios estresados o apurados. No tomar los reclamos de forma personal y responder con serenidad para desescalar la tensión.
+          </p>
+        </div>
+
+        <div class="glass-panel rounded-2xl p-5 border border-slate-800/80 space-y-2.5">
+          <div class="w-10 h-10 rounded-xl bg-teal-500/15 text-teal-400 flex items-center justify-center text-lg">
+            <i class="fa-solid fa-people-arrows"></i>
+          </div>
+          <h3 class="text-white font-bold text-sm">5. Resolución Colaborativa</h3>
+          <p class="text-slate-400 text-xs leading-relaxed">
+            Involucrar al usuario como aliado durante la solución, explicándole qué se está haciendo y dándole consejos breves para prevenir fallas futuras.
+          </p>
+        </div>
+
+        <div class="glass-panel rounded-2xl p-5 border border-slate-800/80 space-y-2.5">
+          <div class="w-10 h-10 rounded-xl bg-rose-500/15 text-rose-400 flex items-center justify-center text-lg">
+            <i class="fa-solid fa-clipboard-check"></i>
+          </div>
+          <h3 class="text-white font-bold text-sm">6. Responsabilidad y Seguimiento</h3>
+          <p class="text-slate-400 text-xs leading-relaxed">
+            Cumplir con los tiempos prometidos, informar avances si la reparación tarda más de lo esperado y confirmar que el usuario quedó satisfecho al cerrar.
+          </p>
+        </div>
+      </div>
+
+      <!-- Protocolo de atención al usuario paso a paso -->
+      <div class="glass-panel rounded-2xl p-6 sm:p-8 border border-slate-800/80 mb-10">
+        <h3 class="text-lg font-bold text-white mb-5 flex items-center gap-2">
+          <i class="fa-solid fa-list-check text-amber-400"></i>
+          <span>Protocolo de Atención al Usuario (Paso a Paso)</span>
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-4 text-xs">
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2">
+            <span class="w-6 h-6 rounded-full bg-amber-600 text-white font-bold flex items-center justify-center text-[11px]">1</span>
+            <h4 class="font-bold text-white">Saludo Cordial</h4>
+            <p class="text-slate-400 text-[11px] leading-relaxed">
+              Saludá por su nombre, preséntate con amabilidad y muestra disposición inmediata para ayudar.
+            </p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2">
+            <span class="w-6 h-6 rounded-full bg-sky-600 text-white font-bold flex items-center justify-center text-[11px]">2</span>
+            <h4 class="font-bold text-white">Escucha y Validación</h4>
+            <p class="text-slate-400 text-[11px] leading-relaxed">
+              Deja que describa el problema completo y valida su preocupación: &ldquo;Entiendo lo urgente que es para tu trabajo&rdquo;.
+            </p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2">
+            <span class="w-6 h-6 rounded-full bg-emerald-600 text-white font-bold flex items-center justify-center text-[11px]">3</span>
+            <h4 class="font-bold text-white">Lenguaje Sencillo</h4>
+            <p class="text-slate-400 text-[11px] leading-relaxed">
+              Haz preguntas claras y sin jerga técnica pesada. Explica qué vas a revisar antes de tocar el equipo.
+            </p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2">
+            <span class="w-6 h-6 rounded-full bg-purple-600 text-white font-bold flex items-center justify-center text-[11px]">4</span>
+            <h4 class="font-bold text-white">Transparencia</h4>
+            <p class="text-slate-400 text-[11px] leading-relaxed">
+              Informa el estado real del diagnóstico y un tiempo estimado honesto si requiere escalamiento o repuesto.
+            </p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2">
+            <span class="w-6 h-6 rounded-full bg-teal-600 text-white font-bold flex items-center justify-center text-[11px]">5</span>
+            <h4 class="font-bold text-white">Cierre Amable</h4>
+            <p class="text-slate-400 text-[11px] leading-relaxed">
+              Verifica junto al usuario que todo funcione bien, pregunta si necesita algo más y despídete cordialmente.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Manejo de situaciones difíciles + Qué decir vs Qué evitar -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-10">
+        <div class="glass-panel rounded-2xl p-6 border border-slate-800/80 space-y-4">
+          <h3 class="text-base font-bold text-white flex items-center gap-2">
+            <i class="fa-solid fa-shield-heart text-sky-400"></i>
+            <span>Manejo de Situaciones Difíciles</span>
+          </h3>
+          <div class="space-y-3 text-xs">
+            <div class="p-3.5 rounded-xl bg-slate-900/70 border border-slate-800">
+              <h4 class="font-bold text-amber-300 mb-1">Usuario molesto o frustrado</h4>
+              <p class="text-slate-400 leading-relaxed">
+                Mantén la voz calmada y baja el ritmo. Deja que se desahogue sin interrumpir, reconoce su molestia y enfoca la conversación en la solución inmediata.
+              </p>
+            </div>
+            <div class="p-3.5 rounded-xl bg-slate-900/70 border border-slate-800">
+              <h4 class="font-bold text-emerald-300 mb-1">Usuario con poca experiencia técnica</h4>
+              <p class="text-slate-400 leading-relaxed">
+                Guía paso a paso con referencias visuales (&ldquo;arriba a la derecha&rdquo;) en lugar de términos abstractos. Nunca muestres impaciencia ni condescendencia.
+              </p>
+            </div>
+            <div class="p-3.5 rounded-xl bg-slate-900/70 border border-slate-800">
+              <h4 class="font-bold text-purple-300 mb-1">Múltiples urgencias simultáneas</h4>
+              <p class="text-slate-400 leading-relaxed">
+                Confirma recepción a todos rápidamente, explica el orden de prioridad con criterio claro (áreas críticas primero) y da una hora estimada de atención.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-panel rounded-2xl p-6 border border-slate-800/80 space-y-4">
+          <h3 class="text-base font-bold text-white flex items-center gap-2">
+            <i class="fa-solid fa-scale-balanced text-emerald-400"></i>
+            <span>Comunicación Efectiva: Qué Decir vs. Qué Evitar</span>
+          </h3>
+          <div class="space-y-2.5 text-xs">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 p-3 rounded-xl bg-slate-900/70 border border-slate-800">
+              <div class="text-rose-300"><i class="fa-solid fa-xmark mr-1"></i> &ldquo;Eso ya te lo expliqué ayer.&rdquo;</div>
+              <div class="text-emerald-300"><i class="fa-solid fa-check mr-1"></i> &ldquo;Con gusto lo repasamos juntos paso a paso.&rdquo;</div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 p-3 rounded-xl bg-slate-900/70 border border-slate-800">
+              <div class="text-rose-300"><i class="fa-solid fa-xmark mr-1"></i> &ldquo;Tu computadora no sirve.&rdquo;</div>
+              <div class="text-emerald-300"><i class="fa-solid fa-check mr-1"></i> &ldquo;Detectamos una falla en el disco; vamos a resolverlo.&rdquo;</div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 p-3 rounded-xl bg-slate-900/70 border border-slate-800">
+              <div class="text-rose-300"><i class="fa-solid fa-xmark mr-1"></i> &ldquo;No sé cuándo estará listo.&rdquo;</div>
+              <div class="text-emerald-300"><i class="fa-solid fa-check mr-1"></i> &ldquo;En 30 minutos te doy un avance por GLPI o llamada.&rdquo;</div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 p-3 rounded-xl bg-slate-900/70 border border-slate-800">
+              <div class="text-rose-300"><i class="fa-solid fa-xmark mr-1"></i> &ldquo;Hiciste algo mal y lo dañaste.&rdquo;</div>
+              <div class="text-emerald-300"><i class="fa-solid fa-check mr-1"></i> &ldquo;Es un fallo común; te muestro cómo evitarlo.&rdquo;</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Aplicación en GLPI y RustDesk -->
+      <div class="glass-panel rounded-2xl p-6 border border-amber-500/20 bg-amber-950/10">
+        <h3 class="text-base font-bold text-white mb-3 flex items-center gap-2">
+          <i class="fa-solid fa-headset text-amber-400"></i>
+          <span>Habilidades Blandas en Mesa de Ayuda (GLPI) y Soporte Remoto (RustDesk)</span>
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs text-slate-300">
+          <div class="p-3.5 rounded-xl bg-slate-900/70 border border-slate-800">
+            <strong class="text-white block mb-1">Autorización y Privacidad (RustDesk)</strong>
+            Antes de conectarte remotamente, pide permiso explícito al usuario, indícale que cierre información confidencial y avísale antes de mover el cursor.
+          </div>
+          <div class="p-3.5 rounded-xl bg-slate-900/70 border border-slate-800">
+            <strong class="text-white block mb-1">Acompañamiento Durante la Sesión</strong>
+            Explica brevemente cada acción que realizas mientras el usuario observa su pantalla para generar confianza y tranquilidad.
+          </div>
+          <div class="p-3.5 rounded-xl bg-slate-900/70 border border-slate-800">
+            <strong class="text-white block mb-1">Redacción Humana en Tickets GLPI</strong>
+            Documenta las respuestas al usuario con trato cordial, soluciones claras y pasos de verificación sin copiar mensajes fríos o robóticos.
+          </div>
         </div>
       </div>
 

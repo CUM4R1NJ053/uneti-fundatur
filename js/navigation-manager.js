@@ -6,6 +6,7 @@ export class NavigationManager {
       institucional: { id: 'institucional', element: null, requiresBanner: true },
       inventario: { id: 'inventario', element: null, requiresBanner: false },
       'soporte-glpi': { id: 'soporte-glpi', element: null, requiresBanner: false },
+      'habilidades-blandas': { id: 'habilidades-blandas', element: null, requiresBanner: false },
       sesiones: { id: 'sesiones', element: null, requiresBanner: false },
       'drive-guide': { id: 'drive-guide', element: null, requiresBanner: false },
       equipo: { id: 'equipo', element: null, requiresBanner: false }

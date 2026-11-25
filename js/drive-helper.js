@@ -26,10 +26,16 @@ export class DriveHelper {
     return null;
   }
 
+  static isSafeUrl(url) {
+    if (!url || typeof url !== 'string') return false;
+    const clean = url.trim().toLowerCase();
+    return clean.startsWith('http://') || clean.startsWith('https://');
+  }
+
   // URL embed iframe
   static getEmbedUrl(url, type = 'drive') {
     const fileId = this.extractId(url);
-    if (!fileId) return url;
+    if (!fileId) return this.isSafeUrl(url) ? url : '#';
 
     // Docs nativos
     if (url.includes('docs.google.com/presentation')) {
@@ -51,14 +57,17 @@ export class DriveHelper {
   // URL descarga directa
   static getDownloadUrl(url) {
     const fileId = this.extractId(url);
-    if (!fileId) return url;
+    if (!fileId) return this.isSafeUrl(url) ? url : '#';
 
-    // Exportación PDF
+    // Exportación PDF / Excel
     if (url.includes('docs.google.com/presentation')) {
       return `https://docs.google.com/presentation/d/${fileId}/export/pdf`;
     }
     if (url.includes('docs.google.com/document')) {
       return `https://docs.google.com/document/d/${fileId}/export?format=pdf`;
+    }
+    if (url.includes('docs.google.com/spreadsheets')) {
+      return `https://docs.google.com/spreadsheets/d/${fileId}/export?format=xlsx`;
     }
 
     return `https://drive.google.com/uc?export=download&id=${fileId}`;
@@ -67,7 +76,7 @@ export class DriveHelper {
   // URL vista web
   static getViewUrl(url) {
     const fileId = this.extractId(url);
-    if (!fileId) return url;
+    if (!fileId) return this.isSafeUrl(url) ? url : '#';
     
     if (url.includes('/folders/')) {
       return `https://drive.google.com/drive/folders/${fileId}`;

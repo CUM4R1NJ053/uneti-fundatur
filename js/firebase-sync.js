@@ -13,7 +13,7 @@
   function isValidConfig(cfg) {
     if (!cfg || typeof cfg !== 'object') return false;
     if (!cfg.databaseURL || cfg.databaseURL.includes('TU_PROYECTO')) return false;
-    if (!cfg.apiKey || cfg.apiKey === 'TU_API_KEY') return false;
+    if (!cfg.apiKey || cfg.apiKey === 'TU_API_KEY' || cfg.apiKey.includes('reda') || cfg.apiKey.includes('«') || cfg.apiKey.length < 10) return false;
     return /^https:\/\/.+firebaseio\.com|^https:\/\/.+firebasedatabase\.app/.test(cfg.databaseURL);
   }
 
@@ -36,44 +36,38 @@
         db = firebase.database();
         enabled = true;
 
+        let isInitialLoad = true;
         const rootRef = db.ref(DB_ROOT);
 
-        // Leer datos iniciales UNA sola vez al cargar
-        rootRef.once('value', (snapshot) => {
-          const data = snapshot.val();
+        rootRef.on('value', (snap) => {
+          const remoteData = snap.val();
 
-          if (!data) {
-            // Base de datos vacía: sembrar con datos locales actuales
-            if (typeof options.getSeedData === 'function') {
-              rootRef.set(options.getSeedData())
-                .then(() => console.log('[FirebaseSync] Base de datos inicializada con datos locales.'))
-                .catch((err) => console.warn('[FirebaseSync] No se pudo inicializar la DB:', err));
-            }
-          } else {
-            // Cargar datos desde la nube al arrancar la app
-            if (typeof options.onRemoteData === 'function') {
-              try { options.onRemoteData(data); } catch (e) {
+          if (isInitialLoad) {
+            isInitialLoad = false;
+            if (!remoteData) {
+              if (typeof options.getSeedData === 'function') {
+                rootRef.set(options.getSeedData())
+                  .then(() => console.log('[FirebaseSync] Base de datos inicializada con datos locales.'))
+                  .catch((err) => console.warn('[FirebaseSync] No se pudo inicializar la DB:', err));
+              }
+            } else if (typeof options.onRemoteData === 'function') {
+              try { options.onRemoteData(remoteData); } catch (e) {
                 console.warn('[FirebaseSync] Error aplicando datos remotos iniciales:', e);
               }
             }
+            return;
           }
 
-          // Después de la carga inicial, escuchar cambios remotos en tiempo real
-          rootRef.on('value', (snap) => {
-            // Ignorar el eco inmediato de nuestras propias escrituras
-            if (Date.now() - localWriteTimestamp < ECHO_DEBOUNCE_MS) return;
+          if (Date.now() - localWriteTimestamp < ECHO_DEBOUNCE_MS) return;
+          if (!remoteData) return;
 
-            const remoteData = snap.val();
-            if (!remoteData) return;
-
-            if (typeof options.onRemoteData === 'function') {
-              try { options.onRemoteData(remoteData); } catch (e) {
-                console.warn('[FirebaseSync] Error aplicando cambio remoto en tiempo real:', e);
-              }
+          if (typeof options.onRemoteData === 'function') {
+            try { options.onRemoteData(remoteData); } catch (e) {
+              console.warn('[FirebaseSync] Error aplicando cambio remoto en tiempo real:', e);
             }
-          });
+          }
         }, (err) => {
-          console.warn('[FirebaseSync] Error leyendo datos iniciales de Firebase:', err);
+          console.warn('[FirebaseSync] Error leyendo datos de Firebase:', err);
         });
 
         console.log('[FirebaseSync] Sincronización en tiempo real activa.');

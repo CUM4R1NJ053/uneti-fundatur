@@ -57,9 +57,28 @@ window.ui = {
 // Módulos en window
 window.inventoryUI = InventoryUI;
 window.fundaturInfo = FUNDATUR_INFO;
+window.navManager = navManager;
 
 // Inicialización DOM
 document.addEventListener('DOMContentLoaded', () => {
+  if (window.FirebaseSync) {
+    window.FirebaseSync.init({
+      getSeedData: () => ({
+        sessions: StorageManager.getSessions(),
+        team: StorageManager.getTeam(),
+        inventory: StorageManager.getInventory()
+      }),
+      onRemoteData: (data) => {
+        if (!data) return;
+        if (data.sessions) StorageManager.saveSessions(data.sessions, true);
+        if (data.team) StorageManager.saveTeam(data.team, true);
+        if (data.inventory) StorageManager.saveInventory(data.inventory, true);
+        UIManager.renderSessions();
+        UIManager.renderTeam();
+        InventoryUI.render();
+      }
+    });
+  }
   UIManager.init();
   InventoryUI.init();
   navManager.init();
