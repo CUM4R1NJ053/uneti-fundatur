@@ -376,9 +376,12 @@ class StorageManager {
     }
   }
 
-  static saveSessions(sessions) {
+  static saveSessions(sessions, skipRemote = false) {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(sessions));
+      if (!skipRemote && window.FirebaseSync) {
+        window.FirebaseSync.push('sessions', sessions);
+      }
       return true;
     } catch (e) {
       console.error("[StorageManager] Error guardando sesiones:", e);
@@ -461,9 +464,12 @@ class StorageManager {
     }
   }
 
-  static saveTeam(teamData) {
+  static saveTeam(teamData, skipRemote = false) {
     try {
       localStorage.setItem(TEAM_STORAGE_KEY, JSON.stringify(teamData));
+      if (!skipRemote && window.FirebaseSync) {
+        window.FirebaseSync.push('team', teamData);
+      }
       return true;
     } catch (e) {
       console.error("[StorageManager] Error guardando equipo:", e);
@@ -551,9 +557,12 @@ class StorageManager {
     }
   }
 
-  static saveInventory(items) {
+  static saveInventory(items, skipRemote = false) {
     try {
       localStorage.setItem(INVENTORY_STORAGE_KEY, JSON.stringify(items));
+      if (!skipRemote && window.FirebaseSync) {
+        window.FirebaseSync.push('inventory', items);
+      }
       return true;
     } catch (e) {
       console.error("[StorageManager] Error guardando inventario:", e);
@@ -3437,6 +3446,34 @@ class UIManager {
     UIManager.init();
     InventoryUI.init();
     NavigationManager.init();
+
+    if (window.FirebaseSync) {
+      window.FirebaseSync.init({
+        getSeedData: () => ({
+          sessions: StorageManager.getSessions(),
+          team: StorageManager.getTeam(),
+          inventory: StorageManager.getInventory()
+        }),
+        onRemoteData: (data) => {
+          if (Array.isArray(data.sessions)) {
+            StorageManager.saveSessions(data.sessions, true);
+            UIManager.renderFilterPills();
+            UIManager.renderSessions();
+            UIManager.updateStats();
+            UIManager.renderTimelineView();
+          }
+          if (data.team && typeof data.team === 'object') {
+            StorageManager.saveTeam(data.team, true);
+            UIManager.renderTeam();
+          }
+          if (Array.isArray(data.inventory)) {
+            StorageManager.saveInventory(data.inventory, true);
+            InventoryUI.renderStats();
+            InventoryUI.renderTable();
+          }
+        }
+      });
+    }
 
         const trayectoEl = document.getElementById('config-trayecto');
     const periodEl   = document.getElementById('config-period');
