@@ -122,7 +122,7 @@ class DriveHelper {
 }
 
   
-  // Persistencia en localStorage para sesiones, equipo e inventario
+  // Persistencia exclusiva en Firebase Realtime Database (caché en memoria) para sesiones, equipo e inventario
 
 const STORAGE_KEY = 'fundatur_uneti_socioeconomico_sessions_v3';
 const TEAM_STORAGE_KEY = 'fundatur_uneti_socioeconomico_team_v3';
@@ -360,27 +360,29 @@ const INITIAL_SESSIONS = [
   }
 ];
 
+const _memoryCache = {
+  sessions: null,
+  team: null,
+  inventory: null
+};
+
+function _cloneData(obj) {
+  return JSON.parse(JSON.stringify(obj));
+}
+
 class StorageManager {
   static getSessions() {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) {
-      this.saveSessions(INITIAL_SESSIONS);
-      return INITIAL_SESSIONS;
+    if (!_memoryCache.sessions) {
+      _memoryCache.sessions = _cloneData(INITIAL_SESSIONS);
     }
-    try {
-      return JSON.parse(raw);
-    } catch (e) {
-      console.error("[StorageManager] Error leyendo sesiones, restableciendo:", e);
-      this.saveSessions(INITIAL_SESSIONS);
-      return INITIAL_SESSIONS;
-    }
+    return _memoryCache.sessions;
   }
 
   static saveSessions(sessions, skipRemote = false) {
     try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(sessions));
+      _memoryCache.sessions = _cloneData(sessions);
       if (!skipRemote && window.FirebaseSync) {
-        window.FirebaseSync.push('sessions', sessions);
+        window.FirebaseSync.push('sessions', _memoryCache.sessions);
       }
       return true;
     } catch (e) {
@@ -450,25 +452,17 @@ class StorageManager {
   }
 
   static getTeam() {
-    const raw = localStorage.getItem(TEAM_STORAGE_KEY);
-    if (!raw) {
-      this.saveTeam(INITIAL_TEAM);
-      return INITIAL_TEAM;
+    if (!_memoryCache.team) {
+      _memoryCache.team = _cloneData(INITIAL_TEAM);
     }
-    try {
-      return JSON.parse(raw);
-    } catch (e) {
-      console.error("[StorageManager] Error leyendo equipo, restableciendo:", e);
-      this.saveTeam(INITIAL_TEAM);
-      return INITIAL_TEAM;
-    }
+    return _memoryCache.team;
   }
 
   static saveTeam(teamData, skipRemote = false) {
     try {
-      localStorage.setItem(TEAM_STORAGE_KEY, JSON.stringify(teamData));
+      _memoryCache.team = _cloneData(teamData);
       if (!skipRemote && window.FirebaseSync) {
-        window.FirebaseSync.push('team', teamData);
+        window.FirebaseSync.push('team', _memoryCache.team);
       }
       return true;
     } catch (e) {
@@ -540,28 +534,19 @@ class StorageManager {
   }
 
   static getInventory() {
-    const raw = localStorage.getItem(INVENTORY_STORAGE_KEY);
-    if (!raw) {
-          if (typeof INVENTORY_DATA !== 'undefined' && Array.isArray(INVENTORY_DATA)) {
-        this.saveInventory(INVENTORY_DATA);
-        return INVENTORY_DATA;
-      }
-      return [];
+    if (!_memoryCache.inventory) {
+      _memoryCache.inventory = (typeof INVENTORY_DATA !== 'undefined' && Array.isArray(INVENTORY_DATA))
+        ? _cloneData(INVENTORY_DATA)
+        : [];
     }
-    try {
-      const data = JSON.parse(raw);
-      return Array.isArray(data) ? data : [];
-    } catch (e) {
-      console.error("[StorageManager] Error leyendo inventario, restableciendo:", e);
-      return [];
-    }
+    return _memoryCache.inventory;
   }
 
   static saveInventory(items, skipRemote = false) {
     try {
-      localStorage.setItem(INVENTORY_STORAGE_KEY, JSON.stringify(items));
+      _memoryCache.inventory = _cloneData(items);
       if (!skipRemote && window.FirebaseSync) {
-        window.FirebaseSync.push('inventory', items);
+        window.FirebaseSync.push('inventory', _memoryCache.inventory);
       }
       return true;
     } catch (e) {
@@ -3468,7 +3453,11 @@ class UIManager {
             if (typeof UIManager.updateStats      === 'function') UIManager.updateStats();
           }
           if (data.team && typeof data.team === 'object') {
-            StorageManager.saveTeam(data.team, true);
+            const normalizedTeam = {
+              students: Array.isArray(data.team.students) ? data.team.students : [],
+              jury: Array.isArray(data.team.jury) ? data.team.jury : []
+            };
+            StorageManager.saveTeam(normalizedTeam, true);
             if (typeof UIManager.renderTeam === 'function') UIManager.renderTeam();
           }
           if (Array.isArray(data.inventory)) {

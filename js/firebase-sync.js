@@ -45,15 +45,28 @@
 
           if (isInitialLoad) {
             isInitialLoad = false;
+            const seed = typeof options.getSeedData === 'function' ? options.getSeedData() : null;
             if (!remoteData) {
-              if (typeof options.getSeedData === 'function') {
-                rootRef.set(options.getSeedData())
-                  .then(() => console.log('[FirebaseSync] Base de datos inicializada con datos locales.'))
-                  .catch((err) => console.warn('[FirebaseSync] No se pudo inicializar la DB:', err));
+              if (seed) {
+                rootRef.set(seed)
+                  .then(() => console.log('[FirebaseSync] Base de datos inicializada en Firebase.'))
+                  .catch((err) => console.error('[FirebaseSync] No se pudo inicializar la DB:', err));
               }
-            } else if (typeof options.onRemoteData === 'function') {
-              try { options.onRemoteData(remoteData); } catch (e) {
-                console.warn('[FirebaseSync] Error aplicando datos remotos iniciales:', e);
+            } else {
+              if (seed) {
+                Object.keys(seed).forEach((k) => {
+                  if (remoteData[k] === undefined || remoteData[k] === null) {
+                    db.ref(`${DB_ROOT}/${k}`).set(seed[k]).catch((err) =>
+                      console.warn(`[FirebaseSync] Error inicializando nodo ${k}:`, err)
+                    );
+                    remoteData[k] = seed[k];
+                  }
+                });
+              }
+              if (typeof options.onRemoteData === 'function') {
+                try { options.onRemoteData(remoteData); } catch (e) {
+                  console.warn('[FirebaseSync] Error aplicando datos remotos iniciales:', e);
+                }
               }
             }
             return;
@@ -81,11 +94,20 @@
     },
 
     push(subPath, value) {
-      if (!enabled || !db) return;
+      if (!enabled || !db) {
+        console.warn(`[FirebaseSync] Firebase no está activo; no se pudo guardar ${subPath}.`);
+        return Promise.resolve(false);
+      }
       localWriteTimestamp = Date.now();
-      db.ref(`${DB_ROOT}/${subPath}`).set(value).catch((err) => {
-        console.warn(`[FirebaseSync] Error guardando ${subPath} en la nube:`, err);
-      });
+      return db.ref(`${DB_ROOT}/${subPath}`).set(value)
+        .then(() => true)
+        .catch((err) => {
+          console.error(`[FirebaseSync] Error guardando ${subPath} en Firebase:`, err);
+          if (window.UIManager && typeof window.UIManager.showToast === 'function') {
+            window.UIManager.showToast(`Error guardando en Firebase (${subPath}): ${err.message || err}`, 'error');
+          }
+          return false;
+        });
     },
 
     registrarReserva(datos) {
