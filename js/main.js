@@ -3377,13 +3377,12 @@ class UIManager {
 
       if (targetId === 'institucional') {
         if (bannerEl) bannerEl.classList.remove('hidden');
-        if (heroEl) heroEl.classList.remove('hidden');
         if (instEl) instEl.classList.remove('hidden');
       } else {
         if (bannerEl) bannerEl.classList.add('hidden');
-        if (heroEl) heroEl.classList.add('hidden');
         if (instEl) instEl.classList.add('hidden');
       }
+      if (heroEl) heroEl.classList.remove('hidden');
 
       this.sections.forEach(secId => {
         if (secId === 'institucional') return;
