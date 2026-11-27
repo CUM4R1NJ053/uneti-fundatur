@@ -1,193 +1,163 @@
-/* Variables CSS */
+/* Variables CSS — FUNDATUR SOCIAL: Identidad Turismo Tropical */
 
 :root {
-  --uneti-navy: #071E26;
-  --uneti-deep-blue: #0B2A35;
-  --uneti-primary: #0D9488;
-  --uneti-secondary: #F59E0B;
-  --uneti-accent: #2DD4BF;
-  --uneti-cyan: #14B8A6;
-  --uneti-slate: #113440;
-  --uneti-border: rgba(45, 212, 191, 0.16);
+  --uneti-ocean:    #0A3D4A;
+  --uneti-deep:     #07293A;
+  --uneti-primary:  #0D9488;
+  --uneti-gold:     #F59E0B;
+  --uneti-sand:     #FDE68A;
+  --uneti-aqua:     #2DD4BF;
+  --uneti-border:   rgba(45, 212, 191, 0.18);
 }
 
-/* Estilos base - Identidad Turismo Social (Océano Turquesa & Sol Dorado) */
+/* ── Fondo: amanecer tropical sobre el océano ───────────────────────── */
 body {
-  background-color: #061A22;
-  background-image: 
-    radial-gradient(at 0% 0%, rgba(13, 148, 136, 0.22) 0px, transparent 55%),
-    radial-gradient(at 100% 0%, rgba(245, 158, 11, 0.12) 0px, transparent 45%),
-    radial-gradient(at 100% 100%, rgba(20, 184, 166, 0.14) 0px, transparent 55%),
-    radial-gradient(at 20% 85%, rgba(245, 158, 11, 0.08) 0px, transparent 50%);
-  background-size: 100% 100%;
+  /* Gradiente base: cielo al amanecer → océano profundo */
+  background-color: #0A3D4A;
+  background-image:
+    /* Sol de amanecer / crepúsculo en la parte superior */
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(245,158,11,0.28) 0%, transparent 60%),
+    /* Reflejo dorado en el mar */
+    radial-gradient(ellipse 60% 40% at 80% 20%, rgba(251,191,36,0.14) 0%, transparent 55%),
+    /* Brillo turquesa caribeño — izquierda */
+    radial-gradient(ellipse 55% 55% at 0% 60%,  rgba(13,148,136,0.30) 0%, transparent 65%),
+    /* Profundidad azul del océano — fondo */
+    radial-gradient(ellipse 100% 60% at 50% 100%, rgba(7,41,58,0.95) 0%, transparent 100%);
   color: #F8FAFC;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-/* Paneles glass */
+/* ── Paneles glass — tono océano caribeño ───────────────────────────── */
 .glass-panel {
-  background: rgba(10, 36, 46, 0.78);
+  background: rgba(10, 44, 56, 0.76);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(45, 212, 191, 0.16);
-  box-shadow: 0 12px 32px -10px rgba(2, 18, 24, 0.55);
+  box-shadow: 0 12px 32px -10px rgba(2, 20, 28, 0.55);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .glass-panel:hover {
-  border-color: rgba(245, 158, 11, 0.32);
-  box-shadow: 0 16px 36px -6px rgba(13, 148, 136, 0.22);
+  border-color: rgba(245, 158, 11, 0.36);
+  box-shadow: 0 16px 36px -6px rgba(13, 148, 136, 0.24);
 }
 
 .glass-header {
-  background: rgba(6, 26, 34, 0.9);
+  background: rgba(7, 35, 48, 0.93);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgba(45, 212, 191, 0.18);
+  border-bottom: 1px solid rgba(45, 212, 191, 0.20);
 }
 
-/* Efectos hover */
+/* ── Resplandor dorado en hover (sustituto tech-glow) ───────────────── */
 .tech-glow {
   position: relative;
 }
 .tech-glow::after {
   content: '';
   position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: linear-gradient(45deg, #0d9488, #2dd4bf, #f59e0b);
+  top: -2px; left: -2px; right: -2px; bottom: -2px;
+  background: linear-gradient(45deg, #0d9488, #2dd4bf, #f59e0b, #fbbf24);
   border-radius: inherit;
   z-index: -1;
   opacity: 0;
   transition: opacity 0.3s ease;
-  filter: blur(6px);
+  filter: blur(7px);
 }
 .tech-glow:hover::after {
-  opacity: 0.75;
+  opacity: 0.65;
 }
 
-/* Scrollbars */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-::-webkit-scrollbar-track {
-  background: #061A22;
-}
+/* ── Scrollbars ─────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: #07293A; }
 ::-webkit-scrollbar-thumb {
-  background: #113440;
+  background: #0A3D4A;
   border-radius: 4px;
-  border: 1px solid rgba(45, 212, 191, 0.25);
+  border: 1px solid rgba(45,212,191,0.25);
 }
-::-webkit-scrollbar-thumb:hover {
-  background: #0D9488;
-}
+::-webkit-scrollbar-thumb:hover { background: #0D9488; }
 
-/* Animaciones */
+/* ── Animaciones ────────────────────────────────────────────────────── */
 @keyframes pulse-subtle {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.6; transform: scale(1.15); }
+  0%, 100% { opacity: 1;   transform: scale(1);    }
+  50%       { opacity: 0.6; transform: scale(1.15); }
 }
 .pulse-dot {
   animation: pulse-subtle 2.5s infinite ease-in-out;
 }
 
-/* Contenedores de vista previa Drive */
+/* ── Ondas decorativas (turismo / playa) ────────────────────────────── */
+@keyframes wave-drift {
+  0%   { transform: translateX(0)   scaleY(1);    }
+  50%  { transform: translateX(-3%) scaleY(1.04); }
+  100% { transform: translateX(0)   scaleY(1);    }
+}
+.wave-bg {
+  animation: wave-drift 8s ease-in-out infinite;
+}
+
+/* ── Drive embeds ───────────────────────────────────────────────────── */
 .drive-embed-container {
   position: relative;
   width: 100%;
   height: 0;
-  padding-bottom: 56.25%; /* Aspect ratio 16:9 */
-  background: #000000;
+  padding-bottom: 56.25%;
+  background: #000;
   border-radius: 0.75rem;
   overflow: hidden;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.6);
 }
-
 .drive-embed-container iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 100%; border: 0;
 }
-
 .drive-doc-container {
-  position: relative;
-  width: 100%;
-  height: 72vh;
-  background: #1E293B;
-  border-radius: 0.75rem;
-  overflow: hidden;
+  position: relative; width: 100%; height: 72vh;
+  background: #1E293B; border-radius: 0.75rem; overflow: hidden;
 }
-
 .drive-doc-container iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 100%; border: 0;
 }
 
-/* Acordeón */
-details summary::-webkit-details-marker {
-  display: none;
-}
-details[open] summary .accordion-chevron {
-  transform: rotate(180deg);
-}
+/* ── Acordeón ───────────────────────────────────────────────────────── */
+details summary::-webkit-details-marker { display: none; }
+details[open] summary .accordion-chevron { transform: rotate(180deg); }
 
-/* Modales */
-.modal-backdrop {
-  opacity: 0;
-  transition: opacity 0.25s ease-out;
-}
-.modal-backdrop.active {
-  opacity: 1;
-}
+/* ── Modales ────────────────────────────────────────────────────────── */
+.modal-backdrop { opacity: 0; transition: opacity 0.25s ease-out; }
+.modal-backdrop.active { opacity: 1; }
 .modal-container {
   transform: scale(0.95);
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.modal-backdrop.active .modal-container {
-  transform: scale(1);
-}
+.modal-backdrop.active .modal-container { transform: scale(1); }
 
-/* Toast */
+/* ── Toast ──────────────────────────────────────────────────────────── */
 .toast-item {
   transform: translateX(120%);
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
 }
-.toast-item.show {
-  transform: translateX(0);
-}
+.toast-item.show { transform: translateX(0); }
 
-/* Impresión */
+/* ── Impresión ──────────────────────────────────────────────────────── */
 @media print {
-  body {
-    background: #FFFFFF !important;
-    color: #000000 !important;
-  }
-  .no-print, header, footer, #admin-bar, .action-btn {
-    display: none !important;
-  }
+  body { background: #FFF !important; color: #000 !important; }
+  .no-print, header, footer, #admin-bar, .action-btn { display: none !important; }
   .glass-panel {
     border: 1px solid #CBD5E1 !important;
     box-shadow: none !important;
-    background: #FFFFFF !important;
-    color: #000000 !important;
+    background: #FFF !important;
+    color: #000 !important;
     break-inside: avoid;
     page-break-inside: avoid;
   }
 }
 
-/* Truncado de texto */
+/* ── Truncado de texto ──────────────────────────────────────────────── */
 .line-clamp-2 {
   display: -webkit-box;
   -webkit-line-clamp: 2;
