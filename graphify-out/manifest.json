@@ -1,0 +1,176 @@
+{
+  "js/app.js": {
+    "mtime": 1795596140.26634,
+    "seen": 1795797777.4735162,
+    "ast_hash": "fbaa202b28229a40ba8c60d6b748e500",
+    "semantic_hash": ""
+  },
+  "js/auth.js": {
+    "mtime": 1795559965.6512263,
+    "seen": 1795797777.4735162,
+    "ast_hash": "539d0c875e17c79d8b29710b4d8512d0",
+    "semantic_hash": ""
+  },
+  "js/config.js": {
+    "mtime": 1795789634.5893264,
+    "seen": 1795797777.4735162,
+    "ast_hash": "d06abd3890f324c115a209c1d5f023b1",
+    "semantic_hash": ""
+  },
+  "js/drive-helper.js": {
+    "mtime": 1795596026.948202,
+    "seen": 1795797777.4735162,
+    "ast_hash": "c625ee0f385dc7355dc32faf2d73994b",
+    "semantic_hash": ""
+  },
+  "js/firebase-config.js": {
+    "mtime": 1795571606.2370906,
+    "seen": 1795797777.4735162,
+    "ast_hash": "7a9e823d5dcad51996670319f35476b0",
+    "semantic_hash": ""
+  },
+  "js/firebase-sync.js": {
+    "mtime": 1795596004.281601,
+    "seen": 1795797777.4735162,
+    "ast_hash": "9729738f92f43e0262b2cda4de0f279d",
+    "semantic_hash": ""
+  },
+  "js/fundatur-info.js": {
+    "mtime": 1795559965.686749,
+    "seen": 1795797777.4735162,
+    "ast_hash": "c7e97c81ce39ab844f7e84810a8341fc",
+    "semantic_hash": ""
+  },
+  "js/inventory-data.js": {
+    "mtime": 1795559965.6897514,
+    "seen": 1795797777.4735162,
+    "ast_hash": "38700d0dd3b4f5f7395a08a51e0054bb",
+    "semantic_hash": ""
+  },
+  "js/inventory-ui.js": {
+    "mtime": 1795559965.6977568,
+    "seen": 1795797777.4735162,
+    "ast_hash": "859bc475d82ca7f44aab3c394df5620b",
+    "semantic_hash": ""
+  },
+  "js/main.js": {
+    "mtime": 1795790487.0041914,
+    "seen": 1795797777.4735162,
+    "ast_hash": "19607c071ef3687cf449d53a61d12f92",
+    "semantic_hash": ""
+  },
+  "js/navigation-manager.js": {
+    "mtime": 1795791390.0334215,
+    "seen": 1795797777.4735162,
+    "ast_hash": "c12efd1c68209a3ae66ac2176b9d2862",
+    "semantic_hash": ""
+  },
+  "js/storage.js": {
+    "mtime": 1795789849.787004,
+    "seen": 1795797777.4735162,
+    "ast_hash": "1b7475c6e506e454cc906343762d137a",
+    "semantic_hash": ""
+  },
+  "js/ui.js": {
+    "mtime": 1795790476.932698,
+    "seen": 1795797777.4735162,
+    "ast_hash": "86d0c3efed89b0f21dcbe5b655a6bc05",
+    "semantic_hash": ""
+  },
+  "server.js": {
+    "mtime": 1795595365.0341423,
+    "seen": 1795797777.4735162,
+    "ast_hash": "5611ba2cd37d0854e125182989a38810",
+    "semantic_hash": ""
+  },
+  "README.md": {
+    "mtime": 1795789937.4679775,
+    "seen": 1795797777.4735162,
+    "ast_hash": "e88ce81333f582e3a470993e7d1f05c7",
+    "semantic_hash": ""
+  },
+  "index.html": {
+    "mtime": 1795796003.647873,
+    "seen": 1795797777.4735162,
+    "ast_hash": "48e29b42a10ab9472dba70b495150eb8",
+    "semantic_hash": ""
+  },
+  "info/UNETI.txt": {
+    "mtime": 1795525013.9621286,
+    "seen": 1795797777.4735162,
+    "ast_hash": "b870fd7699bca7b8534d117bfe3620c0",
+    "semantic_hash": ""
+  },
+  "assets/banner-fundatur.jpeg": {
+    "mtime": 1795525031.6723664,
+    "seen": 1795797777.4735162,
+    "ast_hash": "150ad993da683ce15f23cf276a72028b",
+    "semantic_hash": ""
+  },
+  "assets/destino-canaima.jpg": {
+    "mtime": 1795795872.4794447,
+    "seen": 1795797777.4735162,
+    "ast_hash": "b5150d888aaf7f2ed78acad97362b8b2",
+    "semantic_hash": ""
+  },
+  "assets/destino-margarita.jpg": {
+    "mtime": 1795795859.403381,
+    "seen": 1795797777.4735162,
+    "ast_hash": "71115573ed27db735da02d4317f6ccac",
+    "semantic_hash": ""
+  },
+  "assets/destino-merida.jpg": {
+    "mtime": 1795795859.4459085,
+    "seen": 1795797777.4735162,
+    "ast_hash": "c7e881c124b6204649d9b7672eb472a5",
+    "semantic_hash": ""
+  },
+  "assets/destino-morrocoy.jpg": {
+    "mtime": 1795795851.4213285,
+    "seen": 1795797777.4735162,
+    "ast_hash": "3d2142891a2fe57108cf8dda45baeb33",
+    "semantic_hash": ""
+  },
+  "assets/favicon.png": {
+    "mtime": 1794940050.4525993,
+    "seen": 1795797777.4735162,
+    "ast_hash": "7cb6c3e3f803bd24107f843092a97f36",
+    "semantic_hash": ""
+  },
+  "assets/favicon.svg": {
+    "mtime": 1794936925.747823,
+    "seen": 1795797777.4735162,
+    "ast_hash": "e23e0caa70e0ef82a47be4f9706721e1",
+    "semantic_hash": ""
+  },
+  "assets/logo-uneti.png": {
+    "mtime": 1794938046.2627578,
+    "seen": 1795797777.4735162,
+    "ast_hash": "1ee5c253e39283e06438b1b2cffd3df0",
+    "semantic_hash": ""
+  },
+  "assets/logo-uneti.svg": {
+    "mtime": 1795789513.9575012,
+    "seen": 1795797777.4735162,
+    "ast_hash": "bc7cde50476e33867b910f1948d9295d",
+    "semantic_hash": ""
+  },
+  "info/WhatsApp Image 2026-11-23 at 2.24.44 PM (1).jpeg": {
+    "mtime": 1795525024.0,
+    "seen": 1795797777.4735162,
+    "ast_hash": "1b4cadeda9b71b43708dbc56635d138c",
+    "semantic_hash": ""
+  },
+  "info/WhatsApp Image 2026-11-23 at 2.24.44 PM(1).jpeg": {
+    "mtime": 1795525024.0,
+    "seen": 1795797777.4735162,
+    "ast_hash": "726f520511559366f4aceef21bedd6e3",
+    "semantic_hash": ""
+  },
+  "info/WhatsApp Image 2026-11-23 at 2.24.44 PM.jpeg": {
+    "mtime": 1795525031.6723664,
+    "seen": 1795797777.4735162,
+    "ast_hash": "150ad993da683ce15f23cf276a72028b",
+    "semantic_hash": ""
+  }
+}

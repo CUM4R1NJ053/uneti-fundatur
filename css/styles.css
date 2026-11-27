@@ -55,7 +55,6 @@ body::before {
   box-shadow: 0 12px 32px -10px rgba(1, 14, 22, 0.6);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
-
 .glass-panel:hover {
   border-color: rgba(245, 158, 11, 0.38);
   box-shadow: 0 16px 36px -6px rgba(13, 148, 136, 0.25);
@@ -75,7 +74,7 @@ body::before {
 .tech-glow::after {
   content: '';
   position: absolute;
-  top: -2px; left: -2px; right: -2px; bottom: -2px;
+  top: -2px; left: -2px; right: -2px; bottom: -px;
   background: linear-gradient(45deg, #0d9488, #2dd4bf, #f59e0b, #fbbf24);
   border-radius: inherit;
   z-index: -1;
@@ -177,4 +176,50 @@ details[open] summary .accordion-chevron { transform: rotate(180deg); }
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+/* ── MEJORAS UX MÓVIL ── */
+@media (max-width: 640px) {
+  .paquete-card,
+  .zona-card,
+  [data-destino] {
+    margin-bottom: 0.75rem;
+  }
+  
+  button[role='button'],
+  summary {
+    min-height: 44px;
+    min-width: 44px;
+    font-size: 1rem;
+  }
+  
+  input,
+  select,
+  textarea {
+    font-size: 1rem;
+  }
+  
+  #cotizador-form,
+  #modal-reserva .grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .btn-reservar[data-reservar] {
+    min-height: 44px;
+  }
+  
+  @keyframes fadeInDetails {
+    from {
+      opacity: 0;
+      transform: translateY(4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  details > div {
+    animation: fadeInDetails 0.2s ease-out forwards;
+  }
 }

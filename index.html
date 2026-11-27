@@ -51,7 +51,7 @@
   </script>
 
   
-  <link rel="stylesheet" href="css/styles.css?v=20261127" />
+  <link rel="stylesheet" href="css/styles.css?v=20261128" />
 </head>
 
 <body class="text-slate-100 min-h-screen flex flex-col antialiased">
@@ -599,7 +599,7 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           <!-- Destino 1: Morrocoy & Los Roques -->
-          <article class="glass-panel rounded-2xl overflow-hidden border border-teal-500/25 hover:border-amber-400/50 transition group flex flex-col">
+          <article data-destino="morrocoy" class="glass-panel rounded-2xl overflow-hidden border border-teal-500/25 hover:border-amber-400/50 transition group flex flex-col">
             <div class="relative h-44 overflow-hidden">
               <img src="assets/destino-morrocoy.jpg" alt="Parque Nacional Morrocoy y Cayos"
                 class="w-full h-full object-cover transition duration-500 group-hover:scale-105" loading="lazy" />
@@ -619,11 +619,21 @@
                 <span class="text-teal-200 font-semibold"><i class="fa-solid fa-sun text-amber-300 mr-1"></i> Todo el año</span>
                 <span class="text-amber-300 font-bold">Playa & Cayos</span>
               </div>
+          <details class="mt-3 group">
+            <summary class="cursor-pointer text-amber-400 font-semibold text-sm flex items-center gap-2 list-none py-1">
+              <i class="fa-solid fa-chevron-right transition-transform group-open:rotate-90"></i>
+              <span>▶ Ver itinerario día a día</span>
+            </summary>
+            <div class="mt-2 p-3 rounded-xl bg-slate-900/80 border border-teal-500/30 text-xs space-y-2 text-slate-300">
+              <p><strong>Día 1:</strong> Salida matutina desde Caracas/Maracay, llegada a Chichiriviche y embarque en peñero hacia Cayo Sombrero. Disfrute de playas cristalinas, toldo y almuerzo marino.</p>
+              <p><strong>Día 2:</strong> Tour por Cayo Muerto y Cayo Peraza, sesión de snorkeling y retorno en la tarde a punto de origen.</p>
+            </div>
+          </details>
             </div>
           </article>
 
           <!-- Destino 2: Isla de Margarita -->
-          <article class="glass-panel rounded-2xl overflow-hidden border border-teal-500/25 hover:border-amber-400/50 transition group flex flex-col">
+          <article data-destino="margarita" class="glass-panel rounded-2xl overflow-hidden border border-teal-500/25 hover:border-amber-400/50 transition group flex flex-col">
             <div class="relative h-44 overflow-hidden">
               <img src="assets/destino-margarita.jpg" alt="Isla de Margarita y Bahías"
                 class="w-full h-full object-cover transition duration-500 group-hover:scale-105" loading="lazy" />
@@ -643,11 +653,22 @@
                 <span class="text-teal-200 font-semibold"><i class="fa-solid fa-ship text-teal-300 mr-1"></i> Ferry / Aéreo</span>
                 <span class="text-amber-300 font-bold">Sol & Cultura</span>
               </div>
+          <details class="mt-3 group">
+            <summary class="cursor-pointer text-amber-400 font-semibold text-sm flex items-center gap-2 list-none py-1">
+              <i class="fa-solid fa-chevron-right transition-transform group-open:rotate-90"></i>
+              <span>▶ Ver itinerario día a día</span>
+            </summary>
+            <div class="mt-2 p-3 rounded-xl bg-slate-900/80 border border-teal-500/30 text-xs space-y-2 text-slate-300">
+              <p><strong>Día 1:</strong> Bienvenida en Aeropuerto/Ferry, traslado a posada con piscina en El Valle, tarde libre en Playa El Agua.</p>
+              <p><strong>Día 2:</strong> Excursión en peñero por la Laguna de La Restinga y tarde de compras en Porlamar.</p>
+              <p><strong>Día 3:</strong> Visita a Juan Griego, atardecer en la bahía y traslado de salida.</p>
+            </div>
+          </details>
             </div>
           </article>
 
           <!-- Destino 3: Andes Venezolanos / Mérida -->
-          <article class="glass-panel rounded-2xl overflow-hidden border border-teal-500/25 hover:border-amber-400/50 transition group flex flex-col">
+          <article data-destino="merida" class="glass-panel rounded-2xl overflow-hidden border border-teal-500/25 hover:border-amber-400/50 transition group flex flex-col">
             <div class="relative h-44 overflow-hidden">
               <img src="assets/destino-merida.jpg" alt="Sierra Nevada de Mérida"
                 class="w-full h-full object-cover transition duration-500 group-hover:scale-105" loading="lazy" />
@@ -667,11 +688,23 @@
                 <span class="text-teal-200 font-semibold"><i class="fa-solid fa-mountain text-emerald-300 mr-1"></i> Ecoturismo</span>
                 <span class="text-amber-300 font-bold">Montaña & Páramo</span>
               </div>
+          <details class="mt-3 group">
+            <summary class="cursor-pointer text-amber-400 font-semibold text-sm flex items-center gap-2 list-none py-1">
+              <i class="fa-solid fa-chevron-right transition-transform group-open:rotate-90"></i>
+              <span>▶ Ver itinerario día a día</span>
+            </summary>
+            <div class="mt-2 p-3 rounded-xl bg-slate-900/80 border border-teal-500/30 text-xs space-y-2 text-slate-300">
+              <p><strong>Día 1:</strong> Arribo a Mérida, recepción con chocolate caliente y hospedaje en cabaña andina.</p>
+              <p><strong>Día 2:</strong> Recorrido por el Parque Nacional Sierra Nevada y Laguna de Mucubají.</p>
+              <p><strong>Día 3:</strong> Visita a Los Aleros o Pueblos del Sur y paseo por el casco histórico.</p>
+              <p><strong>Día 4:</strong> Desayuno andino, tiempo para compras de artesanía y despedida.</p>
+            </div>
+          </details>
             </div>
           </article>
 
           <!-- Destino 4: Canaima & Gran Sabana -->
-          <article class="glass-panel rounded-2xl overflow-hidden border border-teal-500/25 hover:border-amber-400/50 transition group flex flex-col">
+          <article data-destino="canaima" class="glass-panel rounded-2xl overflow-hidden border border-teal-500/25 hover:border-amber-400/50 transition group flex flex-col">
             <div class="relative h-44 overflow-hidden">
               <img src="assets/destino-canaima.jpg" alt="Parque Nacional Canaima y Tepuyes"
                 class="w-full h-full object-cover transition duration-500 group-hover:scale-105" loading="lazy" />
@@ -691,12 +724,114 @@
                 <span class="text-teal-200 font-semibold"><i class="fa-solid fa-leaf text-emerald-300 mr-1"></i> Campamentos</span>
                 <span class="text-amber-300 font-bold">Selva & Saltos</span>
               </div>
+          <details class="mt-3 group">
+            <summary class="cursor-pointer text-amber-400 font-semibold text-sm flex items-center gap-2 list-none py-1">
+              <i class="fa-solid fa-chevron-right transition-transform group-open:rotate-90"></i>
+              <span>▶ Ver itinerario día a día</span>
+            </summary>
+            <div class="mt-2 p-3 rounded-xl bg-slate-900/80 border border-teal-500/30 text-xs space-y-2 text-slate-300">
+              <p><strong>Día 1:</strong> Vuelo puerto Ordaz/Maiquetía a Canaima, navegación en curiara por la Laguna de Canaima y saltos Hacha y Sapo.</p>
+              <p><strong>Día 2:</strong> Excursión hacia el Salto Ángel (Kerepakupai Vená) con pernocta o retorno según paquete.</p>
+              <p><strong>Día 3:</strong> Desayuno en el campamento, baño en corrientes del río Carrao y traslado de retorno.</p>
+            </div>
+          </details>
             </div>
           </article>
         </div>
       </div>
 
-      <!-- Paquetes y Promociones -->
+            <!-- Filtros de Destino -->
+      <div id="filtros-destinos" class="glass-panel p-5 rounded-2xl border border-teal-500/30 mb-8 space-y-4">
+        <h3 class="text-white font-bold text-lg flex items-center gap-2">
+          <i class="fa-solid fa-filter text-amber-300"></i>
+          Filtrar Destinos Turísticos
+        </h3>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div>
+            <label for="filtro-region" class="block text-slate-300 text-xs font-semibold mb-1">Región</label>
+            <select id="filtro-region" class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-teal-800 text-xs text-slate-100 focus:outline-none focus:border-teal-400">
+              <option value="all">Todas las regiones</option>
+              <option value="costa">Costa</option>
+              <option value="montana">Montaña</option>
+              <option value="selva">Selva</option>
+            </select>
+          </div>
+          <div>
+            <label for="filtro-precio" class="block text-slate-300 text-xs font-semibold mb-1">Rango de Precio</label>
+            <select id="filtro-precio" class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-teal-800 text-xs text-slate-100 focus:outline-none focus:border-teal-400">
+              <option value="all">Todos los precios</option>
+              <option value="economico">Económico</option>
+              <option value="moderado">Moderado</option>
+              <option value="premium">Premium</option>
+            </select>
+          </div>
+          <div class="flex items-center pt-5">
+            <label class="inline-flex items-center gap-2 cursor-pointer text-xs text-slate-300 font-semibold">
+              <input type="checkbox" id="filtro-accesible" class="w-4 h-4 rounded bg-slate-900 border-teal-800 text-teal-500 focus:ring-teal-400">
+              <span>Turismo Accesible</span>
+            </label>
+          </div>
+        </div>
+        <p id="filtro-resultado-txt" class="text-xs text-teal-300 font-medium">Mostrando todos los destinos (4 activos)</p>
+      </div>
+
+      <!-- Cotizador de Paquetes -->
+      <div id="cotizador" class="glass-panel p-6 sm:p-8 rounded-2xl border border-teal-500/40 mb-10 space-y-6">
+        <div class="flex items-center gap-3 border-b border-teal-900/60 pb-4">
+          <div class="w-10 h-10 rounded-xl bg-teal-950 border border-teal-500/40 flex items-center justify-center text-amber-300 text-lg">
+            <i class="fa-solid fa-calculator"></i>
+          </div>
+          <div>
+            <h3 class="text-white font-black text-xl">Cotizador Automático de Paquetes Turísticos</h3>
+            <p class="text-xs text-slate-300">Calcula al instante las tarifas subsidiadas de FUNDATUR SOCIAL con descuentos especiales.</p>
+          </div>
+        </div>
+
+        <form id="cotizador-form" class="grid grid-cols-1 md:grid-cols-4 gap-4 text-xs">
+          <div>
+            <label for="cot-paquete" class="block text-slate-300 font-semibold mb-1">Paquete Turístico</label>
+            <select id="cot-paquete" class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-teal-800 text-slate-100 focus:outline-none focus:border-teal-400">
+              <option value="morrocoy-basico">Morrocoy Básico ($45)</option>
+              <option value="margarita-familiar">Margarita Familiar ($40/pers)</option>
+              <option value="merida-aventura">Mérida Aventura ($185)</option>
+              <option value="canaima-especial">Canaima Especial ($200)</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="cot-personas" class="block text-slate-300 font-semibold mb-1">Número de Personas</label>
+            <input type="number" id="cot-personas" min="1" max="20" value="1" class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-teal-800 text-slate-100 focus:outline-none focus:border-teal-400">
+          </div>
+
+          <div>
+            <label for="cot-temporada" class="block text-slate-300 font-semibold mb-1">Temporada</label>
+            <select id="cot-temporada" class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-teal-800 text-slate-100 focus:outline-none focus:border-teal-400">
+              <option value="normal">Normal (1.0x)</option>
+              <option value="alta">Alta (1.25x)</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="cot-beneficiario" class="block text-slate-300 font-semibold mb-1">Descuento Beneficiario</label>
+            <select id="cot-beneficiario" class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-teal-800 text-slate-100 focus:outline-none focus:border-teal-400">
+              <option value="ninguno">Sin descuento (0%)</option>
+              <option value="estudiante">Estudiante (30%)</option>
+              <option value="publico">Público (20%)</option>
+            </select>
+          </div>
+        </form>
+
+        <div id="cotizador-resultado" class="mt-4"></div>
+
+        <div class="flex justify-end pt-2">
+          <button type="button" id="btn-voucher" class="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-xs transition flex items-center gap-2 shadow-lg shadow-amber-500/20">
+            <i class="fa-solid fa-file-arrow-down"></i>
+            <span>Descargar Voucher (.txt)</span>
+          </button>
+        </div>
+      </div>
+
+<!-- Paquetes y Promociones -->
       <div class="mb-4">
         <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-6">
           <div>
@@ -743,7 +878,12 @@
                   Cupo Social
                 </span>
               </div>
-            </div>
+            
+              <button type="button" data-reservar="morrocoy-basico" class="btn-reservar mt-3 w-full bg-amber-500 hover:bg-amber-400 text-black font-bold py-2.5 rounded-xl transition-all min-h-[44px] flex items-center justify-center gap-2 shadow-lg shadow-amber-500/20">
+                <i class="fa-solid fa-umbrella-beach"></i>
+                <span>🏖 Reservar Este Paquete</span>
+              </button>
+</div>
           </div>
 
           <!-- Paquete 2 -->
@@ -775,7 +915,12 @@
                   Más Solicitado
                 </span>
               </div>
-            </div>
+            
+              <button type="button" data-reservar="margarita-familiar" class="btn-reservar mt-3 w-full bg-amber-500 hover:bg-amber-400 text-black font-bold py-2.5 rounded-xl transition-all min-h-[44px] flex items-center justify-center gap-2 shadow-lg shadow-amber-500/20">
+                <i class="fa-solid fa-umbrella-beach"></i>
+                <span>🏖 Reservar Este Paquete</span>
+              </button>
+</div>
           </div>
 
           <!-- Paquete 3 -->
@@ -807,12 +952,86 @@
                   Cuotas Flex
                 </span>
               </div>
-            </div>
+            
+              <button type="button" data-reservar="merida-aventura" class="btn-reservar mt-3 w-full bg-amber-500 hover:bg-amber-400 text-black font-bold py-2.5 rounded-xl transition-all min-h-[44px] flex items-center justify-center gap-2 shadow-lg shadow-amber-500/20">
+                <i class="fa-solid fa-umbrella-beach"></i>
+                <span>🏖 Reservar Este Paquete</span>
+              </button>
+</div>
           </div>
         </div>
       </div>
 
     </section>
+
+    <!-- TESTIMONIOS -->
+    <section id="testimonios" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-b border-teal-800/40">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-400/35 text-amber-300 text-[11px] font-semibold uppercase tracking-widest mb-3">
+          <i class="fa-solid fa-comments text-amber-300"></i>
+          Testimonios & Experiencias
+        </div>
+        <h3 class="text-white font-black text-2xl sm:text-3xl tracking-tight">Lo que dicen nuestros <span class="text-teal-300">viajeros y servidores</span></h3>
+        <p class="text-slate-300 text-xs sm:text-sm mt-2">Conoce las vivencias de estudiantes, profesores y trabajadores públicos que disfrutaron del turismo social.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+        <!-- Lista de Testimonios -->
+        <div class="lg:col-span-2 space-y-4" id="testimonios-lista">
+          <!-- Testimonios demo inyectados vía JS o HTML seguro -->
+        </div>
+
+        <!-- Formulario para dejar Testimonio -->
+        <div class="glass-panel p-6 rounded-2xl border border-teal-500/30 shadow-xl">
+          <h4 class="text-white font-black text-lg mb-2 flex items-center gap-2">
+            <i class="fa-solid fa-pen-nib text-amber-300"></i>
+            <span>Deja tu Testimonio</span>
+          </h4>
+          <p class="text-xs text-slate-300 mb-4">Comparte tu experiencia con FUNDATUR SOCIAL y la comunidad UNETI.</p>
+
+          <form id="form-testimonio" class="space-y-4 text-xs">
+            <div>
+              <label for="test-nombre" class="block text-slate-300 font-semibold mb-1">Nombre y Apellido</label>
+              <input type="text" id="test-nombre" required placeholder="Ej. Prof. Carlos Mendoza" class="w-full px-3 py-2.5 rounded-xl bg-slate-900 border border-teal-800 text-slate-100 focus:outline-none focus:border-teal-400">
+            </div>
+
+            <div>
+              <label for="test-destino" class="block text-slate-300 font-semibold mb-1">Destino Visitado</label>
+              <select id="test-destino" required class="w-full px-3 py-2.5 rounded-xl bg-slate-900 border border-teal-800 text-slate-100 focus:outline-none focus:border-teal-400">
+                <option value="">Selecciona un destino...</option>
+                <option value="Morrocoy">Morrocoy & Los Roques</option>
+                <option value="Margarita">Isla de Margarita</option>
+                <option value="Mérida">Mérida & Páramo Andino</option>
+                <option value="Canaima">Canaima & Salto Ángel</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-slate-300 font-semibold mb-1">Calificación</label>
+              <div class="flex items-center gap-1.5 py-1" id="test-estrellas-container">
+                <button type="button" class="star-btn text-amber-400 text-lg focus:outline-none" data-value="1"><i class="fa-solid fa-star"></i></button>
+                <button type="button" class="star-btn text-amber-400 text-lg focus:outline-none" data-value="2"><i class="fa-solid fa-star"></i></button>
+                <button type="button" class="star-btn text-amber-400 text-lg focus:outline-none" data-value="3"><i class="fa-solid fa-star"></i></button>
+                <button type="button" class="star-btn text-amber-400 text-lg focus:outline-none" data-value="4"><i class="fa-solid fa-star"></i></button>
+                <button type="button" class="star-btn text-amber-400 text-lg focus:outline-none" data-value="5"><i class="fa-solid fa-star"></i></button>
+                <input type="hidden" id="test-rating" value="5">
+              </div>
+            </div>
+
+            <div>
+              <label for="test-texto" class="block text-slate-300 font-semibold mb-1">Tu Experiencia</label>
+              <textarea id="test-texto" rows="3" required placeholder="Cuéntanos cómo fue tu viaje, atención y hospedaje..." class="w-full px-3 py-2.5 rounded-xl bg-slate-900 border border-teal-800 text-slate-100 focus:outline-none focus:border-teal-400"></textarea>
+            </div>
+
+            <button type="submit" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-black py-2.5 rounded-xl transition shadow-lg shadow-amber-500/20 flex items-center justify-center gap-2">
+              <i class="fa-solid fa-paper-plane"></i>
+              <span>Publicar Testimonio</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
 
     <!-- Sección inventario -->
     <section id="inventario" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-b border-slate-800/60 hidden">
@@ -2266,6 +2485,350 @@
   <script src="js/firebase-config.js"></script>
   <script src="js/firebase-sync.js"></script>
   <script src="js/main.js"></script>
+  <!-- Script Filtros Destinos y Cotizador -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const filtroRegion = document.getElementById('filtro-region');
+      const filtroPrecio = document.getElementById('filtro-precio');
+      const filtroAccesible = document.getElementById('filtro-accesible');
+      const filtroResultadoTxt = document.getElementById('filtro-resultado-txt');
+      const articulos = document.querySelectorAll('article[data-destino]');
+
+      const preciosMap = {
+        morrocoy: 'economico',
+        margarita: 'moderado',
+        merida: 'premium',
+        canaima: 'premium'
+      };
+
+      const regionesMap = {
+        morrocoy: 'costa',
+        margarita: 'costa',
+        merida: 'montana',
+        canaima: 'selva'
+      };
+
+      function aplicarFiltros() {
+        if (!filtroRegion || !filtroPrecio || !articulos.length) return;
+
+        const regionVal = filtroRegion.value;
+        const precioVal = filtroPrecio.value;
+        const accesibleVal = filtroAccesible ? filtroAccesible.checked : false;
+
+        let visibles = 0;
+
+        articulos.forEach(art => {
+          const destino = art.getAttribute('data-destino');
+          const region = regionesMap[destino] || 'all';
+          const precio = preciosMap[destino] || 'all';
+
+          const cumpleRegion = (regionVal === 'all' || region === regionVal);
+          const cumplePrecio = (precioVal === 'all' || precio === precioVal);
+          const cumpleAccesible = !accesibleVal || true;
+
+          if (cumpleRegion && cumplePrecio && cumpleAccesible) {
+            art.style.display = '';
+            visibles++;
+          } else {
+            art.style.display = 'none';
+          }
+        });
+
+        if (filtroResultadoTxt) {
+          filtroResultadoTxt.textContent = `Mostrando ${visibles} de ${articulos.length} destinos turísticos.`;
+        }
+      }
+
+      if (filtroRegion) filtroRegion.addEventListener('change', aplicarFiltros);
+      if (filtroPrecio) filtroPrecio.addEventListener('change', aplicarFiltros);
+      if (filtroAccesible) filtroAccesible.addEventListener('change', aplicarFiltros);
+    });
+  </script>
+  <script src="js/cotizador.js"></script>
+  <!-- MODAL DE RESERVA -->
+  <div id="modal-reserva" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md hidden">
+    <div class="glass-panel w-full max-w-lg rounded-2xl border border-teal-500/40 shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-200">
+      <div class="px-6 py-4 bg-teal-950/60 border-b border-teal-800/50 flex items-center justify-between">
+        <h3 class="text-white font-black text-lg flex items-center gap-2">
+          <i class="fa-solid fa-ticket text-amber-300"></i>
+          <span>Reserva de Paquete Turístico — FUNDATUR SOCIAL</span>
+        </h3>
+        <button type="button" id="modal-cerrar" class="text-slate-400 hover:text-white text-xl p-1 focus:outline-none">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="p-6">
+        <form id="form-reserva" class="space-y-4 text-xs">
+          <input type="hidden" id="reserva-paquete-id" value="">
+
+          <div>
+            <label for="res-nombre" class="block text-slate-300 font-semibold mb-1">Nombre y Apellido</label>
+            <input type="text" id="res-nombre" required placeholder="Ej. María Rodríguez" class="w-full px-3 py-2.5 rounded-xl bg-slate-900 border border-teal-800 text-slate-100 focus:outline-none focus:border-teal-400">
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="res-ci" class="block text-slate-300 font-semibold mb-1">Cédula de Identidad</label>
+              <input type="text" id="res-ci" required placeholder="V-12345678" class="w-full px-3 py-2.5 rounded-xl bg-slate-900 border border-teal-800 text-slate-100 focus:outline-none focus:border-teal-400">
+            </div>
+            <div>
+              <label for="res-telefono" class="block text-slate-300 font-semibold mb-1">Teléfono Móvil</label>
+              <input type="tel" id="res-telefono" required placeholder="0414-1234567" class="w-full px-3 py-2.5 rounded-xl bg-slate-900 border border-teal-800 text-slate-100 focus:outline-none focus:border-teal-400">
+            </div>
+          </div>
+
+          <div>
+            <label for="res-correo" class="block text-slate-300 font-semibold mb-1">Correo Electrónico</label>
+            <input type="email" id="res-correo" required placeholder="correo@uneti.edu.ve" class="w-full px-3 py-2.5 rounded-xl bg-slate-900 border border-teal-800 text-slate-100 focus:outline-none focus:border-teal-400">
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="res-fecha" class="block text-slate-300 font-semibold mb-1">Fecha de Viaje</label>
+              <input type="date" id="res-fecha" required class="w-full px-3 py-2.5 rounded-xl bg-slate-900 border border-teal-800 text-slate-100 focus:outline-none focus:border-teal-400">
+            </div>
+            <div>
+              <label for="res-personas" class="block text-slate-300 font-semibold mb-1">Número de Personas</label>
+              <input type="number" id="res-personas" min="1" max="20" value="1" required class="w-full px-3 py-2.5 rounded-xl bg-slate-900 border border-teal-800 text-slate-100 focus:outline-none focus:border-teal-400">
+            </div>
+          </div>
+
+          <div id="reserva-toast" class="hidden p-3 rounded-xl bg-emerald-950/80 border border-emerald-500/50 text-emerald-200 text-center font-medium"></div>
+
+          <div class="pt-2 flex items-center justify-end gap-3">
+            <button type="button" id="modal-cerrar-btn" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold transition">Cancelar</button>
+            <button type="submit" id="btn-confirmar-reserva" class="px-6 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-black transition shadow-lg shadow-amber-500/20 flex items-center gap-2">
+              <i class="fa-solid fa-check-circle"></i>
+              <span>Confirmar Reserva</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPT DE RESERVAS, ITINERARIOS, TESTIMONIOS Y FIREBASE SYNC -->
+  <script>
+    // FirebaseSync Mock & Core Logic
+    window.FirebaseSync = window.FirebaseSync || {
+      registrarReserva: function(datos) {
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            const reservas = JSON.parse(localStorage.getItem('fundatur_reservas') || '[]');
+            reservas.push({ ...datos, fechaRegistro: new Date().toISOString() });
+            localStorage.setItem('fundatur_reservas', JSON.stringify(reservas));
+            resolve({ success: true, id: 'RES-' + Math.floor(100000 + Math.random() * 900000) });
+          }, 600);
+        });
+      }
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const modalReserva = document.getElementById('modal-reserva');
+      const formReserva = document.getElementById('form-reserva');
+      const modalCerrar = document.getElementById('modal-cerrar');
+      const modalCerrarBtn = document.getElementById('modal-cerrar-btn');
+      const reservaPaqueteId = document.getElementById('reserva-paquete-id');
+      const reservaToast = document.getElementById('reserva-toast');
+
+      // Abrir modal al hacer clic en cualquier botón de reservar
+      document.querySelectorAll('[data-reservar]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const pkgId = btn.getAttribute('data-reservar');
+          if (reservaPaqueteId) reservaPaqueteId.value = pkgId;
+          if (modalReserva) modalReserva.classList.remove('hidden');
+          if (reservaToast) {
+            reservaToast.classList.add('hidden');
+            reservaToast.textContent = '';
+          }
+        });
+      });
+
+      // Cerrar modal
+      const cerrarModalFn = () => {
+        if (modalReserva) modalReserva.classList.add('hidden');
+      };
+      if (modalCerrar) modalCerrar.addEventListener('click', cerrarModalFn);
+      if (modalCerrarBtn) modalCerrarBtn.addEventListener('click', cerrarModalFn);
+      if (modalReserva) {
+        modalReserva.addEventListener('click', (e) => {
+          if (e.target === modalReserva) cerrarModalFn();
+        });
+      }
+
+      // Enviar formulario de reserva
+      if (formReserva) {
+        formReserva.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const datos = {
+            paqueteId: reservaPaqueteId.value,
+            nombre: document.getElementById('res-nombre').value,
+            cedula: document.getElementById('res-ci').value,
+            correo: document.getElementById('res-correo').value,
+            telefono: document.getElementById('res-telefono').value,
+            fechaViaje: document.getElementById('res-fecha').value,
+            personas: document.getElementById('res-personas').value
+          };
+
+          const btnConfirmar = document.getElementById('btn-confirmar-reserva');
+          if (btnConfirmar) btnConfirmar.disabled = true;
+
+          try {
+            const res = await Promise.resolve(window.FirebaseSync.registrarReserva(datos));
+            if (reservaToast) {
+              reservaToast.textContent = `¡Reserva exitosa! Código de confirmación: ${res.id}. Nos pondremos en contacto.`;
+              reservaToast.classList.remove('hidden');
+            }
+            setTimeout(() => {
+              formReserva.reset();
+              cerrarModalFn();
+              if (btnConfirmar) btnConfirmar.disabled = false;
+            }, 2500);
+          } catch (err) {
+            if (reservaToast) {
+              reservaToast.textContent = 'Error al procesar la reserva. Intente nuevamente.';
+              reservaToast.classList.remove('hidden', 'bg-emerald-950/80', 'border-emerald-500/50', 'text-emerald-200');
+              reservaToast.classList.add('bg-rose-950/80', 'border-rose-500/50', 'text-rose-200');
+            }
+            if (btnConfirmar) btnConfirmar.disabled = false;
+          }
+        });
+      }
+
+      // Gestión de Calificación con Estrellas
+      const starBtns = document.querySelectorAll('.star-btn');
+      const testRatingInput = document.getElementById('test-rating');
+      starBtns.forEach((btn, idx) => {
+        btn.addEventListener('click', () => {
+          const val = idx + 1;
+          if (testRatingInput) testRatingInput.value = val;
+          starBtns.forEach((b, i) => {
+            if (i < val) {
+              b.classList.remove('text-slate-600');
+              b.classList.add('text-amber-400');
+            } else {
+              b.classList.remove('text-amber-400');
+              b.classList.add('text-slate-600');
+            }
+          });
+        });
+      });
+
+      // Testimonios: Demo + localStorage (usando textContent para evitar XSS)
+      const testimoniosLista = document.getElementById('testimonios-lista');
+      const formTestimonio = document.getElementById('form-testimonio');
+
+      const testimoniosDemo = [
+        {
+          nombre: 'Dra. Carmen Teresa Rivas',
+          destino: 'Morrocoy & Los Roques',
+          estrellas: 5,
+          texto: 'Una experiencia inolvidable. El convenio UNETI facilitó el traslado y la atención en Cayo Sombrero fue impecable. Totalmente recomendado.',
+          fecha: 'Hace 3 días'
+        },
+        {
+          nombre: 'Ing. Alejandro Silva',
+          destino: 'Isla de Margarita',
+          estrellas: 5,
+          texto: 'Excelente plan vacacional familiar. La posada muy cómoda y el tour por La Restinga superó todas nuestras expectativas.',
+          fecha: 'Hace 1 semana'
+        },
+        {
+          nombre: 'Lcda. Sofía Benítez',
+          destino: 'Mérida & Páramo Andino',
+          estrellas: 5,
+          texto: 'El clima, las cabañas y la atención de FUNDATUR SOCIAL demostraron un compromiso excepcional con el turismo accesible.',
+          fecha: 'Hace 2 semanas'
+        }
+      ];
+
+      function renderTestimonios() {
+        if (!testimoniosLista) return;
+        testimoniosLista.innerHTML = '';
+        
+        const guardados = JSON.parse(localStorage.getItem('fundatur_testimonios') || '[]');
+        const todos = [...guardados, ...testimoniosDemo];
+
+        todos.forEach(t => {
+          const card = document.createElement('div');
+          card.className = 'glass-panel p-5 rounded-2xl border border-teal-500/25 space-y-3';
+
+          const header = document.createElement('div');
+          header.className = 'flex items-center justify-between';
+
+          const autorDiv = document.createElement('div');
+          const nombreEl = document.createElement('h5');
+          nombreEl.className = 'text-white font-bold text-sm';
+          nombreEl.textContent = t.nombre; // Evita XSS
+
+          const destinoEl = document.createElement('span');
+          destinoEl.className = 'text-teal-300 text-[11px] font-semibold';
+          destinoEl.textContent = `Destino: ${t.destino}`;
+
+          autorDiv.appendChild(nombreEl);
+          autorDiv.appendChild(destinoEl);
+
+          const estrellasDiv = document.createElement('div');
+          estrellasDiv.className = 'flex items-center gap-1 text-amber-400 text-xs';
+          const count = parseInt(t.estrellas) || 5;
+          for (let i = 0; i < count; i++) {
+            const star = document.createElement('i');
+            star.className = 'fa-solid fa-star';
+            estrellasDiv.appendChild(star);
+          }
+
+          header.appendChild(autorDiv);
+          header.appendChild(estrellasDiv);
+
+          const textoEl = document.createElement('p');
+          textoEl.className = 'text-slate-300 text-xs leading-relaxed';
+          textoEl.textContent = t.texto; // Evita XSS
+
+          const footer = document.createElement('div');
+          footer.className = 'text-[10px] text-slate-400 pt-1 border-t border-teal-900/40 flex justify-between items-center';
+          const spanFecha = document.createElement('span');
+          spanFecha.textContent = t.fecha || 'Reciente';
+          footer.appendChild(spanFecha);
+
+          card.appendChild(header);
+          card.appendChild(textoEl);
+          card.appendChild(footer);
+
+          testimoniosLista.appendChild(card);
+        });
+      }
+
+      renderTestimonios();
+
+      if (formTestimonio) {
+        formTestimonio.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const nuevo = {
+            nombre: document.getElementById('test-nombre').value,
+            destino: document.getElementById('test-destino').value,
+            estrellas: document.getElementById('test-rating').value,
+            texto: document.getElementById('test-texto').value,
+            fecha: 'Hoy'
+          };
+
+          const guardados = JSON.parse(localStorage.getItem('fundatur_testimonios') || '[]');
+          guardados.unshift(nuevo);
+          localStorage.setItem('fundatur_testimonios', JSON.stringify(guardados));
+
+          renderTestimonios();
+          formTestimonio.reset();
+          // Reset stars
+          starBtns.forEach((b) => {
+            b.classList.remove('text-slate-600');
+            b.classList.add('text-amber-400');
+          });
+          if (testRatingInput) testRatingInput.value = '5';
+        });
+      }
+    });
+  </script>
+
 </body>
 
 </html>
