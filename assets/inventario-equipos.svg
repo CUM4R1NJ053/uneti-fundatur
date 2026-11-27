@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" fill="none">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="640" y2="360" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#052938"/>
+      <stop offset="100%" stop-color="#021521"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="360" rx="16" fill="url(#bg2)"/>
+  <circle cx="150" cy="80" r="100" fill="#2DD4BF" fill-opacity="0.10"/>
+  <circle cx="520" cy="270" r="110" fill="#F59E0B" fill-opacity="0.10"/>
+  <!-- Desktop Tower -->
+  <rect x="96" y="76" width="128" height="208" rx="14" fill="#0A3D4A" stroke="#2DD4BF" stroke-opacity="0.5" stroke-width="2"/>
+  <rect x="116" y="100" width="88" height="14" rx="4" fill="#021521"/>
+  <rect x="116" y="126" width="88" height="14" rx="4" fill="#021521"/>
+  <circle cx="160" cy="186" r="18" fill="#021521" stroke="#2DD4BF" stroke-width="2.5"/>
+  <circle cx="160" cy="186" r="6" fill="#2DD4BF"/>
+  <rect x="122" y="230" width="76" height="8" rx="4" fill="#F59E0B" fill-opacity="0.75"/>
+  <!-- SSD Drive -->
+  <rect x="266" y="96" width="150" height="92" rx="10" fill="#07293A" stroke="#F59E0B" stroke-opacity="0.6" stroke-width="2"/>
+  <rect x="284" y="114" width="60" height="10" rx="3" fill="#F59E0B"/>
+  <rect x="284" y="136" width="114" height="8" rx="4" fill="#2DD4BF" fill-opacity="0.55"/>
+  <rect x="284" y="154" width="84" height="8" rx="4" fill="#CBD5E1" fill-opacity="0.45"/>
+  <!-- RAM Module -->
+  <rect x="266" y="212" width="268" height="58" rx="8" fill="#07293A" stroke="#2DD4BF" stroke-opacity="0.5" stroke-width="2"/>
+  <rect x="286" y="226" width="32" height="24" rx="3" fill="#0D9488"/>
+  <rect x="330" y="226" width="32" height="24" rx="3" fill="#0D9488"/>
+  <rect x="374" y="226" width="32" height="24" rx="3" fill="#0D9488"/>
+  <rect x="418" y="226" width="32" height="24" rx="3" fill="#0D9488"/>
+  <rect x="462" y="226" width="32" height="24" rx="3" fill="#0D9488"/>
+  <rect x="286" y="264" width="228" height="6" rx="2" fill="#F59E0B"/>
+  <!-- Asset Tag Badge -->
+  <rect x="444" y="96" width="110" height="92" rx="12" fill="#021521" stroke="#34D399" stroke-opacity="0.55" stroke-width="2"/>
+  <circle cx="499" cy="126" r="14" fill="#34D399" fill-opacity="0.2" stroke="#34D399" stroke-width="2"/>
+  <path d="M492 126 L497 131 L507 121" stroke="#34D399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="466" y="154" width="66" height="8" rx="4" fill="#E2E8F0" fill-opacity="0.75"/>
+  <rect x="476" y="168" width="46" height="6" rx="3" fill="#2DD4BF" fill-opacity="0.7"/>
+</svg>
