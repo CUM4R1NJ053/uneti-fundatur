@@ -12,7 +12,7 @@ const CONFIG = {
     slogan: "Tu descanso es nuestro destino: turismo accesible para quienes mueven el país.",
     university: "Universidad Nacional Experimental de las Telecomunicaciones e Informática (UNETI)",
     acronym: "FUNDATUR / UNETI",
-    subject: "Diagnóstico Tecnológico e Infraestructura de TI • Proyecto Socioeconómico",
+    subject: "Diagnóstico Tecnológico e Infraestructura de TI • Proyecto Socio Tecnológico",
     trayecto: "PNF en Ingeniería en Informática",
     academicPeriod: "Periodo Académico 2026-2027",
     projectTitle: "Auditoría del Parque Informático, Implementación de Mesa de Ayuda GLPI / RustDesk y Plan de Reemplazo Tecnológico en 4 Sedes",
@@ -153,7 +153,7 @@ const INITIAL_TEAM = {
       name: "Prof. Asesor de Proyecto",
       title: "Ing. en Informática / Magíster en Telecomunicaciones",
       role: "Tutor Académico de Proyecto - UNETI",
-      department: "Coordinación de Proyecto Socioeconómico - UNETI",
+      department: "Coordinación de Proyecto Socio Tecnológico - UNETI",
       email: "tutor.academico@uneti.edu.ve"
     },
     {
@@ -326,7 +326,7 @@ const INITIAL_SESSIONS = [
     week: "Semanas 15 - 16",
     status: "Aprobado",
     statusColor: "emerald",
-    title: "Evaluación de Sostenibilidad, Impacto Socioeconómico y Cierre de Proyecto",
+    title: "Evaluación de Sostenibilidad, Impacto Socio Tecnológico y Cierre de Proyecto",
     date: "Marzo 2025",
     summary: "Medición final de indicadores: 85% de reducción en tiempos de inactividad de sucursales, ahorro económico total por adopción de software libre y operatividad garantizada para el turismo social.",
     objectives: [
@@ -337,7 +337,7 @@ const INITIAL_SESSIONS = [
     resources: [
       {
         id: "res-5-1",
-        title: "Tomo Académico Final - Proyecto Socioeconómico UNETI",
+        title: "Tomo Académico Final - Proyecto Socio Tecnológico UNETI",
         type: "pdf",
         driveUrl: "https://drive.google.com/file/d/1vC_EX_TOMO_FINAL_TESIS_UNETI/view?usp=sharing",
         description: "Memoria descriptiva completa con metodología, marco legal, estudio técnico-financiero y conclusiones."
@@ -2808,7 +2808,7 @@ class UIManager {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `UNETI_Proyecto_Socioeconomico_${new Date().toISOString().slice(0, 10)}.json`;
+    a.download = `UNETI_Proyecto_Socio_Tecnológico_${new Date().toISOString().slice(0, 10)}.json`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);

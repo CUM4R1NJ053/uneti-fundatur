@@ -29,7 +29,7 @@ export const INITIAL_TEAM = {
       name: "Prof. Asesor de Proyecto",
       title: "Ing. en Informática / Magíster en Telecomunicaciones",
       role: "Tutor Académico de Proyecto - UNETI",
-      department: "Coordinación de Proyecto Socioeconómico - UNETI",
+      department: "Coordinación de Proyecto Socio Tecnológico - UNETI",
       email: "tutor.academico@uneti.edu.ve"
     },
     {
@@ -202,7 +202,7 @@ export const INITIAL_SESSIONS = [
     week: "Semanas 15 - 16",
     status: "Aprobado",
     statusColor: "emerald",
-    title: "Evaluación de Sostenibilidad, Impacto Socioeconómico y Cierre de Proyecto",
+    title: "Evaluación de Sostenibilidad, Impacto Socio Tecnológico y Cierre de Proyecto",
     date: "Marzo 2025",
     summary: "Medición final de indicadores: 85% de reducción en tiempos de inactividad de sucursales, ahorro económico total por adopción de software libre y operatividad garantizada para el turismo social.",
     objectives: [
@@ -213,7 +213,7 @@ export const INITIAL_SESSIONS = [
     resources: [
       {
         id: "res-5-1",
-        title: "Tomo Académico Final - Proyecto Socioeconómico UNETI",
+        title: "Tomo Académico Final - Proyecto Socio Tecnológico UNETI",
         type: "pdf",
         driveUrl: "https://drive.google.com/file/d/1vC_EX_TOMO_FINAL_TESIS_UNETI/view?usp=sharing",
         description: "Memoria descriptiva completa con metodología, marco legal, estudio técnico-financiero y conclusiones."

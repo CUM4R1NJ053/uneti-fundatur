@@ -7,7 +7,7 @@ export const CONFIG = {
     slogan: "Tu descanso es nuestro destino: turismo accesible para quienes mueven el país.",
     university: "Universidad Nacional Experimental de las Telecomunicaciones e Informática (UNETI)",
     acronym: "FUNDATUR / UNETI",
-    subject: "Diagnóstico Tecnológico e Infraestructura de TI • Proyecto Socioeconómico",
+    subject: "Diagnóstico Tecnológico e Infraestructura de TI • Proyecto Socio Tecnológico",
     trayecto: "PNF en Ingeniería en Informática",
     academicPeriod: "Periodo Académico 2026-2027",
     projectTitle: "Auditoría del Parque Informático, Implementación de Mesa de Ayuda GLPI / RustDesk y Plan de Reemplazo Tecnológico en 4 Sedes",

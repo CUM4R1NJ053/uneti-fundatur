@@ -1,15 +1,15 @@
 # Plataforma Web Académica — UNETI
-## Proyecto Socioeconómico · Ingeniería en Informática
+## Proyecto Socio tecnológico · Ingeniería en Informática
 
 **Universidad Nacional Experimental de las Telecomunicaciones e Informática (UNETI)**  
 *Carrera: Ingeniería en Informática*  
-*Materia: Proyecto Socioeconómico · Periodo Académico 2026-2027*
+*Materia: Proyecto Socio Tecnológico · Periodo Académico 2026-2027*
 
 ---
 
 ## 📋 Descripción General
 
-Plataforma web académica de alto impacto, interactiva y modular, desarrollada para la gestión, presentación y evaluación continua de las **Sesiones Didácticas** del Proyecto Socioeconómico.
+Plataforma web académica de alto impacto, interactiva y modular, desarrollada para la gestión, presentación y evaluación continua de las **Sesiones Didácticas** del Proyecto Socio tecnológico.
 
 El portal integra la identidad institucional oficial de la UNETI con un diseño moderno (High-Impact UI/UX), soporte 100% responsivo, gestión dinámica de integrantes y jurado evaluador, y un visor multimedia conectado directamente a **Google Drive**. Todo funciona directamente desde el archivo `index.html` sin necesidad de servidores ni instalaciones.
 
@@ -107,7 +107,7 @@ Abre el archivo `js/config.js` con cualquier editor de texto (Bloc de notas, VS 
 institution: {
   name: "Universidad Nacional Experimental de las Telecomunicaciones e Informática",
   acronym: "UNETI",
-  subject: "Proyecto Socioeconómico",
+  subject: "Proyecto Socio Tecnológico",
   trayecto: "Ingeniería en Informática",        // ← Tu carrera aquí
   academicPeriod: "Periodo Académico 2024-2025", // ← Año académico
   projectTitle: "Título de tu proyecto aquí",    // ← Título real del proyecto
@@ -183,7 +183,7 @@ Para cambiar el logo, reemplaza el archivo `assets/logo-uneti.png` con tu imagen
 
 ### Paso 3 — Subir a Google Classroom
 1. Entra a [classroom.google.com](https://classroom.google.com) con tu cuenta institucional.
-2. Busca la tarea asignada de **Proyecto Socioeconómico**.
+2. Busca la tarea asignada de **Proyecto Socio tecnológico**.
 3. Haz clic en **"Agregar o crear"** → **"Archivo"**.
 4. Sube el archivo **`UNETI.zip`**.
 5. Haz clic en **"Entregar"** (o "Turn in").
@@ -240,6 +240,6 @@ Para sincronizar los datos entre los dos integrantes del equipo:
 ## 🔧 Créditos y Autoría
 
 Desarrollado para la comunidad universitaria de la **UNETI** — *Ingeniería en Informática*.  
-Periodo Académico 2025-2026 · Proyecto Socioeconómico.
+Periodo Académico 2025-2026 · Proyecto Socio tecnológico.
 
 *Plataforma construida con HTML5, Tailwind CSS y JavaScript Vanilla.*
