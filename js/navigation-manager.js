@@ -12,8 +12,8 @@ export class NavigationManager {
       equipo: { id: 'equipo', element: null, requiresBanner: false }
     };
 
-    this.activeButtonClass = 'bg-sky-500/20 text-sky-300 border border-sky-500/50 shadow-sm shadow-sky-500/20 font-bold';
-    this.inactiveButtonClass = 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 border border-transparent';
+    this.activeButtonClass = 'bg-teal-500/20 text-teal-200 border border-teal-400/50 shadow-sm shadow-teal-500/20 font-bold';
+    this.inactiveButtonClass = 'text-slate-300 hover:text-white hover:bg-teal-900/40 border border-transparent';
     this.mobileNav = null;
 
     this.init = this.init.bind(this);

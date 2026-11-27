@@ -1,25 +1,25 @@
 /* Variables CSS */
 
 :root {
-  --uneti-navy: #0A192F;
-  --uneti-deep-blue: #0F172A;
-  --uneti-primary: #0284C7;
-  --uneti-secondary: #2563EB;
-  --uneti-accent: #38BDF8;
-  --uneti-cyan: #06B6D4;
-  --uneti-slate: #1E293B;
-  --uneti-border: rgba(148, 163, 184, 0.15);
+  --uneti-navy: #071E26;
+  --uneti-deep-blue: #0B2A35;
+  --uneti-primary: #0D9488;
+  --uneti-secondary: #F59E0B;
+  --uneti-accent: #2DD4BF;
+  --uneti-cyan: #14B8A6;
+  --uneti-slate: #113440;
+  --uneti-border: rgba(45, 212, 191, 0.16);
 }
 
-/* Estilos base */
+/* Estilos base - Identidad Turismo Social (Océano Turquesa & Sol Dorado) */
 body {
-  background-color: #0B1120;
+  background-color: #061A22;
   background-image: 
-    radial-gradient(at 0% 0%, rgba(2, 132, 199, 0.12) 0px, transparent 50%),
-    radial-gradient(at 100% 100%, rgba(37, 99, 235, 0.1) 0px, transparent 50%),
-    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+    radial-gradient(at 0% 0%, rgba(13, 148, 136, 0.22) 0px, transparent 55%),
+    radial-gradient(at 100% 0%, rgba(245, 158, 11, 0.12) 0px, transparent 45%),
+    radial-gradient(at 100% 100%, rgba(20, 184, 166, 0.14) 0px, transparent 55%),
+    radial-gradient(at 20% 85%, rgba(245, 158, 11, 0.08) 0px, transparent 50%);
+  background-size: 100% 100%;
   color: #F8FAFC;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   min-height: 100vh;
@@ -28,24 +28,24 @@ body {
 
 /* Paneles glass */
 .glass-panel {
-  background: rgba(15, 23, 42, 0.75);
+  background: rgba(10, 36, 46, 0.78);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(56, 189, 248, 0.12);
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(45, 212, 191, 0.16);
+  box-shadow: 0 12px 32px -10px rgba(2, 18, 24, 0.55);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .glass-panel:hover {
-  border-color: rgba(56, 189, 248, 0.28);
-  box-shadow: 0 15px 35px -5px rgba(2, 132, 199, 0.18);
+  border-color: rgba(245, 158, 11, 0.32);
+  box-shadow: 0 16px 36px -6px rgba(13, 148, 136, 0.22);
 }
 
 .glass-header {
-  background: rgba(11, 17, 32, 0.88);
+  background: rgba(6, 26, 34, 0.9);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgba(56, 189, 248, 0.15);
+  border-bottom: 1px solid rgba(45, 212, 191, 0.18);
 }
 
 /* Efectos hover */
@@ -59,7 +59,7 @@ body {
   left: -2px;
   right: -2px;
   bottom: -2px;
-  background: linear-gradient(45deg, #0284c7, #38bdf8, #2563eb);
+  background: linear-gradient(45deg, #0d9488, #2dd4bf, #f59e0b);
   border-radius: inherit;
   z-index: -1;
   opacity: 0;
@@ -76,15 +76,15 @@ body {
   height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #0B1120;
+  background: #061A22;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1E293B;
+  background: #113440;
   border-radius: 4px;
-  border: 1px solid rgba(56, 189, 248, 0.2);
+  border: 1px solid rgba(45, 212, 191, 0.25);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #0284C7;
+  background: #0D9488;
 }
 
 /* Animaciones */
