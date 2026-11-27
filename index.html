@@ -51,10 +51,10 @@
   </script>
 
   
-  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/styles.css?v=20261127" />
 </head>
 
-<body class="text-slate-100 min-h-screen flex flex-col antialiased" style="background-color:#0A3D4A">
+<body class="text-slate-100 min-h-screen flex flex-col antialiased">
 
   <!-- Banner admin -->
   <aside id="admin-floating-banner"
@@ -575,6 +575,238 @@
               class="flex items-center justify-between p-2.5 rounded-lg bg-slate-800/50 border border-slate-700/50 text-sm">
               <span class="text-slate-400">Tutor</span>
               <span id="config-tutor" class="text-white font-semibold text-xs">—</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Zonas de Viaje (Destinos Turísticos) -->
+      <div class="mt-12 mb-10">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-6">
+          <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-950/70 border border-teal-500/30 text-teal-200 text-[11px] font-semibold uppercase tracking-widest mb-2">
+              <i class="fa-solid fa-compass text-amber-300"></i>
+              Zonas de Viaje
+            </div>
+            <h3 class="text-white font-black text-2xl tracking-tight">Destinos Turísticos <span class="text-amber-400">Nacionales</span></h3>
+            <p class="text-slate-300 text-xs sm:text-sm mt-1">Rutas recreacionales y ecoturísticas disponibles para estudiantes y trabajadores públicos.</p>
+          </div>
+          <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-teal-200 bg-teal-950/60 border border-teal-700/40 px-3 py-1.5 rounded-xl shrink-0">
+            <i class="fa-solid fa-umbrella-beach text-amber-300"></i>
+            4 Regiones Activas
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <!-- Destino 1: Morrocoy & Los Roques -->
+          <article class="glass-panel rounded-2xl overflow-hidden border border-teal-500/25 hover:border-amber-400/50 transition group flex flex-col">
+            <div class="relative h-44 overflow-hidden">
+              <img src="assets/destino-morrocoy.jpg" alt="Parque Nacional Morrocoy y Cayos"
+                class="w-full h-full object-cover transition duration-500 group-hover:scale-105" loading="lazy" />
+              <div class="absolute inset-0 bg-gradient-to-t from-[#021521]/90 via-transparent to-transparent"></div>
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-teal-500/90 text-slate-950 font-extrabold text-[10px] uppercase tracking-wider shadow">
+                Costa Caribeña
+              </span>
+              <span class="absolute bottom-3 left-3 text-white font-bold text-sm flex items-center gap-1.5">
+                <i class="fa-solid fa-location-dot text-amber-300"></i> Falcón · Morrocoy
+              </span>
+            </div>
+            <div class="p-4 flex-1 flex flex-col justify-between">
+              <p class="text-slate-300 text-xs leading-relaxed mb-3">
+                Aguas cristalinas, cayos de arena blanca y traslados en peñero con jornada de playa guiada y recreación familiar.
+              </p>
+              <div class="flex items-center justify-between text-[11px] pt-2 border-t border-teal-800/40">
+                <span class="text-teal-200 font-semibold"><i class="fa-solid fa-sun text-amber-300 mr-1"></i> Todo el año</span>
+                <span class="text-amber-300 font-bold">Playa & Cayos</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Destino 2: Isla de Margarita -->
+          <article class="glass-panel rounded-2xl overflow-hidden border border-teal-500/25 hover:border-amber-400/50 transition group flex flex-col">
+            <div class="relative h-44 overflow-hidden">
+              <img src="assets/destino-margarita.jpg" alt="Isla de Margarita y Bahías"
+                class="w-full h-full object-cover transition duration-500 group-hover:scale-105" loading="lazy" />
+              <div class="absolute inset-0 bg-gradient-to-t from-[#021521]/90 via-transparent to-transparent"></div>
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-amber-400 text-slate-950 font-extrabold text-[10px] uppercase tracking-wider shadow">
+                Destino Insular
+              </span>
+              <span class="absolute bottom-3 left-3 text-white font-bold text-sm flex items-center gap-1.5">
+                <i class="fa-solid fa-location-dot text-amber-300"></i> Nueva Esparta · Margarita
+              </span>
+            </div>
+            <div class="p-4 flex-1 flex flex-col justify-between">
+              <p class="text-slate-300 text-xs leading-relaxed mb-3">
+                Posadas conveniadas frente al mar, recorridos históricos por castillos coloniales y atardeceres en Playa El Agua.
+              </p>
+              <div class="flex items-center justify-between text-[11px] pt-2 border-t border-teal-800/40">
+                <span class="text-teal-200 font-semibold"><i class="fa-solid fa-ship text-teal-300 mr-1"></i> Ferry / Aéreo</span>
+                <span class="text-amber-300 font-bold">Sol & Cultura</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Destino 3: Andes Venezolanos / Mérida -->
+          <article class="glass-panel rounded-2xl overflow-hidden border border-teal-500/25 hover:border-amber-400/50 transition group flex flex-col">
+            <div class="relative h-44 overflow-hidden">
+              <img src="assets/destino-merida.jpg" alt="Sierra Nevada de Mérida"
+                class="w-full h-full object-cover transition duration-500 group-hover:scale-105" loading="lazy" />
+              <div class="absolute inset-0 bg-gradient-to-t from-[#021521]/90 via-transparent to-transparent"></div>
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-emerald-400 text-slate-950 font-extrabold text-[10px] uppercase tracking-wider shadow">
+                Alta Montaña
+              </span>
+              <span class="absolute bottom-3 left-3 text-white font-bold text-sm flex items-center gap-1.5">
+                <i class="fa-solid fa-location-dot text-amber-300"></i> Mérida · Sierra Nevada
+              </span>
+            </div>
+            <div class="p-4 flex-1 flex flex-col justify-between">
+              <p class="text-slate-300 text-xs leading-relaxed mb-3">
+                Clima de páramo, cabañas turísticas, ruta por pueblos andinos, parques temáticos y vistas al Sistema Teleférico Mukumbarí.
+              </p>
+              <div class="flex items-center justify-between text-[11px] pt-2 border-t border-teal-800/40">
+                <span class="text-teal-200 font-semibold"><i class="fa-solid fa-mountain text-emerald-300 mr-1"></i> Ecoturismo</span>
+                <span class="text-amber-300 font-bold">Montaña & Páramo</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Destino 4: Canaima & Gran Sabana -->
+          <article class="glass-panel rounded-2xl overflow-hidden border border-teal-500/25 hover:border-amber-400/50 transition group flex flex-col">
+            <div class="relative h-44 overflow-hidden">
+              <img src="assets/destino-canaima.jpg" alt="Parque Nacional Canaima y Tepuyes"
+                class="w-full h-full object-cover transition duration-500 group-hover:scale-105" loading="lazy" />
+              <div class="absolute inset-0 bg-gradient-to-t from-[#021521]/90 via-transparent to-transparent"></div>
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-orange-400 text-slate-950 font-extrabold text-[10px] uppercase tracking-wider shadow">
+                Aventura Natural
+              </span>
+              <span class="absolute bottom-3 left-3 text-white font-bold text-sm flex items-center gap-1.5">
+                <i class="fa-solid fa-location-dot text-amber-300"></i> Bolívar · Canaima
+              </span>
+            </div>
+            <div class="p-4 flex-1 flex flex-col justify-between">
+              <p class="text-slate-300 text-xs leading-relaxed mb-3">
+                Expediciones a lagunas, saltos de agua y tepuyes milenarios con guías certificados y campamentos ecológicos.
+              </p>
+              <div class="flex items-center justify-between text-[11px] pt-2 border-t border-teal-800/40">
+                <span class="text-teal-200 font-semibold"><i class="fa-solid fa-leaf text-emerald-300 mr-1"></i> Campamentos</span>
+                <span class="text-amber-300 font-bold">Selva & Saltos</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- Paquetes y Promociones -->
+      <div class="mb-4">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-6">
+          <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-400/35 text-amber-300 text-[11px] font-semibold uppercase tracking-widest mb-2">
+              <i class="fa-solid fa-tags text-amber-300"></i>
+              Paquetes y Promociones
+            </div>
+            <h3 class="text-white font-black text-2xl tracking-tight">Planes Sociales <span class="text-teal-300">y Descuentos</span></h3>
+            <p class="text-slate-300 text-xs sm:text-sm mt-1">Tarifas subsidiadas con facilidades de pago para comunidad universitaria y sector público.</p>
+          </div>
+          <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-amber-200 bg-amber-950/50 border border-amber-500/35 px-3 py-1.5 rounded-xl shrink-0">
+            <i class="fa-solid fa-percent text-amber-300"></i>
+            Hasta 35% de Descuento Social
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <!-- Paquete 1 -->
+          <div class="glass-panel rounded-2xl overflow-hidden border border-teal-500/25 hover:border-teal-400/60 transition flex flex-col">
+            <div class="relative h-40 overflow-hidden">
+              <img src="assets/destino-morrocoy.jpg" alt="Promoción Full Day Playero Morrocoy"
+                class="w-full h-full object-cover" loading="lazy" />
+              <div class="absolute inset-0 bg-gradient-to-t from-[#021521]/95 via-[#021521]/30 to-transparent"></div>
+              <span class="absolute top-3 right-3 px-2.5 py-1 rounded-lg bg-amber-400 text-slate-950 font-black text-xs shadow">
+                -30% ESTUDIANTES
+              </span>
+              <div class="absolute bottom-3 left-4 right-4">
+                <div class="text-teal-300 text-[11px] font-bold uppercase tracking-wider">Escapada de Fin de Semana</div>
+                <h4 class="text-white font-extrabold text-base">Full Day Caribeño Morrocoy</h4>
+              </div>
+            </div>
+            <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+              <ul class="space-y-2 text-xs text-slate-300">
+                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-teal-300"></i> Transporte ida y vuelta desde Caracas / Maracay</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-teal-300"></i> Traslado marítimo a Cayo Sombrero + toldo</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-teal-300"></i> Desayuno, almuerzo playero e hidratación</li>
+              </ul>
+              <div class="pt-3 border-t border-teal-800/40 flex items-center justify-between">
+                <div>
+                  <span class="text-[11px] text-slate-400 line-through block">$45 USD</span>
+                  <span class="text-lg font-black text-amber-300">$31 USD <span class="text-[11px] font-medium text-slate-300">/ persona</span></span>
+                </div>
+                <span class="px-3 py-1.5 rounded-xl bg-teal-500/20 text-teal-200 border border-teal-400/40 text-xs font-bold">
+                  Cupo Social
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Paquete 2 -->
+          <div class="glass-panel rounded-2xl overflow-hidden border border-amber-400/40 hover:border-amber-300/70 transition flex flex-col shadow-lg shadow-amber-950/20">
+            <div class="relative h-40 overflow-hidden">
+              <img src="assets/destino-margarita.jpg" alt="Promoción Vacacional Isla de Margarita"
+                class="w-full h-full object-cover" loading="lazy" />
+              <div class="absolute inset-0 bg-gradient-to-t from-[#021521]/95 via-[#021521]/30 to-transparent"></div>
+              <span class="absolute top-3 right-3 px-2.5 py-1 rounded-lg bg-teal-400 text-slate-950 font-black text-xs shadow">
+                PROMO FAMILIAR 4x3
+              </span>
+              <div class="absolute bottom-3 left-4 right-4">
+                <div class="text-amber-300 text-[11px] font-bold uppercase tracking-wider">3 Días / 2 Noches</div>
+                <h4 class="text-white font-extrabold text-base">Plan Vacacional Margarita</h4>
+              </div>
+            </div>
+            <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+              <ul class="space-y-2 text-xs text-slate-300">
+                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-300"></i> Posada turística con piscina y aire acondicionado</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-300"></i> Desayunos incluidos + tour de playas y compras</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-300"></i> 4to acompañante gratis para nómina pública</li>
+              </ul>
+              <div class="pt-3 border-t border-teal-800/40 flex items-center justify-between">
+                <div>
+                  <span class="text-[11px] text-slate-400 line-through block">$160 USD</span>
+                  <span class="text-lg font-black text-amber-300">$115 USD <span class="text-[11px] font-medium text-slate-300">/ persona</span></span>
+                </div>
+                <span class="px-3 py-1.5 rounded-xl bg-amber-500/20 text-amber-200 border border-amber-400/40 text-xs font-bold">
+                  Más Solicitado
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Paquete 3 -->
+          <div class="glass-panel rounded-2xl overflow-hidden border border-teal-500/25 hover:border-emerald-400/60 transition flex flex-col">
+            <div class="relative h-40 overflow-hidden">
+              <img src="assets/destino-merida.jpg" alt="Promoción Ruta Andina Mérida"
+                class="w-full h-full object-cover" loading="lazy" />
+              <div class="absolute inset-0 bg-gradient-to-t from-[#021521]/95 via-[#021521]/30 to-transparent"></div>
+              <span class="absolute top-3 right-3 px-2.5 py-1 rounded-lg bg-emerald-400 text-slate-950 font-black text-xs shadow">
+                -35% CONVENIO UNETI
+              </span>
+              <div class="absolute bottom-3 left-4 right-4">
+                <div class="text-emerald-300 text-[11px] font-bold uppercase tracking-wider">4 Días / 3 Noches</div>
+                <h4 class="text-white font-extrabold text-base">Ruta Andina & Páramo Mérida</h4>
+              </div>
+            </div>
+            <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+              <ul class="space-y-2 text-xs text-slate-300">
+                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-300"></i> Hospedaje en cabañas de montaña con chimenea</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-300"></i> Paseo por Laguna de Mucubají y pueblos típicos</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-300"></i> Pago fraccionado en 3 cuotas quincenales</li>
+              </ul>
+              <div class="pt-3 border-t border-teal-800/40 flex items-center justify-between">
+                <div>
+                  <span class="text-[11px] text-slate-400 line-through block">$185 USD</span>
+                  <span class="text-lg font-black text-amber-300">$120 USD <span class="text-[11px] font-medium text-slate-300">/ persona</span></span>
+                </div>
+                <span class="px-3 py-1.5 rounded-xl bg-emerald-500/20 text-emerald-200 border border-emerald-400/40 text-xs font-bold">
+                  Cuotas Flex
+                </span>
+              </div>
             </div>
           </div>
         </div>
