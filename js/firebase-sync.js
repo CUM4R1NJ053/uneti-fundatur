@@ -15,7 +15,7 @@
     if (!cfg || typeof cfg !== 'object') return false;
     if (!cfg.databaseURL || cfg.databaseURL.includes('TU_PROYECTO')) return false;
     if (!cfg.apiKey || cfg.apiKey === 'TU_API_KEY' || cfg.apiKey.includes('reda') || cfg.apiKey.includes('«') || cfg.apiKey.length < 10) return false;
-    return /^https:\\/\\/.+firebaseio\\.com|^https:\\/\\/.+firebasedatabase\\.app/.test(cfg.databaseURL);
+    return /^https:\/\/.+firebaseio\.com|^https:\/\/.+firebasedatabase\.app/.test(cfg.databaseURL);
   }
 
   const FirebaseSync = {
